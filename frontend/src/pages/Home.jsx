@@ -1,6 +1,6 @@
 import img from "../assets/restauranfood.jpg";
 import restaurant from "../assets/restaurant.jpg";
-import Card from "../components/card";
+import Card from "../components/Card";
 const Home = () => {
   return [<Hero />, <Specials />, <Testimonials />, <About />];
 };
