@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img from "../assets/restauranfood.jpg";
 import restaurant from "../assets/restaurant.jpg";
 import Card from "../components/Card";
@@ -7,26 +8,28 @@ const Home = () => {
 
 const Hero = () => {
   return (
-    <main className="hero min-h-screen bg-gray-50">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <img
-          src={img}
-          className="max-w-sm rounded-lg shadow-2xl sm:display-none"
-          alt="restaurant"
-        />
-        <div>
-          <h1 className="text-5xl font-bold text-sky-500">Dream Restaurant</h1>
-          <p className="py-6 text-gray-500 text-medium">
-            Welcome to Dream Restaurant, where culinary dreams come true. Our
-            menu is carefully crafted to delight your taste buds and transport
-            you to a world of flavors.
-          </p>
-          <button className="btn btn-primary bg-sky-500 text-white border-none btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-            Reserve a Table
-          </button>
+    <div className="container mx-auto mt-2">
+      <section className="mt-1 md:mt-0 relative bg-[url('https://img.freepik.com/free-photo/blur-coffee-cafe-shop-restaurant-with-bokeh-background_1421-472.jpg?w=740&t=st=1698614210~exp=1698614810~hmac=3583ba6df599e2c6a4bf501ada68b2eb04f304a65e7db95118d83ceaffc4a180')] bg-cover bg-center h-96 bg-no-repeat">
+        <div className="relative mx-auto max-w-screen-xl h-full sm:px-6 items-center flex lg:px-8">
+          <div className="max-w-xl md:ml-4 ml-0 text-left px-6 md:px-0">
+            <h1 className="text-3xl font-extrabold sm:text-5xl text-sky-500">
+              Dream
+              <strong className="block font-extrabold text-white">
+                Your Favourite Restaurant.
+              </strong>
+            </h1>
+
+            <div className="mt-8 flex flex-wrap gap-2 text-center">
+              <Link to="/shop">
+                <p className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-black shadow hover:bg-yellow-600 hover:text-white focus:outline-none focus:ring active:bg-yello-500 sm:w-auto">
+                  Order Now
+                </p>
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </main>
+      </section>
+    </div>
   );
 };
 
