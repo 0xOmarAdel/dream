@@ -9,7 +9,7 @@ const Card = () => {
         <h2 className="card-title">Steak</h2>
         <p>Grilled beef steak and potatoes on plate.</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary bg-sky-500 border-none">
+          <button className="btn btn-primary bg-sky-500 hover:bg-sky-500 text-white border-none">
             Order Now
           </button>
         </div>

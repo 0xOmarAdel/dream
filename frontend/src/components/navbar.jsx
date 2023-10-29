@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar lg:px-12 py-5">
+    <nav className="navbar lg:px-12 font-medium py-5">
       <div className="flex-1">
         <Link to="/" className="normal-case text-2xl text-sky-500">
           Dream
