@@ -6,7 +6,7 @@ const SignIn = () => {
 const CreateAccount = () => {
   return (
     <div className="flex justify-center items-center w-full  min-h-screen bg-white px-5 py-5">
-      <div className="xl:max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
+      <div className="xl:max-w-7xl bg-white w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
         <div className="sm:w-[60%] lg:w-[50%] bg-cover bg-center items-center justify-center hidden md:flex ">
           // Add usericon image
           <img src="usericon.png" alt="login" className="h-[500px]" />
