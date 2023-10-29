@@ -16,6 +16,7 @@ const Hero = () => {
         />
         <div>
           <h1 className="text-5xl font-bold text-sky-500">Dream Restaurant</h1>
+          <h2 className="text-2xl text-sky-500 font-medium">New York</h2>
           <p className="py-6 text-sky-600 text-medium font-serif">
             Welcome to Dream Restaurant, where culinary dreams come true. Our
             menu is carefully crafted to delight your taste buds and transport
