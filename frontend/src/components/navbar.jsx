@@ -12,7 +12,6 @@ const Navbar = () => {
         <Navitem to="/" text="Home" />
         <Navitem to="/menu" text="Menu" />
         <Navitem to="/reservations" text="Reservations" />
-        <Navitem to="/OrderOnline" text="Order Online" />
         <Navitem to="/about" text="About" />
         <Navitem to="/Signin" text="Sign in" />
       </ul>
