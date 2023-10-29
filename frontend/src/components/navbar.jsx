@@ -1,12 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
+    <nav className="navbar lg:px-12">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-2xl text-sky-500">Dream</a>
+        <Link to="/" className="normal-case text-2xl text-sky-500">
+          Dream
+        </Link>
       </div>
-      <ul className="menu menu-vertical lg:menu-horizontal rounded-box text-xl">
+      <ul className="text-xl space-x-4">
         <Navitem to="/" text="Home" />
         <Navitem to="/menu" text="Menu" />
         <Navitem to="/reservations" text="Reservations" />
@@ -20,7 +22,10 @@ const Navbar = () => {
 
 const Navitem = ({ to, text }) => (
   <li>
-    <NavLink className="active:!bg-sky-500" to={to}>
+    <NavLink
+      className={({ isActive }) => (isActive ? "text-sky-500" : "")}
+      to={to}
+    >
       {text}
     </NavLink>
   </li>
