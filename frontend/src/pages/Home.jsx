@@ -16,13 +16,12 @@ const Hero = () => {
         />
         <div>
           <h1 className="text-5xl font-bold text-sky-500">Dream Restaurant</h1>
-          <h2 className="text-2xl text-sky-500 font-medium">New York</h2>
-          <p className="py-6 text-sky-600 text-medium font-serif">
+          <p className="py-6 text-gray-500 text-medium">
             Welcome to Dream Restaurant, where culinary dreams come true. Our
             menu is carefully crafted to delight your taste buds and transport
             you to a world of flavors.
           </p>
-          <button className="btn btn-primary bg-sky-500 btn-xs sm:btn-sm md:btn-md lg:btn-lg">
+          <button className="btn btn-primary bg-sky-500 text-white border-none btn-xs sm:btn-sm md:btn-md lg:btn-lg">
             Reserve a Table
           </button>
         </div>
