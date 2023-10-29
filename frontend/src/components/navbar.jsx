@@ -6,8 +6,8 @@ const Navbar = () => {
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-2xl text-sky-500">Dream</a>
       </div>
-      <ul className="menu menu-vertical lg:menu-horizontal text-sky-500 rounded-box text-xl">
-        <Navitem className="bg-sky-500" to="/" text="Home" />
+      <ul className="menu menu-vertical lg:menu-horizontal rounded-box text-xl">
+        <Navitem to="/" text="Home" />
         <Navitem to="/menu" text="Menu" />
         <Navitem to="/reservations" text="Reservations" />
         <Navitem to="/OrderOnline" text="Order Online" />
@@ -20,7 +20,9 @@ const Navbar = () => {
 
 const Navitem = ({ to, text }) => (
   <li>
-    <NavLink to={to}>{text}</NavLink>
+    <NavLink className="active:!bg-sky-500" to={to}>
+      {text}
+    </NavLink>
   </li>
 );
 

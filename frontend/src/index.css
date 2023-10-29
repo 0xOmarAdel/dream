@@ -5,3 +5,11 @@
 .footer-title {
   @apply text-sky-500;
 }
+
+.btn-active {
+  @apply !bg-sky-500;
+}
+
+.input-bordered {
+  @apply border-sky-500 !important;
+}
