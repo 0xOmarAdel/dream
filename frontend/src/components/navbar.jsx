@@ -25,7 +25,9 @@ const Navbar = () => {
 const Navitem = ({ to, text }) => (
   <li>
     <NavLink
-      className={({ isActive }) => (isActive ? "text-sky-500" : "")}
+      className={({ isActive }) =>
+        isActive ? "text-sky-500" : "text-gray-600"
+      }
       to={to}
     >
       {text}
