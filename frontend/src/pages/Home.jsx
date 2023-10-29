@@ -21,7 +21,7 @@ const Hero = () => {
 
             <div className="mt-8 flex flex-wrap gap-2 text-center">
               <Link to="/shop">
-                <p className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-black shadow hover:bg-yellow-600 hover:text-white focus:outline-none focus:ring active:bg-yello-500 sm:w-auto">
+                <p className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-black shadow hover:bg-sky-500 hover:text-white focus:outline-none focus:ring active:bg-yello-500 sm:w-auto">
                   Order Now
                 </p>
               </Link>
