@@ -15,7 +15,7 @@ const Hero = () => {
             <h1 className="text-3xl font-extrabold sm:text-5xl text-sky-500">
               Dream
               <strong className="block font-extrabold text-white">
-                Your Favourite Restaurant.
+                Your Favorite Restaurant.
               </strong>
             </h1>
 
