@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import img from "../assets/restaurantFood.jpg";
 import restaurant from "../assets/restaurant.jpg";
 import Card from "../components/Card";
 const Home = () => {
