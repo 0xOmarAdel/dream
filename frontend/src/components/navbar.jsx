@@ -9,11 +9,11 @@ const Navbar = () => {
         </Link>
       </div>
       <ul className="text-xl hidden lg:flex lg:space-x-4">
-        <Navitem to="/" text="Home" />
-        <Navitem to="/menu" text="Menu" />
-        <Navitem to="/reservations" text="Reservations" />
-        <Navitem to="/about" text="About" />
-        <Navitem to="/Signin" text="Sign in" />
+        <NavItem to="/" text="Home" />
+        <NavItem to="/menu" text="Menu" />
+        <NavItem to="/reservations" text="Reservations" />
+        <NavItem to="/about" text="About" />
+        <NavItem to="/SignIn" text="Sign in" />
       </ul>
       {/* React Icon Menu here */}
       <div className="lg:hidden block cursor-pointer">Menu</div>
@@ -21,7 +21,7 @@ const Navbar = () => {
   );
 };
 
-const Navitem = ({ to, text }) => (
+const NavItem = ({ to, text }) => (
   <li>
     <NavLink
       className={({ isActive }) =>
