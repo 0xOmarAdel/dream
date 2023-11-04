@@ -21,6 +21,8 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "*" }));
 
+const authRouter = require("./routes/authRoutes");
+
 app.get("/", (req, res) => {
   const responseData = {
     message: "YO, HOW U DOIN?",
@@ -54,6 +56,8 @@ app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
   }
   res.status(200).json({ userData });
 });
+
+app.use("/api/v1/auth", authRouter);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
