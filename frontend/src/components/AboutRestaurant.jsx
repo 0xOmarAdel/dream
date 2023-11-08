@@ -1,4 +1,4 @@
-import restaurant from "../assets/restaurant.jpg";
+import restaurant from "/assets/restaurant.jpg";
 const About = () => {
   return (
     <section className="hero min-h-screen bg-gray-50">

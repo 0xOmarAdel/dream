@@ -1,27 +1,36 @@
+import React from "react";
+import ReviewCard from "./ReviewCard";
+
+const Reviews = [
+  {
+    Rater: "Shrouk",
+    comment: "Grilled beef steak and potatoes on plate.",
+  },
+  {
+    Rater: "Risky",
+    comment: "Grilled beef steak and potatoes on plate.",
+  },
+];
+
 const Testimonials = () => {
   return (
     <section className="hero min-h-screen bg-gray-50">
       <div className="hero-content text-center">
-        <div className="max-w-md">
+        <div className="max-w-full ">
           <h1 className="text-5xl font-bold text-sky-500">Testimonials</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <div className="card w-64 bg-sky-500 shadow-xl">
-            <h2 className="card-title">Rating</h2>
-            <figure className="px-10 pt-10">
-              <img
-                src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                alt="Shoes"
-                className="rounded-xl"
+          <div className="flex flex-col gap-5 justify-center items-center md:flex md:flex-row md:justify-center md:flex-wrap">
+            {Reviews.map((review, index) => (
+              <ReviewCard
+                key={index}
+                Rating={review.Rater}
+                comment={review.comment}
               />
-            </figure>
-            <div className="card-body items-center text-center">
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions"></div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

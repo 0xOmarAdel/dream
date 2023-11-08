@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Card = ({ imageSrc, title, description }) => {
+const WeeklyCard = ({ imageSrc, title, description }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -22,4 +22,4 @@ const Card = ({ imageSrc, title, description }) => {
   );
 };
 
-export default Card;
+export default WeeklyCard;
