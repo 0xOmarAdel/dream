@@ -16,7 +16,22 @@ const Navbar = () => {
         <NavItem to="/SignIn" text="Sign in" />
       </ul>
       {/* React Icon Menu here */}
-      <div className="lg:hidden block cursor-pointer">Menu</div>
+      <div>
+        <details className="collapse  lg:hidden block cursor-pointer">
+          <summary className="collapse-title text-xl font-medium text-center align-middle pr-4 ">
+            Menu
+          </summary>
+          <div className="collapse-content">
+            <ul className="text-xl lg:flex lg:space-x-4">
+              <NavItem to="/" text="Home" />
+              <NavItem to="/menu" text="Menu" />
+              <NavItem to="/reservations" text="Reservations" />
+              <NavItem to="/about" text="About" />
+              <NavItem to="/SignIn" text="Sign in" />
+            </ul>
+          </div>
+        </details>
+      </div>
     </nav>
   );
 };
