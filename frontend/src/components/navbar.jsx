@@ -14,6 +14,7 @@ const Navbar = () => {
         <NavItem to="/reservations" text="Reservations" />
         <NavItem to="/about" text="About" />
         <NavItem to="/SignIn" text="Sign in" />
+        <NavItem to="/Cart" text="Cart" />
       </ul>
       {/* React Icon Menu here */}
       <div>
@@ -28,6 +29,7 @@ const Navbar = () => {
               <NavItem to="/reservations" text="Reservations" />
               <NavItem to="/about" text="About" />
               <NavItem to="/SignIn" text="Sign in" />
+              <NavItem to="/Cart" text="Cart" />
             </ul>
           </div>
         </details>
@@ -36,7 +38,7 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({ to, text }) => (
+const NavItem = ({ to, text, img }) => (
   <li>
     <NavLink
       className={({ isActive }) =>
@@ -44,6 +46,7 @@ const NavItem = ({ to, text }) => (
       }
       to={to}
     >
+      {img && <img src={img} alt={text} />}
       {text}
     </NavLink>
   </li>

@@ -13,3 +13,8 @@
 .input-bordered {
   @apply border-sky-500 !important;
 }
+
+.input-primary:focus,
+.input-primary:focus-within {
+  @apply outline-sky-500 !important;
+}

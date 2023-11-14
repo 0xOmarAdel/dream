@@ -7,7 +7,15 @@ const Reviews = [
     comment: "Grilled beef steak and potatoes on plate.",
   },
   {
+    Rater: "Noah",
+    comment: "Grilled beef steak and potatoes on plate.",
+  },
+  {
     Rater: "Risky",
+    comment: "Grilled beef steak and potatoes on plate.",
+  },
+  {
+    Rater: "Mr ghost",
     comment: "Grilled beef steak and potatoes on plate.",
   },
 ];
