@@ -1,3 +1,5 @@
+import ReservationSystem from "../components/ResrevationsSystem";
+
 const Reservations = () => {
   return (
     <div className="flex justify-center items-center w-full  min-h-screen bg-white px-5 py-5">
@@ -94,11 +96,7 @@ const Reservations = () => {
           </div>
         </div>
         <div className="sm:w-[60%] lg:w-[50%] bg-cover bg-center items-center justify-center hidden md:flex ">
-          <img
-            src="/assets/reservexample.png"
-            alt="login"
-            className="h-[500px]"
-          />
+          <ReservationSystem />
         </div>
       </div>
     </div>
