@@ -9,13 +9,11 @@ export default {
     themes: [
       {
         light: {
-          ...require("daisyui/src/theming/themes")["light"],
-          primary: "#a991f7",
-          secondary: "#f6d860",
-          accent: "#37cdbe",
+          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+          primary: "#0ea5ea",
+          secondary: "#a991f7",
         },
       },
-      "dark",
     ],
   },
 };
