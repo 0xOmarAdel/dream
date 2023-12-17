@@ -78,3 +78,23 @@
   font-size: 12px;
   color: #333;
 }
+
+.slider {
+  @apply w-full h-8;
+}
+
+.slider .slider-track {
+  @apply h-1.5 top-1/2 -translate-y-1/2 bg-gray-300;
+}
+
+.slider .slider-track.slider-track-1 {
+  @apply bg-sky-400;
+}
+
+.slider .slider-thumb {
+  @apply w-1.5 h-5 top-1/2 -translate-y-1/2 bg-sky-500 rounded-full text-center cursor-pointer transition duration-700;
+}
+
+.slider .slider-thumb.active {
+  @apply border-none outline-none;
+}
