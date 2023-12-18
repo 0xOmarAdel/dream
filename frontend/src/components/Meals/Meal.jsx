@@ -9,8 +9,8 @@ const Product = () => {
   return (
     <div className="col-span-1 flex flex-col items-center p-5 shadow-md rounded-md text-center">
       <MealImage />
-      <MealRating />
       <MealTitle />
+      <MealRating />
       <MealPrice />
       <MealSizes />
       <MealAddToCartButton />
