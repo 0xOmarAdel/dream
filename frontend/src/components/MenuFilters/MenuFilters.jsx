@@ -1,4 +1,5 @@
 import { IoFilter } from "react-icons/io5";
+import { FaArrowRotateLeft } from "react-icons/fa6";
 import MenuCategoryFilter from "./MenuCategoryFilter";
 import MenuPriceFilter from "./MenuPriceFilter";
 import MenuRatingFilter from "./MenuRatingFilter";
@@ -40,6 +41,12 @@ const MenuFilters = () => {
         <IoFilter className="text-lg" />
         apply filters
       </button>
+      <select className="select select-info w-full max-w-xs">
+        <option>Price (lowest to highest)</option>
+        <option>Price (highest to lowest)</option>
+        <option>Rating (lowest to highest)</option>
+        <option>Rating (highest to lowest)</option>
+      </select>
       <MenuPriceFilter priceRange={priceRange} />
       <MenuCategoryFilter list={restaurantCategories} />
       <MenuSizeFilter list={restaurantSizes} />
