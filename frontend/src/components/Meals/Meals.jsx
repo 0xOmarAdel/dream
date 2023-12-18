@@ -1,5 +1,5 @@
 import Meal from "./Meal";
-import { meals } from "../data/fakeProducts";
+import { meals } from "../../data/fakeProducts";
 
 const Meals = () => {
   return (
