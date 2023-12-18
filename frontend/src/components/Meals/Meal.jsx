@@ -3,6 +3,7 @@ import MealTitle from "./MealTitle";
 import MealSizes from "./MealSizes";
 import MealImage from "./MealImage";
 import MealRating from "./MealRating";
+import MealAddToCartButton from "./MealAddToCartButton";
 
 const Product = () => {
   return (
@@ -12,6 +13,7 @@ const Product = () => {
       <MealTitle />
       <MealPrice />
       <MealSizes />
+      <MealAddToCartButton />
     </div>
   );
 };
