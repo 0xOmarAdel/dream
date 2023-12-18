@@ -2,6 +2,7 @@ import { IoFilter } from "react-icons/io5";
 import MenuCategoryFilter from "./MenuCategoryFilter";
 import MenuPriceFilter from "./MenuPriceFilter";
 import MenuRatingFilter from "./MenuRatingFilter";
+import MenuSizeFilter from "./MenuSizeFilter";
 
 const MenuFilters = () => {
   const restaurantCategories = [
@@ -22,6 +23,12 @@ const MenuFilters = () => {
     { id: 15, name: "International Flavors" },
   ];
 
+  const restaurantSizes = [
+    { id: 1, name: "small" },
+    { id: 2, name: "medium" },
+    { id: 3, name: "large" },
+  ];
+
   return (
     <div className="sticky col-span-1 flex flex-col gap-5">
       <button className="btn btn-outline btn-primary">
@@ -30,6 +37,7 @@ const MenuFilters = () => {
       </button>
       <MenuPriceFilter />
       <MenuCategoryFilter list={restaurantCategories} />
+      <MenuSizeFilter list={restaurantSizes} />
       <MenuRatingFilter />
     </div>
   );
