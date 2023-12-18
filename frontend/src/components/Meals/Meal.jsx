@@ -9,8 +9,8 @@ const Product = () => {
     <div className="col-span-1 flex flex-col items-center p-5 shadow-md rounded-md text-center">
       <MealImage />
       <MealRating />
-      <MealPrice />
       <MealTitle />
+      <MealPrice />
       <MealSizes />
     </div>
   );
