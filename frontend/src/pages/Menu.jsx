@@ -1,6 +1,6 @@
 import Banner from "../layout/Banner";
 import Meals from "../components/Meals";
-import MenuFilters from "../components/MenuFilters";
+import MenuFilters from "../components/MenuFilters/MenuFilters";
 
 const Menu = () => {
   return (
