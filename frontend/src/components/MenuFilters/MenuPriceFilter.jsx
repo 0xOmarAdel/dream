@@ -1,6 +1,8 @@
 import ReactSlider from "react-slider";
 
-const MenuPriceFilter = () => {
+const MenuPriceFilter = ({ priceRange }) => {
+  const minDistance = Math.ceil((priceRange.max - priceRange.min) / 10);
+
   return (
     <div className="collapse collapse-arrow border-b border-gray-300 rounded-none">
       <input type="checkbox" />
@@ -11,25 +13,25 @@ const MenuPriceFilter = () => {
           thumbClassName="slider-thumb"
           trackClassName="slider-track"
           pearling
-          defaultValue={[0, 100]}
+          defaultValue={[priceRange.min, priceRange.max]}
           ariaLabel={["Lower thumb", "Upper thumb"]}
-          minDistance={10}
+          minDistance={minDistance}
         />
         <div className="mt-5 flex flex-row justify-between gap-4">
           <input
             type="number"
-            min={0}
-            max={100 - 10}
+            min={priceRange.min}
+            max={priceRange.max - minDistance}
             className="w-24 bg-transparent border border-gray-300 rounded-sm text-slate-900 text-center font-semibold tracking-wider transition duration-700 focus:outline-none focus:border-gray-500"
-            value={0}
+            value={priceRange.min}
           />
           <span className="text-lg select-none">-</span>
           <input
             type="number"
-            min={0 + 10}
-            max={100}
+            min={priceRange.min + minDistance}
+            max={priceRange.max}
             className="w-24 bg-transparent border border-gray-300 rounded-sm text-slate-900 text-center font-semibold tracking-wider transition duration-700 focus:outline-none focus:border-gray-500"
-            value={100}
+            value={priceRange.max}
           />
         </div>
       </div>

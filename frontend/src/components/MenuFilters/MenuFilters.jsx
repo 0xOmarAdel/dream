@@ -5,6 +5,11 @@ import MenuRatingFilter from "./MenuRatingFilter";
 import MenuSizeFilter from "./MenuSizeFilter";
 
 const MenuFilters = () => {
+  const priceRange = {
+    min: 0,
+    max: 100,
+  };
+
   const restaurantCategories = [
     { id: 1, name: "Appetizers" },
     { id: 2, name: "Main Courses" },
@@ -35,7 +40,7 @@ const MenuFilters = () => {
         <IoFilter className="text-lg" />
         apply filters
       </button>
-      <MenuPriceFilter />
+      <MenuPriceFilter priceRange={priceRange} />
       <MenuCategoryFilter list={restaurantCategories} />
       <MenuSizeFilter list={restaurantSizes} />
       <MenuRatingFilter />
