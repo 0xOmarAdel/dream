@@ -41,6 +41,10 @@ const MenuFilters = () => {
         <IoFilter className="text-lg" />
         apply filters
       </button>
+      <button className="btn btn-outline btn-primary">
+        <FaArrowRotateLeft />
+        reset filters
+      </button>
       <select className="select select-info w-full max-w-xs">
         <option>Price (lowest to highest)</option>
         <option>Price (highest to lowest)</option>
