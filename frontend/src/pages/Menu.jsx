@@ -1,5 +1,5 @@
 import Banner from "../layout/Banner";
-import Meals from "../components/Meals";
+import Meals from "../components/Meals/Meals";
 import MenuFilters from "../components/MenuFilters/MenuFilters";
 
 const Menu = () => {
