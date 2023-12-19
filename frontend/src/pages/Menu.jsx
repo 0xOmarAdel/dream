@@ -7,7 +7,9 @@ const Menu = () => {
     <div className="flex flex-col gap-10">
       <Banner />
       <div className="px-20 grid grid-cols-5 gap-10">
-        <MenuFilters />
+        <div className="col-span-1">
+          <MenuFilters />
+        </div>
         <div className="col-span-4">
           <Meals />
         </div>

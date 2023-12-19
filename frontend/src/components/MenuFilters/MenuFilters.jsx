@@ -58,7 +58,7 @@ const MenuFilters = () => {
   ];
 
   return (
-    <div className="sticky col-span-1 flex flex-col gap-5">
+    <div className="sticky top-8 flex flex-col gap-5">
       <button className="btn btn-outline btn-primary">
         <IoFilter className="text-lg" />
         apply filters
