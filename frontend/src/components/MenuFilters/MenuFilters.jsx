@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { IoFilter } from "react-icons/io5";
-import { FaArrowRotateLeft } from "react-icons/fa6";
-import MenuCategoryFilter from "./MenuCategoryFilter";
-import MenuPriceFilter from "./MenuPriceFilter";
-import MenuRatingFilter from "./MenuRatingFilter";
-import MenuSizeFilter from "./MenuSizeFilter";
 import MenuSortOrder from "./MenuSortOrder";
+import MenuApplyFiltersButton from "./MenuApplyFiltersButton";
+import MenuResetFiltersButton from "./MenuResetFiltersButton";
+import MenuPriceFilter from "./MenuPriceFilter";
+import MenuCategoryFilter from "./MenuCategoryFilter";
+import MenuSizeFilter from "./MenuSizeFilter";
+import MenuRatingFilter from "./MenuRatingFilter";
 
 const MenuFilters = () => {
   const priceRange = {
@@ -41,14 +41,8 @@ const MenuFilters = () => {
 
   return (
     <div className="sticky top-8 flex flex-col gap-5">
-      <button className="btn btn-outline btn-primary">
-        <IoFilter className="text-lg" />
-        apply filters
-      </button>
-      <button className="btn btn-outline btn-primary">
-        <FaArrowRotateLeft />
-        reset filters
-      </button>
+      <MenuApplyFiltersButton />
+      <MenuResetFiltersButton />
       <MenuSortOrder
         selectedOption={selectedOption}
         onChange={(selectedOption) => setSelectedOption(selectedOption)}
