@@ -3,6 +3,8 @@ import { AiOutlineUser } from "react-icons/ai";
 import NavItem from "./NavItem";
 import { navLinks } from "../data/navLinks";
 import { IoCartOutline } from "react-icons/io5";
+import CartModal from "../components/Cart/CartModal";
+import ShowCartModalButton from "../components/Cart/ShowCartModalButton";
 
 const Navbar = () => {
   return (
@@ -20,10 +22,13 @@ const Navbar = () => {
           <AiOutlineUser className="text-2xl" />
           <span>Login</span>
         </div>
-        <div className="flex flex-row gap-1">
-          <IoCartOutline className="text-2xl" />
-          <span>Cart</span>
-        </div>
+        <ShowCartModalButton>
+          <div className="flex flex-row items-center gap-1">
+            <IoCartOutline className="text-2xl" />
+            <span>Cart</span>
+          </div>
+        </ShowCartModalButton>
+        <CartModal />
       </div>
     </nav>
   );
