@@ -13,7 +13,7 @@ const Hero = () => {
             </h1>
 
             <div className="mt-8 flex flex-wrap gap-2 text-center">
-              <Link to="/shop">
+              <Link to="/menu">
                 <p className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-black shadow hover:bg-sky-500 hover:text-white focus:outline-none focus:ring active:bg-yellow-500 sm:w-auto">
                   Order Now
                 </p>
