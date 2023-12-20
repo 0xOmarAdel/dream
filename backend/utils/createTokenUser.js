@@ -6,7 +6,6 @@ const createTokenUser = (user) => {
     role: user.role,
     email: user.email,
     createdAt: user.createdAt,
-    address: user.address,
     cart: user.cart,
     orders: user.orders,
     reservations: user.reservations,
