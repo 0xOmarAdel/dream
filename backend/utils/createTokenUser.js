@@ -7,6 +7,9 @@ const createTokenUser = (user) => {
     email: user.email,
     createdAt: user.createdAt,
     address: user.address,
+    cart: user.cart,
+    orders: user.orders,
+    reservations: user.reservations,
   };
 };
 
