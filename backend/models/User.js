@@ -46,6 +46,11 @@ const UserSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       default: "user",
     },
+    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Meal" }],
+    orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+    reservations: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
+    ],
   },
   {
     timestamps: true,
