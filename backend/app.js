@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "*" }));
 
 const authRouter = require("./routes/authRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -58,6 +59,7 @@ app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/categories", categoryRoutes);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
