@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { register } from "../store/slices/userAuthSlice";
 import { registerSchema } from "../schemas/registerSchema";
 
@@ -45,12 +45,14 @@ const Register = () => {
                 placeholder="Jane"
                 className="input input-bordered input-primary w-full max-w-xs"
               />
+              <ErrorMessage name="firstName" />
               <Field
                 id="lastName"
                 name="lastName"
                 placeholder="Doe"
                 className="input input-bordered input-primary w-full max-w-xs"
               />
+              <ErrorMessage name="lastName" />
               <Field
                 id="email"
                 name="email"
@@ -58,6 +60,7 @@ const Register = () => {
                 type="email"
                 className="input input-bordered input-primary w-full max-w-xs"
               />
+              <ErrorMessage name="email" />
               <Field
                 id="password"
                 name="password"
@@ -65,6 +68,7 @@ const Register = () => {
                 type="password"
                 className="input input-bordered input-primary w-full max-w-xs"
               />
+              <ErrorMessage name="password" />
               <button type="submit">Submit</button>
             </Form>
           </Formik>
