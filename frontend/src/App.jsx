@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./components/footer";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -47,7 +47,7 @@ const App = () => {
   if (isLoading) return;
 
   return (
-    <Fragment>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -66,7 +66,7 @@ const App = () => {
         <Route path="/Cart" element={<Cart />} />
       </Routes>
       <Footer />
-    </Fragment>
+    </>
   );
 };
 
