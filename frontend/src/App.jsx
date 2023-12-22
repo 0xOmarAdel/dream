@@ -64,8 +64,14 @@ const App = () => {
           path="/login"
           element={!user ? <LogIn /> : <Navigate to="/" />}
         />
-        <Route path="/Cart" element={<Cart />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/Cart"
+          element={user ? <Cart /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profile"
+          element={user ? <Profile /> : <Navigate to="/login" />}
+        />
       </Routes>
       <Footer />
     </>
