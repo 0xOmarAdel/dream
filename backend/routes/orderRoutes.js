@@ -12,3 +12,5 @@ router.get("/", getAllOrders);
 router.get("/:id", getOrderById);
 router.put("/:id", editOrder);
 router.delete("/:id", deleteOrder);
+
+module.exports = router;
