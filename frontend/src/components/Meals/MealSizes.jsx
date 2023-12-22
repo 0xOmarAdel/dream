@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const MealSizes = ({ options }) => {
-  const [activeButton, setActiveButton] = useState(null);
+const MealSizes = ({ options, onSizeClick }) => {
+  const [activeButton, setActiveButton] = useState(0);
 
   const handleButtonClick = (index) => {
     setActiveButton(index);
+    onSizeClick(options[index].size);
   };
 
   return (
@@ -14,7 +15,7 @@ const MealSizes = ({ options }) => {
           key={index}
           className={`${
             activeButton === index ? "text-sky-500" : "text-gray-600"
-          } hover:bg-sky-500`}
+          } hover:bg-sky-500 hover:text-white`}
           onClick={() => handleButtonClick(index)}
         >
           <span className="border px-1 py-0.5">{option.size}</span>
