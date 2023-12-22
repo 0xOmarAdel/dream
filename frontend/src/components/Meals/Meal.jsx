@@ -5,17 +5,20 @@ import MealImage from "./MealImage";
 import MealRating from "./MealRating";
 import MealAddToCartButton from "./MealAddToCartButton";
 
-const Product = () => {
+const Meal = ({ title, description, options, image, _id, categoryId }) => {
+  const handleSizeClick = (selectedSize) => {
+    console.log("Selected Size:", selectedSize);
+  };
   return (
     <div className="col-span-1 flex flex-col items-center p-5 shadow-md rounded-md text-center">
-      <MealImage />
-      <MealTitle />
+      <MealImage image={image} />
+      <MealTitle title={title} />
       <MealRating />
-      <MealPrice />
-      <MealSizes />
+      <MealPrice options={options} />
+      <MealSizes options={options} onSizeClick={handleSizeClick} />
       <MealAddToCartButton />
     </div>
   );
 };
 
-export default Product;
+export default Meal;
