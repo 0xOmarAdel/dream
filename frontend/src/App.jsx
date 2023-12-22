@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
 import Profile from "./pages/Profile";
+import Orders from "./pages/Orders";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "./store/slices/userAuthSlice";
 import axios from "axios";
@@ -65,12 +66,16 @@ const App = () => {
           element={!user ? <LogIn /> : <Navigate to="/" />}
         />
         <Route
-          path="/Cart"
+          path="/cart"
           element={user ? <Cart /> : <Navigate to="/login" />}
         />
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/orders"
+          element={user ? <Orders /> : <Navigate to="/login" />}
         />
       </Routes>
       <Footer />
