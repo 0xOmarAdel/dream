@@ -10,6 +10,7 @@ import OrderOnline from "./pages/OrderOnline";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
+import Profile from "./pages/Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "./store/slices/userAuthSlice";
 import axios from "axios";
@@ -64,6 +65,7 @@ const App = () => {
           element={!user ? <LogIn /> : <Navigate to="/" />}
         />
         <Route path="/Cart" element={<Cart />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </>
