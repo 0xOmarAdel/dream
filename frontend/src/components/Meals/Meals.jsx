@@ -15,7 +15,7 @@ const Meals = () => {
       });
   }, []);
   return (
-    <div className="grid grid-cols-5 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
       {meals.map((meal) => (
         <Meal key={meal._id} {...meal} />
       ))}
