@@ -40,7 +40,7 @@ const MenuFilters = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
-    <div className="sticky top-8 flex flex-col gap-5">
+    <div className="sticky top-8 hidden lg:flex flex-col gap-5">
       <MenuApplyFiltersButton />
       <MenuResetFiltersButton />
       <MenuSortOrder
