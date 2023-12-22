@@ -1,9 +1,11 @@
-const MealPrice = () => {
+const MealPrice = ({ options }) => {
+  const maxPrice = Math.max(...options.map((option) => option.price));
+  const minPrice = Math.min(...options.map((option) => option.price));
   return (
     <div className="mt-1 flex flex-row gap-2 text-lg font-semibold">
-      <span>$20</span>
+      <span>${minPrice}</span>
       <span>-</span>
-      <span>$70</span>
+      <span>${maxPrice}</span>
     </div>
   );
 };
