@@ -5,6 +5,7 @@ import { navLinks } from "../data/navLinks";
 import { IoCartOutline } from "react-icons/io5";
 import CartModal from "../components/Cart/CartModal";
 import ShowCartModalButton from "../components/Cart/ShowCartModalButton";
+import { logout } from "../utils/logout";
 
 const Navbar = () => {
   return (
@@ -156,7 +157,7 @@ const Navbar = () => {
               <a>Settings</a>
             </li>
             <li>
-              <Link to="/login">Logout</Link>
+              <button onClick={logout}>Logout</button>
             </li>
           </ul>
         </div>
