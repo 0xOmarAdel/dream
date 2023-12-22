@@ -154,7 +154,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a>Settings</a>
+              <Link to="/orders">Orders</Link>
             </li>
             <li>
               <button onClick={logout}>Logout</button>
