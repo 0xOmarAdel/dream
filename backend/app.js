@@ -24,6 +24,7 @@ app.use(cors({ origin: "*" }));
 const authRouter = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const mealRoutes = require("./routes/mealRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -62,6 +63,7 @@ app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/meals", mealRoutes);
+app.use("/api/v1/orders", orderRoutes);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
