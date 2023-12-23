@@ -6,14 +6,29 @@ import MealRating from "./MealRating";
 import MealAddToCartButton from "./MealAddToCartButton";
 import { useState } from "react";
 
-const Meal = ({ title, description, options, image, _id, categoryId }) => {
+const Meal = ({
+  title,
+  description,
+  options,
+  image,
+  _id,
+  categoryId,
+  changeActivateModal,
+}) => {
   const [selectedSize, setSelectedSize] = useState(options[0].size);
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
   };
+
   return (
     <div className="col-span-1 flex flex-col items-center p-3 shadow-md rounded-md text-center">
+      <button
+        className="btn"
+        onClick={() => changeActivateModal({ title, description, image })}
+      >
+        open modal
+      </button>
       <MealImage image={image} />
       <MealTitle title={title} />
       <MealRating />
