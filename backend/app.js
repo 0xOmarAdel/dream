@@ -25,6 +25,7 @@ const authRouter = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const mealRoutes = require("./routes/mealRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -64,6 +65,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/meals", mealRoutes);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/reviews", reviewRoutes);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
