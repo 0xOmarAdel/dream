@@ -7,10 +7,10 @@ const MenuCategoryFilter = ({ list: categories }) => {
     setSelectedCategories((prevSelectedCategories) => {
       const updatedCategories = { ...prevSelectedCategories };
 
-      if (updatedCategories[category.name]) {
-        delete updatedCategories[category.name];
+      if (updatedCategories[category.title]) {
+        delete updatedCategories[category.title];
       } else {
-        updatedCategories[category.name] = true;
+        updatedCategories[category.title] = true;
       }
 
       return updatedCategories;
@@ -27,11 +27,11 @@ const MenuCategoryFilter = ({ list: categories }) => {
             <label className="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
-                checked={!!selectedCategories[category.name]}
+                checked={!!selectedCategories[category.title]}
                 className="checkbox checkbox-primary checkbox-sm"
                 onChange={() => toggleCategory(category)}
               />
-              <span className="label-text">{category.name}</span>
+              <span className="label-text">{category.title}</span>
             </label>
           </div>
         ))}
