@@ -65,7 +65,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/meals", mealRoutes);
 app.use("/api/v1/orders", orderRoutes);
-app.use("/reviews", reviewRoutes);
+app.use("/api/v1/reviews", reviewRoutes);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
