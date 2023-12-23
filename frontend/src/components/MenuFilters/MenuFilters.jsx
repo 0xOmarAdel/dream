@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuSortOrder from "./MenuSortOrder";
 import MenuApplyFiltersButton from "./MenuApplyFiltersButton";
 import MenuResetFiltersButton from "./MenuResetFiltersButton";
@@ -6,6 +6,7 @@ import MenuPriceFilter from "./MenuPriceFilter";
 import MenuCategoryFilter from "./MenuCategoryFilter";
 import MenuSizeFilter from "./MenuSizeFilter";
 import MenuRatingFilter from "./MenuRatingFilter";
+import axiosApi from "../../utils/axiosConfig";
 
 const MenuFilters = () => {
   const priceRange = {
@@ -31,6 +32,18 @@ const MenuFilters = () => {
     { id: 15, name: "International Flavors" },
   ];
 
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    axiosApi
+      .get("/categories")
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching meals:", error);
+      });
+  }, []);
+
   const restaurantSizes = [
     { id: 1, name: "small" },
     { id: 2, name: "medium" },
@@ -48,7 +61,7 @@ const MenuFilters = () => {
         onChange={(selectedOption) => setSelectedOption(selectedOption)}
       />
       <MenuPriceFilter priceRange={priceRange} />
-      <MenuCategoryFilter list={restaurantCategories} />
+      <MenuCategoryFilter list={categories} />
       <MenuSizeFilter list={restaurantSizes} />
       <MenuRatingFilter />
     </div>
