@@ -4,18 +4,8 @@ const authenticateUser = require("../middleware/authenticateUser");
 
 router.post("/", authenticateUser, reviewController.createReview);
 router.get("/", reviewController.getAllReviews);
-router.get("/:id", authenticateUser, reviewController.getSingleReview);
-router.put(
-  "/:id",
-  authenticateUser,
-  authenticateMiddleware,
-  reviewController.editReview
-);
-router.delete(
-  "/:id",
-  authenticateUser,
-  authenticateMiddleware,
-  reviewController.deleteReview
-);
+router.get("/:id", reviewController.getSingleReview);
+router.put("/:id", authenticateUser, reviewController.editReview);
+router.delete("/:id", authenticateUser, reviewController.deleteReview);
 
 module.exports = router;
