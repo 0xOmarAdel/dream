@@ -16,16 +16,6 @@ const UserSchema = new mongoose.Schema(
       min: 2,
       max: 30,
     },
-    phone: {
-      type: String,
-      unique: true,
-      min: 5,
-      max: 14,
-    },
-    address: {
-      type: String,
-      minLength: 5,
-    },
     email: {
       type: String,
       unique: true,
