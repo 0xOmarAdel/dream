@@ -14,7 +14,7 @@ const Hero = () => {
           <h1 className="mb-5 text-5xl font-bold">Dream</h1>
           <p className="mb-5 text-4xl">Your Favorite Restaurant.</p>
           <Link to="/menu">
-            <button className="btn btn-primary">Order Now</button>
+            <button className="btn btn-primary text-white">Order Now</button>
           </Link>
         </div>
       </div>
