@@ -2,7 +2,6 @@ import { FaStar } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
 const Stars = ({ max, numberOfStars, containerClasses }) => {
-  console.log(numberOfStars);
   const numberOfFullStars = Number.isInteger(numberOfStars)
     ? numberOfStars
     : Math.floor(numberOfStars);
@@ -11,7 +10,6 @@ const Stars = ({ max, numberOfStars, containerClasses }) => {
       ? max - numberOfFullStars - 1
       : max - numberOfFullStars;
 
-  console.log(numberOfFullStars);
   const fullStarsArray = new Array(numberOfFullStars)
     .fill("")
     .map((_, i) => i + 1);
