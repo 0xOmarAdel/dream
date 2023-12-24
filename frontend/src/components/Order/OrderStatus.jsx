@@ -1,0 +1,46 @@
+const OrderStatus = ({ status }) => {
+  let style = "";
+  let text = "";
+
+  switch (status) {
+    case "Pending":
+    case 0:
+      style =
+        "bg-yellow-100 text-yellow-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900";
+      text = "Pending";
+      break;
+    case "Confirmed":
+    case 1:
+      style =
+        "bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300";
+      text = "Confirmed";
+      break;
+    case "Shipping":
+    case 2:
+      style =
+        "bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:text-indigo-300";
+      text = "Shipping";
+      break;
+    case "Delivered":
+    case 3:
+      style =
+        "bg-sky-100 text-sky-700 text-xs font-medium me-2 px-2.5 py-0.5 rounded";
+      text = "Delivered";
+      break;
+    case "Canceled":
+    case 4:
+      style =
+        "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded";
+      text = "Canceled";
+      break;
+    default:
+      style =
+        "bg-yellow-100 text-yellow-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900";
+      text = "Pending";
+      break;
+  }
+
+  return <span className={style}>{text}</span>;
+};
+
+export default OrderStatus;
