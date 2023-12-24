@@ -1,14 +1,12 @@
-import { FaStar } from "react-icons/fa6";
+import Stars from "../ui/Stars";
 
-const MealRating = () => {
+const MealRating = ({ rating, starsContainerClasses }) => {
   return (
-    <div className="mt-1 flex flex-row gap-1 text-lg text-primary">
-      <FaStar />
-      <FaStar />
-      <FaStar />
-      <FaStar />
-      <FaStar />
-    </div>
+    <Stars
+      max={5}
+      numberOfStars={rating}
+      containerClasses={starsContainerClasses}
+    />
   );
 };
 
