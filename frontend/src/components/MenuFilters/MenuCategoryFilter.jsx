@@ -23,7 +23,7 @@ const MenuCategoryFilter = ({ list: categories }) => {
       <div className="collapse-title px-0 text-xl font-medium">Category</div>
       <div className="collapse-content px-0">
         {categories.map((category) => (
-          <div key={category.id} className="form-control">
+          <div key={category._id} className="form-control">
             <label className="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
