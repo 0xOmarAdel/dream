@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import MealRating from "./MealRating";
 
 const MealReviewsModal = ({ hideReviews, rating }) => {
+  // api call here to get the meal reviews
+
   const productReviews = 21;
   const ratings = [
     {

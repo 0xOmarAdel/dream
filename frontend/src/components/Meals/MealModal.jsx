@@ -4,8 +4,6 @@ import { useState } from "react";
 import MealReviewsModal from "./MealReviewsModal";
 
 const MealModal = (props) => {
-  // api call here to get the meal reviews
-
   const [showReviews, setShowReviews] = useState(false);
 
   return (
