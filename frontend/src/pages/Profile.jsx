@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import UserInfo from "../components/Profile/UserInfo";
+import { Link } from "react-router-dom";
 
 const user = {
   name: "John Doe",
@@ -8,146 +10,59 @@ const user = {
 };
 
 const Profile = () => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedUser, setEditedUser] = useState({
-    name: user.name,
-    email: user.email,
-    password: "",
-  });
+  const [isUserInfoVisible, setIsUserInfoVisible] = useState(false);
 
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
-  };
-
-  const handleSaveChanges = () => {
-    // Add logic to save changes (update API, state, etc.)
-    console.log("Saving changes:", editedUser);
-    handleEditToggle();
+  const handleUserInfoClick = () => {
+    setIsUserInfoVisible(true);
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center">
-      <div className="max-w-2xl bg-white p-8 shadow-lg rounded-md w-full mx-4 md:mx-0">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center">
-            <img
-              src={user.profilePicture}
-              alt="Profile"
-              className="w-16 h-16 rounded-full mr-4"
-            />
-            <div>
-              <h2 className="text-2xl font-semibold">{user.name}</h2>
-              <p className="text-gray-600">{user.email}</p>
-            </div>
-          </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md"
-            onClick={handleEditToggle}
+    <>
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center justify-center">
+          {/* Page content here */}
+          {isUserInfoVisible && <UserInfo user={user} />}
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
           >
-            {isEditing ? "Cancel" : "Edit Profile"}
-          </button>
+            Open drawer
+          </label>
         </div>
-
-        {isEditing && (
-          <div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="name"
-              >
-                First Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={editedUser.name}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md"
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            {/* Sidebar content here */}
+            <div className="menu bg-base-200 text-base-content">
+              <img
+                className="mask mask-circle"
+                src={user.profilePicture}
+                alt={user.name}
               />
+              <h1 className="text-3xl">{user.name}</h1>
+              <h2 className="text-xl">{user.email}</h2>
+              <div className="divider"></div>
             </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="name"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={editedUser.name}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={editedUser.email}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Current Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={editedUser.password}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                New Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={editedUser.password}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md"
-              />
-            </div>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md"
-              onClick={handleSaveChanges}
-            >
-              Save Changes
-            </button>
-          </div>
-        )}
+            <li>
+              <button className="text-xl" onClick={handleUserInfoClick}>
+                Personal Information
+              </button>
+            </li>
+            <li>
+              <button className="text-xl">Order History</button>
+            </li>
+            <li>
+              <button className="text-xl">Reservations History</button>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
