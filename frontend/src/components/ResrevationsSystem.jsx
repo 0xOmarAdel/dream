@@ -1,6 +1,6 @@
 // ReservationSystem.js
 
-import React, { useState } from "react";
+import { useState } from "react";
 import tableicon from "../assets/table.png";
 
 const ReservationSystem = () => {
