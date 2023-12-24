@@ -5,7 +5,6 @@ import MealRating from "./MealRating";
 const MealReviewsModal = ({ hideReviews, rating }) => {
   // api call here to get the meal reviews
 
-  const productReviews = 21;
   const ratings = [
     {
       value: 5,
@@ -29,6 +28,10 @@ const MealReviewsModal = ({ hideReviews, rating }) => {
     },
   ];
 
+  const totalReviews = ratings.reduce((accumulator, currentItem) => {
+    return accumulator + currentItem.rating;
+  }, 0);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -47,7 +50,7 @@ const MealReviewsModal = ({ hideReviews, rating }) => {
             /5
           </span>
           <MealRating rating={rating || 0} starsContainerClasses="text-2xl" />
-          <span>{productReviews} customer reviews</span>
+          <span>{totalReviews} customer reviews</span>
         </div>
         <div className="">
           {ratings.map((rating) => (
@@ -61,7 +64,7 @@ const MealReviewsModal = ({ hideReviews, rating }) => {
                 <div
                   className="absolute h-full z-10 bg-primary"
                   style={{
-                    width: `${(rating.rating / productReviews) * 100}%`,
+                    width: `${(rating.rating / totalReviews) * 100}%`,
                   }}
                 ></div>
               </div>
