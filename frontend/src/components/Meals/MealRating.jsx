@@ -1,12 +1,17 @@
 import Stars from "../ui/Stars";
 
-const MealRating = ({ rating, starsContainerClasses }) => {
+const MealRating = ({ rating, starsContainerClasses, showModal }) => {
   return (
-    <Stars
-      max={5}
-      numberOfStars={rating}
-      containerClasses={starsContainerClasses}
-    />
+    <div
+      className={showModal ? "cursor-pointer" : ""}
+      onClick={showModal || (() => {})}
+    >
+      <Stars
+        max={5}
+        numberOfStars={rating}
+        containerClasses={starsContainerClasses}
+      />
+    </div>
   );
 };
 

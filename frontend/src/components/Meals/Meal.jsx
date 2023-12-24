@@ -20,17 +20,22 @@ const Meal = ({
     setSelectedSize(size);
   };
 
+  const showModal = () => {
+    changeActivateModal({ title, description, image, rating });
+  };
+
   return (
     <div className="col-span-1 flex flex-col items-center p-3 shadow-md rounded-md text-center">
-      <button
-        className="btn"
-        onClick={() => changeActivateModal({ title, description, image, rating })}
-      >
+      <button className="btn" onClick={showModal}>
         open modal
       </button>
-      <MealImage image={image} />
-      <MealTitle title={title} />
-      <MealRating rating={rating} starsContainerClasses="mt-1.5" />
+      <MealImage image={image} showModal={showModal} />
+      <MealTitle title={title} showModal={showModal} />
+      <MealRating
+        rating={rating}
+        showModal={showModal}
+        starsContainerClasses="mt-1.5"
+      />
       <MealPrice options={options} selectedSize={selectedSize} />
       <MealSizes options={options} onSizeClick={handleSizeClick} />
       <MealAddToCartButton />
