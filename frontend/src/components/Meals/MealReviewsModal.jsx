@@ -37,8 +37,9 @@ const MealReviewsModal = ({ hideReviews, rating }) => {
     >
       <FaArrowLeftLong
         onClick={hideReviews}
-        className="text-2xl text-gray-600 cursor-pointer"
+        className="text-2xl text-gray-500 cursor-pointer transition duration-500 hover:text-primary"
       />
+
       <div className="grid grid-cols-2">
         <div className="flex flex-col items-center gap-2 mb-3">
           <span className="text-2xl">
