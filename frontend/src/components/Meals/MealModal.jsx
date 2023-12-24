@@ -1,11 +1,8 @@
 import { AnimatePresence } from "framer-motion";
 import MealDetailsModal from "./MealDetailsModal";
-import { useState } from "react";
 import MealReviewsModal from "./MealReviewsModal";
 
-const MealModal = (props) => {
-  const [showReviews, setShowReviews] = useState(false);
-
+const MealModal = ({ mealData, showReviews, setShowReviews }) => {
   return (
     <dialog id="meal_modal" className="modal modal-middle">
       <div className="modal-box max-w-[40rem]">
@@ -13,11 +10,11 @@ const MealModal = (props) => {
           {showReviews ? (
             <MealReviewsModal
               hideReviews={() => setShowReviews(false)}
-              rating={props.rating}
+              rating={mealData.rating}
             />
           ) : (
             <MealDetailsModal
-              {...props}
+              {...mealData}
               showReviews={() => setShowReviews(true)}
             />
           )}
