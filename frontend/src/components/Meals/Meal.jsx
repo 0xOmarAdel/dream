@@ -11,8 +11,7 @@ const Meal = ({
   description,
   options,
   image,
-  _id,
-  categoryId,
+  rating,
   changeActivateModal,
 }) => {
   const [selectedSize, setSelectedSize] = useState(options[0].size);
@@ -25,13 +24,13 @@ const Meal = ({
     <div className="col-span-1 flex flex-col items-center p-3 shadow-md rounded-md text-center">
       <button
         className="btn"
-        onClick={() => changeActivateModal({ title, description, image })}
+        onClick={() => changeActivateModal({ title, description, image, rating })}
       >
         open modal
       </button>
       <MealImage image={image} />
       <MealTitle title={title} />
-      <MealRating />
+      <MealRating rating={rating} starsContainerClasses="mt-1.5" />
       <MealPrice options={options} selectedSize={selectedSize} />
       <MealSizes options={options} onSizeClick={handleSizeClick} />
       <MealAddToCartButton />
