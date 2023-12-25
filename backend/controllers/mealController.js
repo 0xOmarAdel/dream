@@ -21,8 +21,11 @@ const getAllMeals = async (req, res) => {
           totalRatings
         : 0;
 
+      const mealWithoutReviews = meal.toObject({ virtuals: true });
+      delete mealWithoutReviews.reviews;
+
       return {
-        ...meal.toObject(),
+        ...mealWithoutReviews,
         rating,
       };
     });
