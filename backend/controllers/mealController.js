@@ -12,8 +12,22 @@ const createMeal = async (req, res) => {
 
 const getAllMeals = async (req, res) => {
   try {
-    const meals = await Meal.find();
-    res.status(200).json(meals);
+    const meals = await Meal.find().populate("reviews");
+
+    const mealsWithAverageRating = meals.map((meal) => {
+      const totalRatings = meal.reviews.length;
+      const rating = totalRatings
+        ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
+          totalRatings
+        : 0;
+
+      return {
+        ...meal.toObject(),
+        rating,
+      };
+    });
+
+    res.status(200).json(mealsWithAverageRating);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
