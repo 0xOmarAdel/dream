@@ -1,12 +1,11 @@
 const { default: mongoose } = require("mongoose");
 const Review = require("../models/Review");
+const Meal = require("../models/Meal");
 
 const createReview = async (req, res) => {
   try {
     const { rating } = req.body;
-
     const userId = req.user._id;
-
     const { mealId } = req.params;
 
     if (!mealId) {
@@ -14,6 +13,15 @@ const createReview = async (req, res) => {
     }
 
     const newReview = await Review.create({ userId, mealId, rating });
+
+    const meal = await Meal.findById(mealId);
+    if (!meal) {
+      return res.status(404).json({ error: "Meal not found" });
+    }
+
+    meal.reviews.push(newReview);
+    await meal.save();
+
     res.status(201).json(newReview);
   } catch (error) {
     res.status(500).json({ error: error.message });
