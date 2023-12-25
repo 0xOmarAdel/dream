@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Types;
 const Meal = require("../models/Meal");
 const User = require("../models/User");
 
@@ -5,15 +7,37 @@ const getCartItems = async (req, res) => {
   try {
     const userId = req.user._id;
 
-    const user = await User.findById(userId).populate("cart");
+    const cartItems = await User.aggregate([
+      { $match: { _id: new ObjectId(userId) } },
+      { $unwind: "$cart" },
+      {
+        $lookup: {
+          from: "meals",
+          localField: "cart.mealId",
+          foreignField: "_id",
+          as: "meal",
+        },
+      },
+      { $unwind: "$meal" },
+      {
+        $project: {
+          _id: 0,
+          id: "$cart._id",
+          title: "$meal.title",
+          price: "$meal.options",
+          size: "$cart.option",
+          image: "$meal.image",
+          quantity: "$cart.quantity",
+        },
+      },
+    ]);
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+    const transformedCartItems = cartItems.map((item) => ({
+      ...item,
+      price: item.price.find((opt) => opt.size === item.size).price,
+    }));
 
-    const cartItems = user.cart;
-
-    res.status(200).json(cartItems);
+    res.status(200).json(transformedCartItems);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -22,6 +46,7 @@ const getCartItems = async (req, res) => {
 const addToCart = async (req, res) => {
   try {
     const { mealId } = req.params;
+    const { option } = req.body;
     const userId = req.user._id;
 
     const meal = await Meal.findById(mealId);
@@ -30,7 +55,15 @@ const addToCart = async (req, res) => {
       return res.status(404).json({ error: "Meal not found" });
     }
 
-    await User.findByIdAndUpdate(userId, { $push: { cart: mealId } });
+    const selectedOption = meal.options.find((opt) => opt.size === option);
+
+    if (!selectedOption) {
+      return res.status(400).json({ error: "Invalid option selected" });
+    }
+
+    await User.findByIdAndUpdate(userId, {
+      $push: { cart: { mealId, option, quantity: 1 } },
+    });
 
     res.status(200).json({ message: "Meal added to the cart successfully" });
   } catch (error) {
