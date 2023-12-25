@@ -122,6 +122,43 @@ const rateMeal = async (req, res) => {
   }
 };
 
+const editRate = async (req, res) => {
+  const { id } = req.params;
+  const { rating } = req.body;
+  const userId = req.user._id;
+  try {
+    const meal = await Meal.findById(id);
+
+    if (!meal) {
+      return res.status(404).json({ error: "Meal not found" });
+    }
+
+    let existingReview = await Review.findOne({ user: userId, meal: id });
+
+    if (existingReview) {
+      existingReview.rating = rating;
+      await existingReview.save();
+
+      return res.status(200).json({ message: "Rating updated successfully" });
+    } else {
+      const newReview = new Review({
+        user: userId,
+        meal: id,
+        rating: rating,
+      });
+
+      await newReview.save();
+
+      meal.reviews.push(newReview);
+      await meal.save();
+
+      return res.status(200).json({ message: "Rating added successfully" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getMealRatingInfo = async (req, res) => {
   try {
     const mealId = req.params.mealId;
@@ -162,5 +199,6 @@ module.exports = {
   editMeal,
   deleteMeal,
   rateMeal,
+  editRate,
   getMealRatingInfo,
 };
