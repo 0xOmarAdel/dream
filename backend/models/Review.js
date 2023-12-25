@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
-  id: String,
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  mealId: { type: mongoose.Schema.Types.ObjectId, ref: "Meal" },
-  rating: Number,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  meal: { type: mongoose.Schema.Types.ObjectId, ref: "Meal", required: true },
+  rating: { type: Number, required: true },
 });
 
 const Review = mongoose.model("Review", reviewSchema);
