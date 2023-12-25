@@ -11,7 +11,7 @@ const mealSchema = new mongoose.Schema({
   ],
   image: String,
   categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
-  rating: Number,
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
 });
 
 const Meal = mongoose.model("Meal", mealSchema);
