@@ -123,30 +123,32 @@ const rateMeal = async (req, res) => {
 };
 
 const getMealRatingInfo = async (req, res) => {
-  const { id } = req.params;
-
   try {
-    const meal = await Meal.findById(id).populate("reviews");
+    const mealId = req.params.mealId;
 
-    if (!meal) {
-      return res.status(404).json({ error: "Meal not found" });
-    }
+    const reviews = await Review.find({ mealId });
 
-    const totalRatings = meal.reviews.length;
-    const averageRating = totalRatings
-      ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
-        totalRatings
-      : 0;
+    const ratings = Array.from({ length: 5 }, (_, index) => ({
+      value: 5 - index,
+      rating: 0,
+    }));
 
-    const stars = [0, 0, 0, 0, 0];
-    meal.reviews.forEach((review) => {
-      stars[review.rating - 1]++;
+    reviews.forEach((review) => {
+      const index = 5 - review.rating;
+      ratings[index].rating += 1;
     });
+
+    const totalRatings = reviews.length;
+
+    const averageRating =
+      totalRatings > 0
+        ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalRatings
+        : 0;
 
     res.status(200).json({
       averageRating,
       totalRatings,
-      stars,
+      stars: ratings,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
