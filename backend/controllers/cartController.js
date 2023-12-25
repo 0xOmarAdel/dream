@@ -74,12 +74,14 @@ const addToCart = async (req, res) => {
 const editCartItem = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { mealId } = req.params;
+    const { cartItemId } = req.params;
     const { quantity } = req.body;
 
     const user = await User.findById(userId);
 
-    const cartItem = user.cart.find((item) => item.mealId === mealId);
+    const cartItem = user.cart.find(
+      (item) => item._id.toString() === cartItemId
+    );
 
     if (cartItem) {
       cartItem.quantity = quantity;
@@ -88,7 +90,7 @@ const editCartItem = async (req, res) => {
 
       res.status(200).json({ message: "Item quantity updated successfully" });
     } else {
-      res.status(404).json({ error: "Meal not found in the cart" });
+      res.status(404).json({ error: "Cart item not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -98,9 +100,11 @@ const editCartItem = async (req, res) => {
 const deleteCartItem = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { mealId } = req.params;
+    const { cartItemId } = req.params;
 
-    await User.findByIdAndUpdate(userId, { $pull: { cart: mealId } });
+    await User.findByIdAndUpdate(userId, {
+      $pull: { cart: { _id: cartItemId } },
+    });
 
     res
       .status(200)
