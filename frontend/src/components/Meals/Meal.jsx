@@ -7,6 +7,7 @@ import MealAddToCartButton from "./MealAddToCartButton";
 import { useState } from "react";
 
 const Meal = ({
+  _id,
   title,
   description,
   options,
@@ -21,7 +22,7 @@ const Meal = ({
   };
 
   const showModal = () => {
-    changeActivateModal({ title, description, image, rating });
+    changeActivateModal({ _id, title, description, image, rating });
   };
 
   return (

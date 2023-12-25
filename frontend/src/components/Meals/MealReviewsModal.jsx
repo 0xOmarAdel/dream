@@ -2,7 +2,7 @@ import { FaArrowLeftLong, FaStar } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import MealRating from "./MealRating";
 
-const MealReviewsModal = ({ hideReviews, rating }) => {
+const MealReviewsModal = ({ hideReviews, rating, id }) => {
   // api call here to get the meal reviews
 
   const ratings = [

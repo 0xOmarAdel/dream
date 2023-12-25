@@ -10,6 +10,7 @@ const MealModal = ({ mealData, showReviews, setShowReviews }) => {
           {showReviews ? (
             <MealReviewsModal
               hideReviews={() => setShowReviews(false)}
+              id={mealData._id}
               rating={mealData.rating}
             />
           ) : (
