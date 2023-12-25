@@ -1,6 +1,24 @@
 const Meal = require("../models/Meal");
 const User = require("../models/User");
 
+const getCartItems = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findById(userId).populate("cart");
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const cartItems = user.cart;
+
+    res.status(200).json(cartItems);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const addToCart = async (req, res) => {
   try {
     const { mealId } = req.params;
@@ -71,4 +89,10 @@ const emptyCart = async (req, res) => {
   }
 };
 
-module.exports = { addToCart, editCartItem, deleteCartItem, emptyCart };
+module.exports = {
+  getCartItems,
+  addToCart,
+  editCartItem,
+  deleteCartItem,
+  emptyCart,
+};
