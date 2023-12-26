@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout } from "../utils/logout";
+import { userMenu } from "../data/userMenu";
+import { guestMenu } from "../data/guestMenu";
 
 const Navbar = () => {
+  const isLoggedIn = !!useSelector((state) => state.auth.user);
+
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
 
@@ -147,15 +151,26 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/orders">Orders</Link>
-            </li>
-            <li>
-              <button onClick={logout}>Logout</button>
-            </li>
+            {isLoggedIn
+              ? userMenu.map((menuItem) => (
+                  <li key={menuItem.id}>
+                    <Link to={menuItem.to} className="capitalize">
+                      {menuItem.text}
+                    </Link>
+                  </li>
+                ))
+              : guestMenu.map((menuItem) => (
+                  <li key={menuItem.id}>
+                    <Link to={menuItem.to} className="capitalize">
+                      {menuItem.text}
+                    </Link>
+                  </li>
+                ))}
+            {isLoggedIn && (
+              <li>
+                <button onClick={logout}>Logout</button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
