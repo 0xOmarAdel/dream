@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart, removeItemFromCart } from "../store/slices/cartSlice";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  updateItemQuantity,
+} from "../store/slices/cartSlice";
 
 const useCartActions = () => {
   const dispatch = useDispatch();
@@ -14,7 +18,11 @@ const useCartActions = () => {
     await dispatch(removeItemFromCart({ cartItems, mealToRemove }));
   };
 
-  return { addMealToCart, removeMealFromCart };
+  const updateCartItem = async (cartItemId, quantity) => {
+    await dispatch(updateItemQuantity({ cartItems, cartItemId, quantity }));
+  };
+
+  return { addMealToCart, removeMealFromCart, updateCartItem };
 };
 
 export default useCartActions;
