@@ -8,7 +8,7 @@ const {
 } = require("../controllers/orderController");
 const authenticateUser = require("../middleware/authenticateUser");
 
-router.post("/", createOrder);
+router.post("/", authenticateUser, createOrder);
 router.get("/", authenticateUser, getAllOrders);
 router.get("/:id", authenticateUser, getOrderById);
 router.put("/:id", editOrder);
