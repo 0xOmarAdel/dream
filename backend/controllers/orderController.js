@@ -68,6 +68,7 @@ const getAllOrders = async (req, res) => {
     const formattedOrders = orders.map((order) => ({
       ...order.toObject(),
       meals: order.meals.map((meal) => ({
+        _id: `${meal.mealId._id}_${meal.size}`,
         title: meal.mealId.title,
         image: meal.mealId.image,
         quantity: meal.quantity,
