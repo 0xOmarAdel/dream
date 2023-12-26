@@ -62,6 +62,18 @@ const addToCart = async (req, res) => {
       return res.status(400).json({ error: "Invalid option selected" });
     }
 
+    const existingCartItem = await User.findOne({
+      _id: userId,
+      "cart.mealId": new mongoose.Types.ObjectId(mealId),
+      "cart.option": option,
+    });
+
+    if (existingCartItem) {
+      return res.status(400).json({
+        error: "Meal already exists in the cart with the same size",
+      });
+    }
+
     const cartItem = {
       mealId,
       option,
