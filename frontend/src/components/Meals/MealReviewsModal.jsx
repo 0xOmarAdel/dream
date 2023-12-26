@@ -17,6 +17,9 @@ const MealReviewsModal = ({ hideReviews, rating, id }) => {
     fetchRatings();
   }, [fetchRatings]);
 
+  if (loading) return;
+
+  console.log(ratings);
   // const ratings = [
   //   {
   //     value: 5,
