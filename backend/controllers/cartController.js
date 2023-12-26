@@ -23,6 +23,7 @@ const getCartItems = async (req, res) => {
         $project: {
           _id: 0,
           id: "$cart._id",
+          mealId: "$meal._id",
           title: "$meal.title",
           price: "$meal.options",
           size: "$cart.option",
@@ -61,11 +62,30 @@ const addToCart = async (req, res) => {
       return res.status(400).json({ error: "Invalid option selected" });
     }
 
-    await User.findByIdAndUpdate(userId, {
-      $push: { cart: { mealId, option, quantity: 1 } },
-    });
+    const cartItem = {
+      mealId,
+      option,
+      quantity: 1,
+    };
 
-    res.status(200).json({ message: "Meal added to the cart successfully" });
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: { cart: cartItem },
+      },
+      { new: true }
+    );
+
+    const addedCartItem = updatedUser.cart.find(
+      (item) =>
+        item.mealId.equals(new mongoose.Types.ObjectId(mealId)) &&
+        item.option === option
+    );
+
+    res.status(200).json({
+      message: "Meal added to the cart successfully",
+      cartItemId: addedCartItem._id,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
