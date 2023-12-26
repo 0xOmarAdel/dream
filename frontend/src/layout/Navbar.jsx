@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-import { AiOutlineUser } from "react-icons/ai";
-import NavItem from "./NavItem";
-import { navLinks } from "../data/navLinks";
-import { IoCartOutline } from "react-icons/io5";
-import CartModal from "../components/Cart/CartModal";
-import ShowCartModalButton from "../components/Cart/ShowCartModalButton";
 import { logout } from "../utils/logout";
 
 const Navbar = () => {
