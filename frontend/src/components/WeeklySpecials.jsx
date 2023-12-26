@@ -1,27 +1,7 @@
 import WeeklyCard from "./WeeklyCard";
+import { meals } from "../data/fakeProducts";
 
-const Specials = [
-  {
-    imageSrc: "/assets/steak.jpg",
-    title: "Steak",
-    description: "Grilled beef steak and potatoes on plate.",
-  },
-  {
-    imageSrc: "/assets/steak.jpg",
-    title: "Steak",
-    description: "Grilled beef steak and potatoes on plate.",
-  },
-  {
-    imageSrc: "/assets/steak.jpg",
-    title: "Steak",
-    description: "Grilled beef steak and potatoes on plate.",
-  },
-  {
-    imageSrc: "/assets/steak.jpg",
-    title: "Steak",
-    description: "Grilled beef steak and potatoes on plate.",
-  },
-];
+const Specials = [...meals[0].meal.slice(0, 2), ...meals[1].meal.slice(0, 1)];
 const WeeklySpecials = () => {
   return (
     <section className="hero min-h-screen bg-gray-50">
@@ -37,9 +17,11 @@ const WeeklySpecials = () => {
             {Specials.map((special, index) => (
               <WeeklyCard
                 key={index}
-                imageSrc={special.imageSrc}
+                image={special.image}
                 title={special.title}
                 description={special.description}
+                price={special.price}
+                rating={special.rating}
               />
             ))}
           </div>

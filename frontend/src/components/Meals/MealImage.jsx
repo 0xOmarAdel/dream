@@ -1,7 +1,7 @@
-const MealImage = ({ showModal }) => {
+const MealImage = ({ image, showModal }) => {
   return (
     <img
-      src="https://cafeu.vercel.app/img/product/12.png"
+      src={image}
       alt=""
       className={`w-full bg-gray-200 rounded-md ${
         showModal ? "cursor-pointer" : ""

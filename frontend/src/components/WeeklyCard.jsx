@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const WeeklyCard = ({ imageSrc, title, description }) => {
+const WeeklyCard = ({ image, title, description }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
-        <img className="w-full" src={imageSrc} alt="Steak plate" />
+        <img className="w-full" src={image} alt="Steak plate" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
