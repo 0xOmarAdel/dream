@@ -157,7 +157,13 @@ export const updateItemQuantity = createAsyncThunk(
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
-  reducers: {},
+  reducers: {
+    emptyCart(state) {
+      state.items = initialCartState.items;
+      state.totalQuantity = initialCartState.totalQuantity;
+      state.totalPrice = initialCartState.totalPrice;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCartItems.fulfilled, (state, action) => {
