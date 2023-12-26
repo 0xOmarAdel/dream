@@ -8,10 +8,6 @@ const MealAddToCartButton = ({ meal, selectedSize }) => {
     (option) => option.size === selectedSize
   ).price;
 
-  console.log(meal);
-  console.log(selectedSize);
-  console.log(selectedPrice);
-
   const newMeal = {
     id: meal.id,
     title: meal.title,
