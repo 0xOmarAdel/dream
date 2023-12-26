@@ -3,10 +3,10 @@ const cartController = require("../controllers/cartController");
 const authenticateUser = require("../middleware/authenticateUser");
 
 router.get("/", authenticateUser, cartController.getCartItems);
-router.post("/add", authenticateUser, cartController.addToCart);
-router.put("/edit/:mealId", authenticateUser, cartController.editCartItem);
+router.post("/add/:mealId", authenticateUser, cartController.addToCart);
+router.put("/edit/:cartItemId", authenticateUser, cartController.editCartItem);
 router.delete(
-  "/delete/:mealId",
+  "/delete/:cartItemId",
   authenticateUser,
   cartController.deleteCartItem
 );
