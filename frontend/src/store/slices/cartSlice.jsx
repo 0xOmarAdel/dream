@@ -72,6 +72,39 @@ export const addItemToCart = createAsyncThunk(
   }
 );
 
+export const removeItemFromCart = createAsyncThunk(
+  "cart/removeItemFromCart",
+  async ({ cartItems, mealToRemove }) => {
+    try {
+      const existingCartItem = cartItems.find(
+        (cartItem) => cartItem.id === mealToRemove.id
+      );
+
+      if (existingCartItem) {
+        const response = await axios.delete(
+          `http://localhost:5000/api/v1/cart/delete/${mealToRemove.id}`
+        );
+
+        const updatedCartItems = cartItems.filter(
+          (cartItem) => cartItem.id !== mealToRemove.id
+        );
+
+        console.log(response.data.message);
+
+        return {
+          cartItems: updatedCartItems,
+          subtractedQuantity: 1,
+          subtractedPrice: mealToRemove.price,
+        };
+      } else {
+        console.log("Product is not in cart!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
@@ -88,6 +121,13 @@ const cartSlice = createSlice({
           state.items = action.payload.cartItems;
           state.totalQuantity += action.payload.additionalQuantity;
           state.totalPrice += action.payload.additionalPrice;
+        }
+      })
+      .addCase(removeItemFromCart.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.items = action.payload.cartItems;
+          state.totalQuantity -= action.payload.subtractedQuantity;
+          state.totalPrice -= action.payload.subtractedPrice;
         }
       });
   },
