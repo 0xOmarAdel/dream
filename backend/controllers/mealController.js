@@ -175,18 +175,7 @@ const getMealRatingInfo = async (req, res) => {
       ratings[index].rating += 1;
     });
 
-    const totalRatings = reviews.length;
-
-    const averageRating =
-      totalRatings > 0
-        ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalRatings
-        : 0;
-
-    res.status(200).json({
-      averageRating,
-      totalRatings,
-      stars: ratings,
-    });
+    res.status(200).json(ratings);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -50,18 +50,6 @@
   @apply bg-sky-500;
 }
 
-.table {
-  /* Removed styling */
-}
-
-.chair {
-  /* Removed styling */
-}
-
-.selected-chair {
-  /* Removed styling */
-}
-
 .seat-number {
   /* Updated styling - Remove or update as needed */
   position: absolute;

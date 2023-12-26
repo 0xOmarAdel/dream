@@ -13,10 +13,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <Link
-          to="/"
-          className="btn btn-ghost text-xl text-sky-500 font-semibold"
-        >
+        <Link to="/" className="px-4 text-2xl text-sky-500 font-semibold">
           Dream
         </Link>
       </div>

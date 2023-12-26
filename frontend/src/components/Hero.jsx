@@ -13,9 +13,18 @@ const Hero = () => {
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">Dream</h1>
           <p className="mb-5 text-4xl">Your Favorite Restaurant.</p>
-          <Link to="/menu">
-            <button className="btn btn-primary text-white">Order Now</button>
-          </Link>
+          <div className="flex justify-center gap-2">
+            <Link to="/menu">
+              <button className="bg-primary px-4 py-2 rounded-lg font-semibold text-white">
+                Menu
+              </button>
+            </Link>
+            <Link to="/reservations">
+              <button className="bg-gray-900 px-4 py-2 rounded-lg font-semibold text-white">
+                Book a table
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
