@@ -1,6 +1,14 @@
-const DecreaseCartItemButton = () => {
+import useCartActions from "../../../hooks/useCartActions";
+
+const DecreaseCartItemButton = ({ cartItemId, quantity }) => {
+  const { updateCartItem } = useCartActions();
+
   return (
-    <button className="py-2 text-sky-500">
+    <button
+      className="py-2 text-sky-500"
+      onClick={() => updateCartItem(cartItemId, -1)}
+      disabled={quantity === 1}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"

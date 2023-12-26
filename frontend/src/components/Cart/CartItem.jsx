@@ -5,6 +5,7 @@ import CartItemSubTotal from "./CartItemDetails/CartItemSubTotal";
 import IncreaseCartItemButton from "./CartItemButtons/IncreaseCartItemButton";
 import DecreaseCartItemButton from "./CartItemButtons/DecreaseCartItemButton";
 import DeleteCartItemButton from "./CartItemButtons/RemoveCartItemButton";
+import CartItemQuantity from "./CartItemDetails/CartItemQuantity";
 
 const CartItem = ({ cartItem }) => {
   return (
@@ -32,13 +33,12 @@ const CartItem = ({ cartItem }) => {
       </div>
       <div className="w-auto px-4 md:w-1/6 lg:w-2/12 ">
         <div className="inline-flex items-center px-4 font-semibold  border-gray-200 rounded-md">
-          <DecreaseCartItemButton />
-          <input
-            type="number"
-            className="w-12 px-2 py-4 text-center border-0 rounded-md  bg-gray-50 md:text-right placeholder-gray-800"
-            placeholder="1"
+          <DecreaseCartItemButton
+            cartItemId={cartItem.id}
+            quantity={cartItem.quantity}
           />
-          <IncreaseCartItemButton />
+          <CartItemQuantity quantity={cartItem.quantity} />
+          <IncreaseCartItemButton cartItemId={cartItem.id} />
         </div>
         <DeleteCartItemButton meal={cartItem} />
       </div>

@@ -105,10 +105,65 @@ export const removeItemFromCart = createAsyncThunk(
   }
 );
 
+export const updateItemQuantity = createAsyncThunk(
+  "cart/updateItemQuantity",
+  async ({ cartItems, cartItemId, quantity }) => {
+    try {
+      const existingCartItem = cartItems.find(
+        (cartItem) => cartItem.id === cartItemId
+      );
+
+      if (existingCartItem) {
+        const updatedCartItemQuantity = existingCartItem.quantity + quantity;
+
+        if (updatedCartItemQuantity !== 0) {
+          const response = await axios.put(
+            `http://localhost:5000/api/v1/cart/edit/${cartItemId}`,
+            { quantity: updatedCartItemQuantity }
+          );
+
+          const updatedCartItems = cartItems.map((cartItem) => {
+            if (cartItem.id === cartItemId) {
+              return { ...cartItem, quantity: updatedCartItemQuantity };
+            }
+            return cartItem;
+          });
+
+          let updatedCartTotalQuantity = 0;
+          let updatedCartTotalPrice = 0;
+
+          for (const cartItem of updatedCartItems) {
+            updatedCartTotalPrice += cartItem.price * cartItem.quantity;
+            updatedCartTotalQuantity += cartItem.quantity;
+          }
+
+          console.log(response.data.message);
+
+          return {
+            updatedCartItems,
+            updatedCartTotalQuantity,
+            updatedCartTotalPrice,
+          };
+        }
+      } else {
+        console.log("Item is not in the cart");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
-  reducers: {},
+  reducers: {
+    emptyCart(state) {
+      state.items = initialCartState.items;
+      state.totalQuantity = initialCartState.totalQuantity;
+      state.totalPrice = initialCartState.totalPrice;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCartItems.fulfilled, (state, action) => {
@@ -128,6 +183,13 @@ const cartSlice = createSlice({
           state.items = action.payload.cartItems;
           state.totalQuantity -= action.payload.subtractedQuantity;
           state.totalPrice -= action.payload.subtractedPrice;
+        }
+      })
+      .addCase(updateItemQuantity.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.items = action.payload.updatedCartItems;
+          state.totalQuantity = action.payload.updatedCartTotalQuantity;
+          state.totalPrice = action.payload.updatedCartTotalPrice;
         }
       });
   },
