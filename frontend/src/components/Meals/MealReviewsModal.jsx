@@ -1,32 +1,44 @@
 import { FaArrowLeftLong, FaStar } from "react-icons/fa6";
+import useAxios from "../../hooks/useAxios";
 import { motion } from "framer-motion";
 import MealRating from "./MealRating";
+import { useEffect } from "react";
 
 const MealReviewsModal = ({ hideReviews, rating, id }) => {
   // api call here to get the meal reviews
 
-  const ratings = [
-    {
-      value: 5,
-      rating: 12,
-    },
-    {
-      value: 4,
-      rating: 6,
-    },
-    {
-      value: 3,
-      rating: 2,
-    },
-    {
-      value: 2,
-      rating: 0,
-    },
-    {
-      value: 1,
-      rating: 3,
-    },
-  ];
+  const {
+    runAxios: fetchRatings,
+    data: ratings,
+    loading,
+  } = useAxios(`/meals/${id}/rating-info`);
+
+  useEffect(() => {
+    fetchRatings();
+  }, [fetchRatings]);
+
+  // const ratings = [
+  //   {
+  //     value: 5,
+  //     rating: 12,
+  //   },
+  //   {
+  //     value: 4,
+  //     rating: 6,
+  //   },
+  //   {
+  //     value: 3,
+  //     rating: 2,
+  //   },
+  //   {
+  //     value: 2,
+  //     rating: 0,
+  //   },
+  //   {
+  //     value: 1,
+  //     rating: 3,
+  //   },
+  // ];
 
   const totalReviews = ratings.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.rating;
