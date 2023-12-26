@@ -131,14 +131,11 @@ export const updateItemQuantity = createAsyncThunk(
         let updatedCartTotalQuantity = 0;
         let updatedCartTotalPrice = 0;
 
-        console.log(updatedCartItems);
-
         for (const cartItem of updatedCartItems) {
           updatedCartTotalPrice += cartItem.price * cartItem.quantity;
           updatedCartTotalQuantity += cartItem.quantity;
         }
 
-        console.log(updatedCartTotalQuantity);
         console.log(response.data.message);
 
         return {
