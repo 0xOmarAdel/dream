@@ -25,6 +25,9 @@ const orderSchema = new mongoose.Schema({
       },
     ],
   },
+  subtotal: { type: Number, required: true },
+  shipping: { type: Number, default: 5 },
+  total: { type: Number, required: true },
 });
 
 function notEmptyValidator(value) {

@@ -12,23 +12,38 @@ const createOrder = async (req, res) => {
 
     const user = await User.findById(userId).populate("cart.mealId");
 
-    const meals = user.cart.map((cartItem) => ({
-      mealId: cartItem.mealId._id,
-      quantity: cartItem.quantity,
-      size: cartItem.option,
-      price: cartItem.mealId.options.find((opt) => opt.size === cartItem.option)
-        .price,
-    }));
+    const meals = user.cart.map((cartItem) => {
+      const mealPrice = cartItem.mealId.options.find(
+        (opt) => opt.size === cartItem.option
+      ).price;
+
+      const subtotal = cartItem.quantity * mealPrice;
+
+      return {
+        mealId: cartItem.mealId._id,
+        quantity: cartItem.quantity,
+        size: cartItem.option,
+        price: mealPrice,
+        subtotal,
+      };
+    });
 
     if (!meals || meals.length === 0) {
       return res.status(400).json({ error: "No items in the cart" });
     }
+
+    const subtotal = meals.reduce((acc, meal) => acc + meal.subtotal, 0);
+    const shipping = 5;
+    const total = subtotal + shipping;
 
     const newOrder = await Order.create({
       userId,
       meals,
       address,
       phone,
+      subtotal,
+      shipping,
+      total,
     });
 
     await User.findByIdAndUpdate(userId, { $set: { cart: [] } });
@@ -53,6 +68,7 @@ const getAllOrders = async (req, res) => {
     const formattedOrders = orders.map((order) => ({
       ...order.toObject(),
       meals: order.meals.map((meal) => ({
+        _id: `${meal.mealId._id}_${meal.size}`,
         title: meal.mealId.title,
         image: meal.mealId.image,
         quantity: meal.quantity,
