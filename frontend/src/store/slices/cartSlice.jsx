@@ -9,9 +9,8 @@ const initialCartState = {
 
 export const getCartItems = createAsyncThunk("cart/getCartItems", async () => {
   try {
-    const cartItems = await axios.get("http://localhost:5000/api/v1/cart");
-
-    console.log(cartItems);
+    const response = await axios.get("http://localhost:5000/api/v1/cart");
+    const cartItems = response.data;
 
     let totalQuantity = 0;
     let totalPrice = 0;
@@ -27,7 +26,7 @@ export const getCartItems = createAsyncThunk("cart/getCartItems", async () => {
       totalPrice,
     };
   } catch (error) {
-    console.log("An error occurred!");
+    console.log(error);
   }
 });
 
