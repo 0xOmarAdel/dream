@@ -30,16 +30,66 @@ export const getCartItems = createAsyncThunk("cart/getCartItems", async () => {
   }
 });
 
+export const addItemToCart = createAsyncThunk(
+  "cart/addItemToCart",
+  async ({ cartItems, newMeal }) => {
+    try {
+      const existingCartItem = cartItems.find(
+        (cartItem) =>
+          cartItem.mealId === newMeal.id && cartItem.size === newMeal.size
+      );
+
+      if (!existingCartItem) {
+        const response = await axios.post(
+          `http://localhost:5000/api/v1/cart/add/${newMeal.id}`,
+          { option: newMeal.size }
+        );
+
+        const updatedCartItems = [
+          {
+            id: response.data.cartItemId,
+            mealId: newMeal.id,
+            title: newMeal.title,
+            price: newMeal.price,
+            size: newMeal.size,
+            image: newMeal.image,
+            quantity: 1,
+          },
+          ...cartItems,
+        ];
+
+        return {
+          cartItems: updatedCartItems,
+          additionalQuantity: 1,
+          additionalPrice: newMeal.price,
+        };
+      } else {
+        console.log("Product is already in cart!");
+      }
+    } catch (error) {
+      console.log("You need to log in first!");
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCartItems.fulfilled, (state, action) => {
-      state.items = action.payload.cartItems;
-      state.totalQuantity = action.payload.totalQuantity;
-      state.totalPrice = action.payload.totalPrice;
-    });
+    builder
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        state.items = action.payload.cartItems;
+        state.totalQuantity = action.payload.totalQuantity;
+        state.totalPrice = action.payload.totalPrice;
+      })
+      .addCase(addItemToCart.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.items = action.payload.cartItems;
+          state.totalQuantity += action.payload.additionalQuantity;
+          state.totalPrice += action.payload.additionalPrice;
+        }
+      });
   },
 });
 

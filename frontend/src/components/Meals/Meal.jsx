@@ -36,7 +36,15 @@ const Meal = ({
       />
       <MealPrice options={options} selectedSize={selectedSize} />
       <MealSizes options={options} onSizeClick={handleSizeClick} />
-      <MealAddToCartButton />
+      <MealAddToCartButton
+        meal={{
+          id: _id,
+          title,
+          options,
+          image,
+        }}
+        selectedSize={selectedSize}
+      />
     </div>
   );
 };
