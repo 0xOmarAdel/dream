@@ -3,11 +3,25 @@ const User = require("../models/User");
 
 const createOrder = async (req, res) => {
   try {
-    const { meals, address, phone } = req.body;
+    const { address, phone } = req.body;
     const userId = req.user._id;
 
-    if (!userId || !meals || !address || !phone) {
+    if (!userId || !address || !phone) {
       return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const user = await User.findById(userId).populate("cart.mealId");
+
+    const meals = user.cart.map((cartItem) => ({
+      mealId: cartItem.mealId._id,
+      quantity: cartItem.quantity,
+      size: cartItem.option,
+      price: cartItem.mealId.options.find((opt) => opt.size === cartItem.option)
+        .price,
+    }));
+
+    if (!meals || meals.length === 0) {
+      return res.status(400).json({ error: "No items in the cart" });
     }
 
     const newOrder = await Order.create({
@@ -16,6 +30,8 @@ const createOrder = async (req, res) => {
       address,
       phone,
     });
+
+    await User.findByIdAndUpdate(userId, { $set: { cart: [] } });
 
     await User.findByIdAndUpdate(userId, { $push: { orders: newOrder._id } });
 
