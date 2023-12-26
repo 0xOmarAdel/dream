@@ -1,6 +1,13 @@
-const IncreaseCartItemButton = () => {
+import useCartActions from "../../../hooks/useCartActions";
+
+const IncreaseCartItemButton = ({ cartItemId }) => {
+  const { updateCartItem } = useCartActions();
+
   return (
-    <button className="py-2 text-gray-800 ">
+    <button
+      className="py-2 text-gray-800"
+      onClick={() => updateCartItem(cartItemId, 1)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
