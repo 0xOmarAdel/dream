@@ -4,7 +4,6 @@ import MealSizes from "./MealSizes";
 import MealImage from "./MealImage";
 import MealRating from "./MealRating";
 import MealAddToCartButton from "./MealAddToCartButton";
-import { meals } from "../../data/fakeProducts";
 import { useState } from "react";
 
 const Meal = ({
@@ -28,34 +27,27 @@ const Meal = ({
 
   return (
     <div className="col-span-1 flex flex-col items-center p-3 shadow-md rounded-md text-center">
-      {meals.map((category) =>
-        category.meal.map((meal) => (
-          <>
-            <MealImage image={meal.image} showModal={showModal} />
-            <MealTitle title={meal.title} showModal={showModal} />
-            <MealPrice
-              price={meal.price}
-              options={options}
-              selectedSize={selectedSize}
-            />
-            <MealRating
-              rating={rating}
-              showModal={showModal}
-              starsContainerClasses="mt-1.5"
-            />
-            <MealSizes options={options} onSizeClick={handleSizeClick} />
-            <MealAddToCartButton
-              meal={{
-                id: _id,
-                title,
-                options,
-                image,
-              }}
-              selectedSize={selectedSize}
-            />
-          </>
-        ))
-      )}
+      <MealImage
+        image="https://supervalu.ie/thumbnail/800x600/var/files/real-food/recipes/Uploaded-2020/spaghetti-bolognese-recipe.jpg"
+        showModal={showModal}
+      />
+      <MealTitle title={title} showModal={showModal} />
+      <MealPrice options={options} selectedSize={selectedSize} />
+      <MealRating
+        rating={rating}
+        showModal={showModal}
+        starsContainerClasses="mt-1.5"
+      />
+      <MealSizes options={options} onSizeClick={handleSizeClick} />
+      <MealAddToCartButton
+        meal={{
+          id: _id,
+          title,
+          options,
+          image,
+        }}
+        selectedSize={selectedSize}
+      />
     </div>
   );
 };
