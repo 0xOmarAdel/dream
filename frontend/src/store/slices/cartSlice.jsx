@@ -116,33 +116,35 @@ export const updateItemQuantity = createAsyncThunk(
       if (existingCartItem) {
         const updatedCartItemQuantity = existingCartItem.quantity + quantity;
 
-        const response = await axios.put(
-          `http://localhost:5000/api/v1/cart/edit/${cartItemId}`,
-          { quantity: updatedCartItemQuantity }
-        );
+        if (updatedCartItemQuantity !== 0) {
+          const response = await axios.put(
+            `http://localhost:5000/api/v1/cart/edit/${cartItemId}`,
+            { quantity: updatedCartItemQuantity }
+          );
 
-        const updatedCartItems = cartItems.map((cartItem) => {
-          if (cartItem.id === cartItemId) {
-            return { ...cartItem, quantity: updatedCartItemQuantity };
+          const updatedCartItems = cartItems.map((cartItem) => {
+            if (cartItem.id === cartItemId) {
+              return { ...cartItem, quantity: updatedCartItemQuantity };
+            }
+            return cartItem;
+          });
+
+          let updatedCartTotalQuantity = 0;
+          let updatedCartTotalPrice = 0;
+
+          for (const cartItem of updatedCartItems) {
+            updatedCartTotalPrice += cartItem.price * cartItem.quantity;
+            updatedCartTotalQuantity += cartItem.quantity;
           }
-          return cartItem;
-        });
 
-        let updatedCartTotalQuantity = 0;
-        let updatedCartTotalPrice = 0;
+          console.log(response.data.message);
 
-        for (const cartItem of updatedCartItems) {
-          updatedCartTotalPrice += cartItem.price * cartItem.quantity;
-          updatedCartTotalQuantity += cartItem.quantity;
+          return {
+            updatedCartItems,
+            updatedCartTotalQuantity,
+            updatedCartTotalPrice,
+          };
         }
-
-        console.log(response.data.message);
-
-        return {
-          updatedCartItems,
-          updatedCartTotalQuantity,
-          updatedCartTotalPrice,
-        };
       } else {
         console.log("Item is not in the cart");
       }

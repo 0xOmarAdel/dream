@@ -33,7 +33,10 @@ const CartItem = ({ cartItem }) => {
       </div>
       <div className="w-auto px-4 md:w-1/6 lg:w-2/12 ">
         <div className="inline-flex items-center px-4 font-semibold  border-gray-200 rounded-md">
-          <DecreaseCartItemButton cartItemId={cartItem.id} />
+          <DecreaseCartItemButton
+            cartItemId={cartItem.id}
+            quantity={cartItem.quantity}
+          />
           <CartItemQuantity quantity={cartItem.quantity} />
           <IncreaseCartItemButton cartItemId={cartItem.id} />
         </div>
