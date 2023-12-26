@@ -19,7 +19,6 @@ const Meals = () => {
     document.getElementById("meal_modal").showModal();
   };
 
-
   if (loading) return;
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

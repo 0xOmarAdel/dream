@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import MealRating from "./MealRating";
 import { useEffect } from "react";
 
-const MealReviewsModal = ({ hideReviews, rating }) => {
+const MealReviewsModal = ({ hideReviews, rating, id }) => {
   // api call here to get the meal reviews
 
   const {

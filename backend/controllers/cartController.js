@@ -23,6 +23,7 @@ const getCartItems = async (req, res) => {
         $project: {
           _id: 0,
           id: "$cart._id",
+          mealId: "$meal._id",
           title: "$meal.title",
           price: "$meal.options",
           size: "$cart.option",
@@ -61,11 +62,42 @@ const addToCart = async (req, res) => {
       return res.status(400).json({ error: "Invalid option selected" });
     }
 
-    await User.findByIdAndUpdate(userId, {
-      $push: { cart: { mealId, option, quantity: 1 } },
+    const existingCartItem = await User.findOne({
+      _id: userId,
+      "cart.mealId": new mongoose.Types.ObjectId(mealId),
+      "cart.option": option,
     });
 
-    res.status(200).json({ message: "Meal added to the cart successfully" });
+    if (existingCartItem) {
+      return res.status(400).json({
+        error: "Meal already exists in the cart with the same size",
+      });
+    }
+
+    const cartItem = {
+      mealId,
+      option,
+      quantity: 1,
+    };
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: { cart: cartItem },
+      },
+      { new: true }
+    );
+
+    const addedCartItem = updatedUser.cart.find(
+      (item) =>
+        item.mealId.equals(new mongoose.Types.ObjectId(mealId)) &&
+        item.option === option
+    );
+
+    res.status(200).json({
+      message: "Meal added to the cart successfully",
+      cartItemId: addedCartItem._id,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -74,12 +106,14 @@ const addToCart = async (req, res) => {
 const editCartItem = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { mealId } = req.params;
+    const { cartItemId } = req.params;
     const { quantity } = req.body;
 
     const user = await User.findById(userId);
 
-    const cartItem = user.cart.find((item) => item.mealId === mealId);
+    const cartItem = user.cart.find(
+      (item) => item._id.toString() === cartItemId
+    );
 
     if (cartItem) {
       cartItem.quantity = quantity;
@@ -88,7 +122,7 @@ const editCartItem = async (req, res) => {
 
       res.status(200).json({ message: "Item quantity updated successfully" });
     } else {
-      res.status(404).json({ error: "Meal not found in the cart" });
+      res.status(404).json({ error: "Cart item not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -98,9 +132,11 @@ const editCartItem = async (req, res) => {
 const deleteCartItem = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { mealId } = req.params;
+    const { cartItemId } = req.params;
 
-    await User.findByIdAndUpdate(userId, { $pull: { cart: mealId } });
+    await User.findByIdAndUpdate(userId, {
+      $pull: { cart: { _id: cartItemId } },
+    });
 
     res
       .status(200)

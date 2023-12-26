@@ -15,6 +15,7 @@ import Orders from "./pages/Orders";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "./store/slices/userAuthSlice";
 import axios from "axios";
+import { getCartItems } from "./store/slices/cartSlice";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ const App = () => {
           }
         );
         dispatch(setUser(response.data.userData));
+        dispatch(getCartItems());
         console.log(response.data.userData);
       } catch (error) {
         console.error(error);

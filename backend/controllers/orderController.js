@@ -1,8 +1,24 @@
 const Order = require("../models/Order");
+const User = require("../models/User");
 
 const createOrder = async (req, res) => {
   try {
-    const newOrder = await Order.create(req.body);
+    const { meals, address, phone } = req.body;
+    const userId = req.user._id;
+
+    if (!userId || !meals || !address || !phone) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const newOrder = await Order.create({
+      userId,
+      meals,
+      address,
+      phone,
+    });
+
+    await User.findByIdAndUpdate(userId, { $push: { orders: newOrder._id } });
+
     res.status(201).json(newOrder);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -12,8 +28,24 @@ const createOrder = async (req, res) => {
 const getAllOrders = async (req, res) => {
   try {
     const userId = req.user._id;
-    const orders = await Order.find({ userId });
-    res.status(200).json(orders);
+    const orders = await Order.find({ userId }).populate({
+      path: "meals.mealId",
+      model: "Meal",
+      select: "title image",
+    });
+
+    const formattedOrders = orders.map((order) => ({
+      ...order.toObject(),
+      meals: order.meals.map((meal) => ({
+        title: meal.mealId.title,
+        image: meal.mealId.image,
+        quantity: meal.quantity,
+        size: meal.size,
+        price: meal.price,
+      })),
+    }));
+
+    res.status(200).json(formattedOrders);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

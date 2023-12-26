@@ -18,7 +18,7 @@ const MealSizes = ({ options, onSizeClick }) => {
           } hover:bg-sky-500 hover:text-white`}
           onClick={() => handleButtonClick(index)}
         >
-          <span className="border px-1 py-0.5">{option.size}</span>
+          <span className="capitalize border px-1 py-0.5">{option.size}</span>
         </button>
       ))}
     </div>
