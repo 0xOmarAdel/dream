@@ -27,10 +27,7 @@ const Meal = ({
 
   return (
     <div className="col-span-1 flex flex-col items-center p-3 shadow-md rounded-md text-center">
-      <MealImage
-        image="https://supervalu.ie/thumbnail/800x600/var/files/real-food/recipes/Uploaded-2020/spaghetti-bolognese-recipe.jpg"
-        showModal={showModal}
-      />
+      <MealImage image={image} showModal={showModal} />
       <MealTitle title={title} showModal={showModal} />
       <MealPrice options={options} selectedSize={selectedSize} />
       <MealRating
