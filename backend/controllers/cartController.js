@@ -25,6 +25,7 @@ const getCartItems = async (req, res) => {
           id: "$cart._id",
           mealId: "$meal._id",
           title: "$meal.title",
+          categoryName: "$meal.categoryName",
           price: "$meal.options",
           size: "$cart.option",
           image: "$meal.image",
