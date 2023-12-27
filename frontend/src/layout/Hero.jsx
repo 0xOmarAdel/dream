@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <div className="z-[2] bg-sky-50">
