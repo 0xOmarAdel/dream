@@ -4,6 +4,7 @@ import { userMenu } from "../data/userMenu";
 import { guestMenu } from "../data/guestMenu";
 import { logout } from "../store/slices/userAuthSlice";
 import { emptyCart } from "../store/slices/cartSlice";
+import { priceFormatter } from "../utils/priceFormatter";
 
 const Navbar = () => {
   const isLoggedIn = !!useSelector((state) => state.auth.user);
@@ -128,7 +129,9 @@ const Navbar = () => {
           >
             <div className="card-body">
               <span className="font-bold text-lg">{totalQuantity} Items</span>
-              <span className="text-info">Subtotal: ${totalPrice}</span>
+              <span className="text-info">
+                Subtotal: {priceFormatter(totalPrice)}
+              </span>
               <div className="card-actions">
                 <Link to="/cart" className="btn btn-primary btn-block">
                   <button className="btn btn-primary btn-block">
