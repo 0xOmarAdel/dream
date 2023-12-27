@@ -10,7 +10,7 @@ import CartItemCategory from "./CartItemDetails/CartItemCategory";
 
 const CartItem = ({ cartItem }) => {
   return (
-    <div className="flex flex-row justify-between items-center gap-2">
+    <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
       <div className="flex flex-row gap-5">
         <CartItemImage image={cartItem.image} title={cartItem.title} />
         <div className="flex flex-col gap-0.5">
@@ -19,7 +19,7 @@ const CartItem = ({ cartItem }) => {
           <CartItemSize size={cartItem.size} />
         </div>
       </div>
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-row sm:flex-col flex-wrap sm:flex-nowrap items-center justify-center gap-4">
         <CartItemSubTotal price={cartItem.price} quantity={cartItem.quantity} />
         <div className="flex flex-row justify-center items-center gap-4">
           <DecreaseCartItemButton
