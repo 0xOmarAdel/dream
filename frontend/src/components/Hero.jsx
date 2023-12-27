@@ -27,7 +27,7 @@ const Hero = () => {
           <div className="ml-auto lg:-mb-52 lg:block hidden lg:w-5/12">
             <img
               src="https://tailus.io/sources/blocks/food-delivery/preview/images/food.webp"
-              className="relative drop-shadow-xl"
+              className="relative drop-shadow-xl float"
               alt="food illustration"
               loading="lazy"
               width="4500"
