@@ -1,12 +1,9 @@
 const WeeklyCard = ({ image, title, description, options, categoryName }) => {
-  console.log(image);
   return (
     <div className="w-full max-w-md  mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
       <div className="max-w-md mx-auto">
         <div className="p-4 sm:p-6">
-          <div
-            className={`h-[236px] bg-cover bg-center bg-[url('${image}')]`}
-          ></div>
+          <img src={image} />
           <p className="font-bold text-gray-700 text-[22px] leading-7 mb-1">
             {title}
           </p>
