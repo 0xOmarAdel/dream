@@ -10,7 +10,7 @@ const mealSchema = new mongoose.Schema({
     },
   ],
   image: String,
-  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  categoryName: String,
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
 });
 
