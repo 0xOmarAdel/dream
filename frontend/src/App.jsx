@@ -80,7 +80,6 @@ const App = () => {
           element={user ? <Orders /> : <Navigate to="/login" />}
         />
       </Routes>
-      <Footer />
     </>
   );
 };
