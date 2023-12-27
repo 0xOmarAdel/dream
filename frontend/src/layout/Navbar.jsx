@@ -1,14 +1,22 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { logout } from "../utils/logout";
+import { useDispatch, useSelector } from "react-redux";
 import { userMenu } from "../data/userMenu";
 import { guestMenu } from "../data/guestMenu";
+import { logout } from "../store/slices/userAuthSlice";
+import { emptyCart } from "../store/slices/cartSlice";
 
 const Navbar = () => {
   const isLoggedIn = !!useSelector((state) => state.auth.user);
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(emptyCart());
+    dispatch(logout());
+  };
 
   return (
     <div className="navbar bg-base-100">
@@ -165,7 +173,7 @@ const Navbar = () => {
                 ))}
             {isLoggedIn && (
               <li>
-                <button onClick={logout}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             )}
           </ul>
