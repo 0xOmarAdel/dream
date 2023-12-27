@@ -8,10 +8,11 @@ const WeeklySpecials = () => {
     data: meals,
     loading,
   } = useAxios("/meals?featured=true");
-  console.log(meals);
+
   useEffect(() => {
     fetchMeals();
   }, [fetchMeals]);
+
   return (
     <section className="min-h-screen pt-12 lg:pt-42 bg-gray-50">
       <div className="max-w-full">
