@@ -56,7 +56,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between pb-4 mb-4 ">
                   <span className=" text-gray-800 ">Shipping</span>
                   <span className="text-xl font-bold  text-gray-800 ">
-                    {shippingFees === 0 ? "FREE" : shippingFees}
+                    ${shippingFees === 0 ? "FREE" : shippingFees}
                   </span>
                 </div>
                 <div className="flex items-center justify-between pb-4 mb-4 ">

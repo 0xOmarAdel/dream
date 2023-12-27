@@ -1,1 +1,1 @@
-export const shippingFees = 0;
+export const shippingFees = 5;
