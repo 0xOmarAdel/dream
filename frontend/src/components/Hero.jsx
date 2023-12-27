@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (
-    <div className="z-[2] bg-sky-500 lg:bg-sky-50">
-      <div className="container m-auto pt-20 py-6 lg:py-0 lg:pt-4 px-6 md:px-12 lg:px-7">
+    <div className="z-[2] bg-sky-50">
+      <div className="container m-auto pt-10 py-6 lg:py-0 lg:pt-4 px-6 md:px-12 lg:px-7">
         <div className="flex items-start flex-wrap px-2 md:px-0">
           <div className="relative lg:w-6/12 lg:py-24 xl:py-32">
-            <h1 className="font-bold text-4xl text-white lg:text-sky-500 md:text-5xl lg:w-10/12">
+            <h1 className="font-bold text-4xl text-sky-500 md:text-5xl lg:w-10/12">
               Your favorite dishes, right at your service
             </h1>
 
@@ -18,7 +18,7 @@ const Hero = () => {
               </Link>
               <Link
                 to="/reservations"
-                className="bg-white text-black lg:bg-sky-500 font-medium capitalize lg:text-white px-4 py-2 rounded"
+                className="bg-sky-500 font-medium capitalize text-white px-4 py-2 rounded"
               >
                 Book a Table
               </Link>
