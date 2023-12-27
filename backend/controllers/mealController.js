@@ -31,7 +31,11 @@ const createMeal = async (req, res) => {
 
 const getAllMeals = async (req, res) => {
   try {
-    const meals = await Meal.find().populate("reviews");
+    const isFeaturedQuery = req.query.featured === "true";
+
+    const query = isFeaturedQuery ? { featured: true } : {};
+
+    const meals = await Meal.find(query).populate("reviews");
 
     const mealsWithAverageRating = meals.map((meal) => {
       const totalRatings = meal.reviews.length;
