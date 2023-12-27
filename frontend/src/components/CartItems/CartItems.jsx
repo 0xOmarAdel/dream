@@ -5,7 +5,7 @@ const CartItems = () => {
   const cartItems = useSelector((state) => state.cart.items);
 
   return (
-    <div className="py-4 border-gray-200 ">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-7">
       {cartItems.map((cartItem) => (
         <CartItem key={cartItem.id} cartItem={cartItem} />
       ))}

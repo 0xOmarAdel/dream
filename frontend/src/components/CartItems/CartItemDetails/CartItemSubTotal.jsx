@@ -1,6 +1,6 @@
 const CartItemSubTotal = ({ price, quantity }) => {
   return (
-    <p className="text-lg font-bold  text-gray-800 ">${price * quantity}</p>
+    <p className="text-2xl font-medium text-gray-700">${price * quantity}</p>
   );
 };
 
