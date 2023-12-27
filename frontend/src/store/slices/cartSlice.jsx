@@ -50,6 +50,7 @@ export const addItemToCart = createAsyncThunk(
             id: response.data.cartItemId,
             mealId: newMeal.id,
             title: newMeal.title,
+            categoryName: newMeal.categoryName,
             price: newMeal.price,
             size: newMeal.size,
             image: newMeal.image,

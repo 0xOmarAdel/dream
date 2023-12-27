@@ -11,6 +11,7 @@ const MealAddToCartButton = ({ meal, selectedSize }) => {
   const newMeal = {
     id: meal.id,
     title: meal.title,
+    categoryName: meal.categoryName,
     price: selectedPrice,
     size: selectedSize,
     image: meal.image,

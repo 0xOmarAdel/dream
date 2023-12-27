@@ -10,6 +10,7 @@ const Meal = ({
   _id,
   title,
   description,
+  categoryName,
   options,
   image,
   rating,
@@ -40,6 +41,7 @@ const Meal = ({
         meal={{
           id: _id,
           title,
+          categoryName,
           options,
           image,
         }}
