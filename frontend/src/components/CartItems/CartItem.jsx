@@ -1,5 +1,4 @@
 import CartItemTitle from "./CartItemDetails/CartItemTitle";
-import CartItemPrice from "./CartItemDetails/CartItemPrice";
 import CartItemImage from "./CartItemDetails/CartItemImage";
 import CartItemSubTotal from "./CartItemDetails/CartItemSubTotal";
 import IncreaseCartItemButton from "./CartItemButtons/IncreaseCartItemButton";
