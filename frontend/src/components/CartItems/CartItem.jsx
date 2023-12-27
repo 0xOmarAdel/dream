@@ -6,6 +6,7 @@ import IncreaseCartItemButton from "./CartItemButtons/IncreaseCartItemButton";
 import DecreaseCartItemButton from "./CartItemButtons/DecreaseCartItemButton";
 import DeleteCartItemButton from "./CartItemButtons/RemoveCartItemButton";
 import CartItemQuantity from "./CartItemDetails/CartItemQuantity";
+import CartItemSize from "./CartItemDetails/CartItemSize";
 
 const CartItem = ({ cartItem }) => {
   console.log(cartItem);
@@ -23,7 +24,7 @@ const CartItem = ({ cartItem }) => {
           </div>
           <div className="w-2/3 px-4">
             <CartItemTitle title={cartItem.title} />
-            <p className=" text-gray-800 ">Barbecue</p>
+            <CartItemSize size={cartItem.size} />
           </div>
         </div>
       </div>
