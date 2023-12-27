@@ -1,6 +1,10 @@
 import CartItems from "../components/CartItems/CartItems";
+import { shippingFees } from "../data/shippingFees";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+
   return (
     <section className="py-24 bg-gray-100 font-poppins">
       <div className="px-4 py-6 mx-auto max-w-7xl lg:py-4 md:px-6">
@@ -46,19 +50,19 @@ const Cart = () => {
                 <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-300  ">
                   <span className=" text-gray-800">Subtotal</span>
                   <span className="text-xl font-bold  text-gray-800 ">
-                    $100
+                    ${totalPrice}
                   </span>
                 </div>
                 <div className="flex items-center justify-between pb-4 mb-4 ">
                   <span className=" text-gray-800 ">Shipping</span>
                   <span className="text-xl font-bold  text-gray-800 ">
-                    Free
+                    {shippingFees === 0 ? "FREE" : shippingFees}
                   </span>
                 </div>
                 <div className="flex items-center justify-between pb-4 mb-4 ">
                   <span className=" text-gray-800">Order Total</span>
                   <span className="text-xl font-bold  text-gray-800">
-                    $99.00
+                    ${totalPrice + shippingFees}
                   </span>
                 </div>
                 <h2 className="text-lg  text-gray-800">We offer:</h2>
