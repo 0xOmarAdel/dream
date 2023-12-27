@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import CartSummaryCartTotal from "./CartSummaryCartTotal";
 import CartSummaryShippingFees from "./CartSummaryShippingFees";
 import CartSummaryTotal from "./CartSummaryTotal";
-import Divider from "../ui/Divider";
+import Divider from "../../ui/Divider";
 
 const CartSummary = () => {
   const totalPrice = useSelector((state) => state.cart.totalPrice);

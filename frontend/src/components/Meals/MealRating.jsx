@@ -1,4 +1,4 @@
-import Stars from "../ui/Stars";
+import Stars from "../../ui/Stars";
 
 const MealRating = ({ rating, starsContainerClasses, showModal }) => {
   return (
