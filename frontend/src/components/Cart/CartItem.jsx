@@ -8,6 +8,7 @@ import DeleteCartItemButton from "./CartItemButtons/RemoveCartItemButton";
 import CartItemQuantity from "./CartItemDetails/CartItemQuantity";
 
 const CartItem = ({ cartItem }) => {
+  console.log(cartItem);
   return (
     <div
       className="flex flex-wrap items-center mb-6 -mx-4 md:mb-8"
@@ -17,9 +18,7 @@ const CartItem = ({ cartItem }) => {
         <div className="flex flex-wrap items-center -mx-4">
           <div className="w-full px-4 mb-3 md:w-1/3">
             <div className="w-full h-96 md:h-24 md:w-24">
-              <CartItemImage
-                image={"https://cafeu.vercel.app/img/product/12.png"}
-              />
+              <CartItemImage image={cartItem.image} />
             </div>
           </div>
           <div className="w-2/3 px-4">
