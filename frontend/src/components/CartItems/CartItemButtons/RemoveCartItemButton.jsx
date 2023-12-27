@@ -1,12 +1,14 @@
+import { FaRegTrashAlt } from "react-icons/fa";
 import useCartActions from "../../../hooks/useCartActions";
 
 const RemoveCartItemButton = ({ meal }) => {
   const { removeMealFromCart } = useCartActions();
 
   return (
-    <button onClick={() => removeMealFromCart(meal)}>
-      Remove
-    </button>
+    <FaRegTrashAlt
+      className="cursor-pointer"
+      onClick={() => removeMealFromCart(meal)}
+    />
   );
 };
 

@@ -72,21 +72,7 @@ const Cart = () => {
                   Checkout
                 </button>
               </div>
-
-              {/* ... */}
             </div>
-          </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <span className="text-gray-800">Apply Coupon</span>
-            <input
-              type="text"
-              className="input input-bordered input-primary w-full max-w-xs bg-white text-black placeholder:text-black/70"
-              placeholder="x304k45"
-              required
-            />
-            <button className="inline-block w-full px-8 py-4 font-bold text-center text-gray-100 bg-blue-500 rounded-md lg:w-32 hover:bg-blue-600">
-              Apply
-            </button>
           </div>
         </div>
       </div>

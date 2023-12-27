@@ -31,7 +31,7 @@ const CartItem = ({ cartItem }) => {
       <div className="hidden px-4 lg:block lg:w-2/12">
         <CartItemPrice price={cartItem.price} />
       </div>
-      <div className="w-auto px-4 md:w-1/6 lg:w-2/12 ">
+      <div className="w-auto flex justify-center items-center lg:block px-4 md:w-1/6 lg:w-2/12 ">
         <div className="inline-flex items-center px-4 font-semibold  border-gray-200 rounded-md">
           <DecreaseCartItemButton
             cartItemId={cartItem.id}
@@ -45,6 +45,7 @@ const CartItem = ({ cartItem }) => {
       <div className="w-auto px-4 text-right md:w-1/6 lg:w-2/12 ">
         <CartItemSubTotal price={cartItem.price} quantity={cartItem.quantity} />
       </div>
+      <div className="border-b w-full border-gray-300"></div>
     </div>
   );
 };
