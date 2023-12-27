@@ -12,7 +12,7 @@ const createMeal = async (req, res) => {
       category = await Category.create({ title: categoryName });
     }
 
-    mealData.category = category._id;
+    mealData.categoryName = categoryName;
 
     const existingMeal = await Meal.findOne(mealData);
 
