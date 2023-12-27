@@ -1,9 +1,28 @@
 const Meal = require("../models/Meal");
 const Review = require("../models/Review");
+const Category = require("../models/Category");
 
 const createMeal = async (req, res) => {
+  const { categoryName, ...mealData } = req.body;
+
   try {
-    const newMeal = await Meal.create(req.body);
+    let category = await Category.findOne({ title: categoryName });
+
+    if (!category) {
+      category = await Category.create({ title: categoryName });
+    }
+
+    mealData.category = category._id;
+
+    const existingMeal = await Meal.findOne(mealData);
+
+    if (existingMeal) {
+      return res
+        .status(400)
+        .json({ error: "Meal with the same data already exists." });
+    }
+
+    const newMeal = await Meal.create(mealData);
     res.status(201).json(newMeal);
   } catch (error) {
     res.status(500).json({ error: error.message });
