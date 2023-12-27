@@ -1,29 +1,38 @@
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (
-    <div
-      className="hero !min-h-[60vh]"
-      style={{
-        backgroundImage:
-          "url(https://img.freepik.com/free-photo/blur-coffee-cafe-shop-restaurant-with-bokeh-background_1421-472.jpg?w=740&t=st=1698614210~exp=1698614810~hmac=3583ba6df599e2c6a4bf501ada68b2eb04f304a65e7db95118d83ceaffc4a180)",
-      }}
-    >
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Dream</h1>
-          <p className="mb-5 text-4xl">Your Favorite Restaurant.</p>
-          <div className="flex justify-center gap-2">
-            <Link to="/menu">
-              <button className="bg-primary px-4 py-2 rounded-lg font-semibold text-white">
+    <div className="relative bg-sky-500 lg:bg-sky-50">
+      <div className="container m-auto pt-20 py-6 lg:py-0 lg:pt-4 px-6 md:px-12 lg:px-7">
+        <div className="flex items-start flex-wrap px-2 md:px-0">
+          <div className="relative lg:w-6/12 lg:py-24 xl:py-32">
+            <h1 className="font-bold text-4xl text-white lg:text-sky-500 md:text-5xl lg:w-10/12">
+              Your favorite dishes, right at your service
+            </h1>
+
+            <div className="mt-8">
+              <Link
+                to="/menu"
+                className="bg-black font-medium text-white px-4 py-2 mr-4 rounded"
+              >
                 Menu
-              </button>
-            </Link>
-            <Link to="/reservations">
-              <button className="bg-gray-900 px-4 py-2 rounded-lg font-semibold text-white">
-                Book a table
-              </button>
-            </Link>
+              </Link>
+              <Link
+                to="/reservations"
+                className="bg-white text-black lg:bg-sky-500 font-medium capitalize lg:text-white px-4 py-2 rounded"
+              >
+                Book a Table
+              </Link>
+            </div>
+          </div>
+          <div className="ml-auto lg:-mb-52 lg:block hidden lg:w-6/12">
+            <img
+              src="https://tailus.io/sources/blocks/food-delivery/preview/images/food.webp"
+              className="relative"
+              alt="food illustration"
+              loading="lazy"
+              width="4500"
+              height="4500"
+            />
           </div>
         </div>
       </div>
