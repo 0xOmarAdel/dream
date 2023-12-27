@@ -1,30 +1,41 @@
 import WeeklyCard from "./WeeklyCard";
-import { meals } from "../data/fakeProducts";
+import useAxios from "../hooks/useAxios";
+import { useEffect } from "react";
 
-const Specials = [...meals[0].meal.slice(0, 2), ...meals[1].meal.slice(0, 1)];
 const WeeklySpecials = () => {
+  const {
+    runAxios: fetchMeals,
+    data: meals,
+    loading,
+  } = useAxios("/meals?featured=true");
+  console.log(meals);
+  useEffect(() => {
+    fetchMeals();
+  }, [fetchMeals]);
   return (
-    <section className="hero min-h-screen bg-gray-50">
-      <div className="hero-content   text-center">
-        <div className="max-w-full">
-          <h1 className="text-5xl font-bold text-sky-500">Weekly Specials!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <div className="flex flex-col gap-5 justify-center items-center md:flex md:flex-row md:justify-center md:flex-wrap">
-            {Specials.map((special, index) => (
-              <WeeklyCard
-                key={index}
-                image={special.image}
-                title={special.title}
-                description={special.description}
-                price={special.price}
-                rating={special.rating}
-              />
-            ))}
-          </div>
+    <section className="min-h-screen pt-12 lg:pt-42 bg-gray-50">
+      <div className="max-w-full">
+        <h1 className="text-3xl lg:text-5xl text-center font-bold text-sky-500">
+          Weekly Specials
+        </h1>
+        <p className="py-4 text-center font-medium">
+          Embark on a gastronomic journey every week with our handcrafted Weekly
+          Specials
+        </p>
+        <div className="flex px-8 flex-col gap-5 justify-center items-center md:flex md:flex-row md:justify-center">
+          {loading
+            ? "Loading"
+            : meals.map((special) => (
+                <WeeklyCard
+                  key={special._id}
+                  image={special.image}
+                  title={special.title}
+                  description={special.description}
+                  options={special.options}
+                  rating={special.rating}
+                  categoryName={special.categoryName}
+                />
+              ))}
         </div>
       </div>
     </section>
