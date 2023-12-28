@@ -93,6 +93,7 @@ const Reservations = () => {
                   touched={touched.guests}
                 />
                 <FormikField
+                  as="textarea"
                   name="comment"
                   placeholder="Comment (optional)"
                   error={errors.comment}
