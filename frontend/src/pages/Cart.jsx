@@ -6,8 +6,14 @@ import Card from "../ui/Card";
 import CardTitle from "../ui/CardTitle";
 import Section from "../ui/Section";
 import CartForm from "../components/CartForm";
+import { useState } from "react";
+import Button from "../ui/Button";
+import CartFormValues from "../components/CartFormValues";
 
 const Cart = () => {
+  const [formikValues, setFormikValues] = useState([]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   return (
     <Section classes="flex flex-col xl:flex-row gap-12">
       <Card classes="grow">
@@ -21,16 +27,21 @@ const Cart = () => {
       <div className="min-w-[20%] flex flex-col gap-12">
         <Card classes="grow">
           <CardTitle title="Shipping Address" />
-          <CartForm />
+          {formSubmitted ? (
+            <CartFormValues formikValues={formikValues} />
+          ) : (
+            <CartForm
+              setFormSubmitted={setFormSubmitted}
+              setFormikValues={setFormikValues}
+            />
+          )}
         </Card>
         <Card>
           <CardTitle title="Order Summary" />
           <div className="flex flex-col gap-4">
             <CartSummary />
             <PaymentMethods />
-            <button className="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-blue-500 rounded-md hover:bg-blue-600">
-              Checkout
-            </button>
+            <Button type="submit" text="Confirm" disabled={!formSubmitted} />
           </div>
         </Card>
       </div>
