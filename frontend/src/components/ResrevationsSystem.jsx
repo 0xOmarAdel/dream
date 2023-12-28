@@ -1,17 +1,15 @@
 // ReservationSystem.js
 
-import { useState } from "react";
-import tableicon from "../assets/table.png";
+import tableIcon from "../assets/table.png";
 
-const ReservationSystem = () => {
-  const [selectedSeats, setSelectedSeats] = useState([]);
-
+const ReservationSystem = ({ selectedSeats, setSelectedSeats }) => {
   const handleSeatClick = (seatNumber) => {
-    // Toggle seat selection
     if (selectedSeats.includes(seatNumber)) {
-      setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
+      setSelectedSeats((prevState) =>
+        prevState.filter((seat) => seat !== seatNumber)
+      );
     } else {
-      setSelectedSeats([...selectedSeats, seatNumber]);
+      setSelectedSeats((prevState) => [...prevState, seatNumber]);
     }
   };
 
@@ -34,7 +32,7 @@ const ReservationSystem = () => {
           >
             <div className="table">
               <div className={`chair ${isSelected ? "selected-chair" : ""}`} />
-              <img src={tableicon} alt="table" />
+              <img src={tableIcon} alt="table" />
             </div>
             <span className="seat-number">{seatNumber}</span>
           </div>

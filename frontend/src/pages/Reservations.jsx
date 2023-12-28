@@ -3,8 +3,12 @@ import ReservationSystem from "../components/ResrevationsSystem";
 import FormikField from "../ui/FormikField";
 import Button from "../ui/Button";
 import { reservationsSchema } from "../schemas/reservationsSchema";
+import { useState } from "react";
 
 const Reservations = () => {
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  console.log(selectedSeats);
+
   return (
     <div className="flex justify-center items-center w-full  min-h-screen bg-white px-5 py-5">
       <div className="xl:max-w-7xl bg-white w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
@@ -24,7 +28,9 @@ const Reservations = () => {
             }}
             validationSchema={reservationsSchema}
             onSubmit={(values) => {
-              console.log(values);
+              if (selectedSeats.length !== 0) {
+                console.log(values);
+              }
             }}
           >
             {({ errors, touched, isValid }) => (
@@ -105,7 +111,10 @@ const Reservations = () => {
           </Formik>
         </div>
         <div className="sm:w-[60%] lg:w-[50%] bg-cover bg-center items-center justify-center hidden md:flex ">
-          <ReservationSystem />
+          <ReservationSystem
+            selectedSeats={selectedSeats}
+            setSelectedSeats={setSelectedSeats}
+          />
         </div>
       </div>
     </div>

@@ -15,5 +15,4 @@ export const reservationsSchema = Yup.object().shape({
   guests: Yup.string().required("Required"),
   occasion: Yup.string(),
   comments: Yup.string().min(2, "Too Short!").max(50, "Too Long!"),
-  table: Yup.string().required("Required"),
 });
