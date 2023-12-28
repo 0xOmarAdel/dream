@@ -30,7 +30,7 @@ const Cart = () => {
         />
         <CartItems />
       </Card>
-      <Card classes="grow min-w-[20%]">
+      <Card classes="min-w-[20%]">
         <AnimatePresence>
           {!formSubmitted ? (
             <>
