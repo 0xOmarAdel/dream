@@ -15,9 +15,9 @@ const Reservations = () => {
           <Formik
             initialValues={{
               resDate: "",
-              resTime: "",
+              resTime: "17",
               guests: "",
-              occasion: "",
+              occasion: "anniversaries",
               name: "",
               email: "",
               phone: "",
