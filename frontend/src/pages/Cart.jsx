@@ -11,27 +11,29 @@ import Button from "../ui/Button";
 import { addressFormatter } from "../utils/addressFormatter";
 import { AnimatePresence } from "framer-motion";
 import useAxios from "../hooks/useAxios";
+import { useDispatch } from "react-redux";
+import { emptyCart } from "../store/slices/cartSlice";
 
 const Cart = () => {
   const [formikValues, setFormikValues] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  const dispatch = useDispatch();
+
   const {
     runAxios: submitOrder,
-    data: meals,
+    data,
     loading,
     error,
-  } = useAxios("/order/submit", "POST", {
+  } = useAxios("/orders", "POST", {
     address: addressFormatter(formikValues),
     phone: formikValues.phone,
   });
 
   const submitOrderHandler = () => {
-    console.log(addressFormatter(formikValues));
-    console.log(formikValues.phone);
+    // dispatch(emptyCart());
 
-    // use the submitOrder to submit the order
-    // then dispatch the emptyCart function from the cartSlice
+    submitOrder();
   };
 
   return (
