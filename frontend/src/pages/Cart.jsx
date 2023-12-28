@@ -30,34 +30,32 @@ const Cart = () => {
         />
         <CartItems />
       </Card>
-      <div className="min-w-[20%] flex flex-col gap-12">
-        <Card classes="grow">
-          <AnimatePresence>
-            {!formSubmitted ? (
-              <>
-                <CardTitle title="Shipping Address" />
-                <CartForm
-                  setFormSubmitted={setFormSubmitted}
-                  setFormikValues={setFormikValues}
+      <Card classes="grow min-w-[20%]">
+        <AnimatePresence>
+          {!formSubmitted ? (
+            <>
+              <CardTitle title="Shipping Address" />
+              <CartForm
+                setFormSubmitted={setFormSubmitted}
+                setFormikValues={setFormikValues}
+              />
+            </>
+          ) : (
+            <>
+              <CardTitle title="Order Summary" />
+              <div className="flex flex-col gap-4">
+                <CartSummary formikValues={formikValues} />
+                <PaymentMethods />
+                <Button
+                  type="submit"
+                  text="Confirm"
+                  onClick={submitOrderHandler}
                 />
-              </>
-            ) : (
-              <>
-                <CardTitle title="Order Summary" />
-                <div className="flex flex-col gap-4">
-                  <CartSummary formikValues={formikValues} />
-                  <PaymentMethods />
-                  <Button
-                    type="submit"
-                    text="Confirm"
-                    onClick={submitOrderHandler}
-                  />
-                </div>
-              </>
-            )}
-          </AnimatePresence>
-        </Card>
-      </div>
+              </div>
+            </>
+          )}
+        </AnimatePresence>
+      </Card>
     </Section>
   );
 };
