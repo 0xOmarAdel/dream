@@ -10,14 +10,28 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import { addressFormatter } from "../utils/addressFormatter";
 import { AnimatePresence } from "framer-motion";
+import useAxios from "../hooks/useAxios";
 
 const Cart = () => {
   const [formikValues, setFormikValues] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  const {
+    runAxios: submitOrder,
+    data: meals,
+    loading,
+    error,
+  } = useAxios("/order/submit", "POST", {
+    address: addressFormatter(formikValues),
+    phone: formikValues.phone,
+  });
+
   const submitOrderHandler = () => {
     console.log(addressFormatter(formikValues));
     console.log(formikValues.phone);
+
+    // use the submitOrder to submit the order
+    // then dispatch the emptyCart function from the cartSlice
   };
 
   return (
@@ -51,10 +65,7 @@ const Cart = () => {
                   text="Confirm"
                   onClick={submitOrderHandler}
                 />
-                <Button
-                  text="Cancel"
-                  onClick={() => setFormSubmitted(false)}
-                />
+                <Button text="Cancel" onClick={() => setFormSubmitted(false)} />
               </div>
             </>
           )}
