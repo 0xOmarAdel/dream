@@ -5,10 +5,10 @@ import PaymentMethods from "../components/PaymentMethods/PaymentMethods";
 import Card from "../ui/Card";
 import CardTitle from "../ui/CardTitle";
 import Section from "../ui/Section";
-import CartForm from "../components/CartForm";
+import CartForm from "../components/CartForm/CartForm";
 import { useState } from "react";
 import Button from "../ui/Button";
-import CartFormValues from "../components/CartFormValues";
+import CartFormValues from "../components/CartForm/CartFormValues";
 
 const Cart = () => {
   const [formikValues, setFormikValues] = useState({});

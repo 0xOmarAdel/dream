@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
-import FormikField from "../ui/FormikField";
-import { orderSchema } from "../schemas/orderSchema";
-import Button from "../ui/Button";
+import FormikField from "../../ui/FormikField";
+import { orderSchema } from "../../schemas/orderSchema";
+import Button from "../../ui/Button";
 
 const CartForm = ({ setFormSubmitted, setFormikValues }) => {
   return (

@@ -1,4 +1,4 @@
-import { addressFormatter } from "../utils/addressFormatter";
+import { addressFormatter } from "../../utils/addressFormatter";
 
 const CartFormValues = ({ formikValues }) => {
   return (
