@@ -1,6 +1,6 @@
 import { IoCartOutline } from "react-icons/io5";
 import CartItems from "../components/CartItems/CartItems";
-import CartSummary from "../components/CartSummary/CartSummary";
+import CartSummary from "../components/OrderSummary/OrderSummary";
 import PaymentMethods from "../components/PaymentMethods/PaymentMethods";
 import Card from "../ui/Card";
 import CardTitle from "../ui/CardTitle";

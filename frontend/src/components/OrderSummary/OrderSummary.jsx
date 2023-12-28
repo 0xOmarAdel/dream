@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import CartSummaryCartTotal from "./CartSummaryCartTotal";
-import CartSummaryShippingFees from "./CartSummaryShippingFees";
-import CartSummaryTotal from "./CartSummaryTotal";
+import CartSummaryCartTotal from "./OrderSummaryCartTotal";
+import CartSummaryShippingFees from "./OrderSummaryShippingFees";
+import CartSummaryTotal from "./OrderSummaryTotal";
 import Divider from "../../ui/Divider";
 import OrderSummaryAddress from "./OrderSummaryAddress";
 import OrderSummaryPhone from "./OrderSummaryPhone";
