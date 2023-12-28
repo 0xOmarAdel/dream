@@ -9,10 +9,16 @@ import CartForm from "../components/CartForm/CartForm";
 import { useState } from "react";
 import Button from "../ui/Button";
 import CartFormValues from "../components/CartForm/CartFormValues";
+import { addressFormatter } from "../utils/addressFormatter";
 
 const Cart = () => {
   const [formikValues, setFormikValues] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const submitOrderHandler = () => {
+    console.log(addressFormatter(formikValues));
+    console.log(formikValues.phone);
+  };
 
   return (
     <Section classes="flex flex-col xl:flex-row gap-12">
@@ -41,7 +47,12 @@ const Cart = () => {
           <div className="flex flex-col gap-4">
             <CartSummary />
             <PaymentMethods />
-            <Button type="submit" text="Confirm" disabled={!formSubmitted} />
+            <Button
+              type="submit"
+              text="Confirm"
+              disabled={!formSubmitted}
+              onClick={submitOrderHandler}
+            />
           </div>
         </Card>
       </div>
