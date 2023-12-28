@@ -1,7 +1,11 @@
+import { Formik, Form } from "formik";
+import FormikField from "../ui/FormikField";
+import { contactSchema } from "../schemas/contactSchema";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaMoneyBills } from "react-icons/fa6";
+import Button from "../ui/Button";
 
 const Contact = () => {
   return (
@@ -33,41 +37,53 @@ const Contact = () => {
               </div>
             </div>
             <div className="mx-auto max-w-[700px]">
-              <form>
-                <div className="relative mb-6">
-                  <input
-                    type="text"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                    placeholder="Name"
-                  />
-                  <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none">
-                    Name
-                  </label>
-                </div>
-                <div className="relative mb-6">
-                  <input
-                    type="email"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                    placeholder="Email address"
-                  />
-                  <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none">
-                    Email address
-                  </label>
-                </div>
-                <div className="relative mb-6">
-                  <textarea
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                    rows="3"
-                    placeholder="Your message"
-                  ></textarea>
-                  <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none">
-                    Message
-                  </label>
-                </div>
-                <button className="inline-block w-full rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 lg:mb-0">
-                  Send
-                </button>
-              </form>
+              <Formik
+                initialValues={{
+                  name: "",
+                  email: "",
+                  message: "",
+                }}
+                onSubmit={(values) => {
+                  console.log(values);
+                }}
+                validationSchema={contactSchema}
+              >
+                {({ isValid, errors, touched }) => (
+                  <Form>
+                    <div className="relative mb-6">
+                      <FormikField
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        touched={touched.name}
+                        error={errors.name}
+                        inputClasses={"input input-bordered input-primary"}
+                      />
+                    </div>
+                    <div className="relative mb-6">
+                      <FormikField
+                        type="email"
+                        name="email"
+                        placeholder="Email address"
+                        touched={touched.email}
+                        error={errors.email}
+                        inputClasses={"input input-bordered input-primary"}
+                      />
+                    </div>
+                    <div className="relative mb-6">
+                      <FormikField
+                        type="text"
+                        name="message"
+                        placeholder="Message"
+                        touched={touched.message}
+                        error={errors.message}
+                        inputClasses={"input input-bordered input-primary "}
+                      />
+                    </div>
+                    <Button type="submit" text={"Send"} disabled={!isValid} />
+                  </Form>
+                )}
+              </Formik>
             </div>
           </div>
         </div>
