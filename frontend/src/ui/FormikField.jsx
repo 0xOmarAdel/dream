@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 const FormikField = ({ name, type, placeholder, classes, error, touched }) => {
   return (
-    <>
+    <div className="flex flex-col gap-1">
       <Field
         name={name}
         type={type || "text"}
@@ -16,7 +16,7 @@ const FormikField = ({ name, type, placeholder, classes, error, touched }) => {
         )}
       />
       {error && touched && <div>{error}</div>}
-    </>
+    </div>
   );
 };
 
