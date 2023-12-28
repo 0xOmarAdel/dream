@@ -51,6 +51,10 @@ const Cart = () => {
                   text="Confirm"
                   onClick={submitOrderHandler}
                 />
+                <Button
+                  text="Cancel"
+                  onClick={() => setFormSubmitted(false)}
+                />
               </div>
             </>
           )}
