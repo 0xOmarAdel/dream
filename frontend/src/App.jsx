@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "./store/slices/userAuthSlice";
 import axios from "axios";
 import { getCartItems } from "./store/slices/cartSlice";
+import Contact from "./pages/Contact";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="/menu" element={<Menu />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/OrderOnline" element={<OrderOnline />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/register"

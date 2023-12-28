@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 z-40">
       <div className="flex-1">
         <Link to="/" className="px-4 text-2xl text-sky-500 font-semibold">
           Dream
@@ -64,7 +64,7 @@ const Navbar = () => {
                 </ul>
               </li>
               <li>
-                <Link>Contact Us</Link>
+                <Link to="/contact">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -94,7 +94,9 @@ const Navbar = () => {
               </details>
             </li>
             <li>
-              <Link className="normal-case text-xl ">Contact Us</Link>
+              <Link to="/contact" className="normal-case text-xl">
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
