@@ -38,7 +38,7 @@ const Reservations = () => {
           <h1 className="text-start text-4xl sm:text-3xl font-semibold text-sky-500">
             Booking
           </h1>
-          <form className="w-full mt-5 sm:mt-8">
+          <form className="w-full mt-5 sm:mt-8" onSubmit={formik.handleSubmit}>
             <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5">
               <div className="flex flex-col sm:flex-row gap-3">
                 <label className="">Choose Date</label>
@@ -88,7 +88,7 @@ const Reservations = () => {
                   placeholder="Enter Your Name"
                   className="input input-bordered input-primary w-full max-w-xs bg-white text-black placeholder:text-black/70"
                 />
-                <input
+                <select
                   id="occasion"
                   name="occasion"
                   value={formik.values.occasion}
@@ -96,7 +96,13 @@ const Reservations = () => {
                   type="text"
                   placeholder="Occasion (optional)"
                   className="input input-bordered input-primary w-full max-w-xs bg-white text-black placeholder:text-black/70"
-                />
+                >
+                  <option>Anniversaries</option>
+                  <option>Baptism</option>
+                  <option>Birthday</option>
+                  <option>Engagement</option>
+                  <option>Other</option>
+                </select>
               </div>
               <input
                 id="email"
@@ -147,7 +153,11 @@ const Reservations = () => {
                 </h3>
               </div>
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
-                <button className="btn btn-active hover:!bg-sky-500 btn-primary !text-black btn-block max-w-[200px]">
+                <button
+                  className="btn btn-active hover:!bg-sky-500 btn-primary !text-black btn-block max-w-[200px]"
+                  type="submit"
+                  disabled={!formik.isValid}
+                >
                   Book A Table
                 </button>
               </div>
