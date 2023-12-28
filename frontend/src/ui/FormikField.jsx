@@ -14,7 +14,7 @@ const FormikField = ({
   containerClasses,
 }) => {
   return (
-    <div className={twMerge("flex flex-col gap-1", containerClasses || "")}>
+    <div className={twMerge("w-full flex flex-col gap-1", containerClasses || "")}>
       {label && <label htmlFor={name}>{label}</label>}
       <Field
         as={as}
