@@ -3,6 +3,7 @@ import MealImage from "./Meals/MealImage";
 import { useState } from "react";
 import MealSizes from "./Meals/MealSizes";
 import MealDescription from "./Meals/MealDescription";
+import MealPrice from "./Meals/MealPrice";
 
 const WeeklyCard = ({ image, title, description, options, categoryName }) => {
   const [selectedSize, setSelectedSize] = useState(options[0].size);
@@ -21,7 +22,11 @@ const WeeklyCard = ({ image, title, description, options, categoryName }) => {
             classes="font-bold text-gray-700 text-[22px] leading-7 mb-1"
           />
           <p className="text-[17px] font-bold text-sky-500">{categoryName}</p>
-          <MealSizes options={options} onSizeClick={handleSizeClick} />
+          <div className="flex justify-between">
+            <MealSizes options={options} onSizeClick={handleSizeClick} />
+            <MealPrice options={options} selectedSize={selectedSize} />
+          </div>
+
           <MealDescription description={description} />
           <button className="block mt-6 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-sky-500 rounded-[14px] hover:bg-sky-600 focus:outline-none text-white">
             Add to cart
