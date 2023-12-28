@@ -39,7 +39,7 @@ const About = () => {
               <span className="block mb-4 text-xl font-semibold text-primary">
                 About Us
               </span>
-              <h2 className="mb-5 text-3xl font-bold text-dark dark:text-white sm:text-[40px]/[48px]">
+              <h2 className="mb-5 text-3xl font-bold text-dark sm:text-[40px]/[48px]">
                 We are making customers happy by giving them our Meals.
               </h2>
               <p className="mb-5 text-base text-body-color font-medium">
