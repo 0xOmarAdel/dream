@@ -14,7 +14,7 @@ const WeeklySpecials = () => {
   }, [fetchMeals]);
 
   return (
-    <section className="min-h-screen pt-12 lg:pt-42 bg-gray-50">
+    <section id="weekly" className="min-h-screen pt-12 lg:pt-42 bg-gray-50">
       <div className="max-w-full">
         <h1 className="text-3xl lg:text-5xl text-center font-bold text-sky-500">
           Weekly Specials
