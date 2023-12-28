@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <div className="container my-24 mx-auto md:px-6">
       <h1 className="text-center text-sky-500 font-bold text-3xl lg:text-4xl mb-6 px-4 lg:px-0">
-        Contact with Dream .
+        Contact with Dream.
       </h1>
       <section className="mb-32">
         <div className="relative h-[300px] overflow-hidden bg-cover bg-[50%] bg-no-repeat bg-[url('https://cdn.sortiraparis.com/images/80/100789/834083-too-restaurant-too-hotel-paris-photos-menu-plats.jpg')]"></div>
