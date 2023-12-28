@@ -86,17 +86,17 @@ const Reservations = () => {
                   touched={touched.phone}
                 />
                 <FormikField
-                  name="comment"
-                  placeholder="Comment (optional)"
-                  error={errors.comment}
-                  touched={touched.comment}
-                />
-                <FormikField
                   type="number"
                   name="guests"
                   placeholder="Guests"
                   error={errors.guests}
                   touched={touched.guests}
+                />
+                <FormikField
+                  name="comment"
+                  placeholder="Comment (optional)"
+                  error={errors.comment}
+                  touched={touched.comment}
                 />
                 <Button type="submit" text="Book A Table" disabled={!isValid} />
               </Form>
