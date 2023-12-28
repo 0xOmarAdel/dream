@@ -15,7 +15,12 @@ const FormikField = ({ name, type, placeholder, classes, error, touched }) => {
           classes || ""
         )}
       />
-      {error && touched && <div>{error}</div>}
+      {error && touched && (
+        <div className="flex flex-row gap-1">
+          <span className="text-lg text-red-500 -translate-y-0.5">*</span>
+          <p className="text-sm text-gray-600">{error}</p>
+        </div>
+      )}
     </div>
   );
 };
