@@ -1,12 +1,22 @@
 import { Field } from "formik";
 import { twMerge } from "tailwind-merge";
 
-const FormikField = ({ name, type, placeholder, classes, error, touched }) => {
+const FormikField = ({
+  as,
+  name,
+  type,
+  placeholder,
+  classes,
+  error,
+  touched,
+  selectOptions,
+}) => {
   return (
     <div className="flex flex-col gap-1">
       <Field
+        as={as}
         name={name}
-        type={type || "text"}
+        type={!as && (type || "text")}
         placeholder={placeholder}
         className={twMerge(
           `w-full px-3 py-2 bg-transparent border outline-none rounded-md transition duration-300 focus:border-primary ${
@@ -14,7 +24,14 @@ const FormikField = ({ name, type, placeholder, classes, error, touched }) => {
           }`,
           classes || ""
         )}
-      />
+      >
+        {selectOptions &&
+          selectOptions.map((selectOption) => (
+            <option key={selectOption.value} value={selectOption.value}>
+              {selectOption.text}
+            </option>
+          ))}
+      </Field>
       {error && touched && (
         <div className="flex flex-row gap-1">
           <span className="text-lg text-red-500 -translate-y-0.5">*</span>
