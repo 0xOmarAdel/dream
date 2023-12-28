@@ -5,8 +5,6 @@ import MealRating from "./MealRating";
 import { useEffect } from "react";
 
 const MealReviewsModal = ({ hideReviews, rating, id }) => {
-  // api call here to get the meal reviews
-
   const {
     runAxios: fetchRatings,
     data: ratings,
@@ -18,9 +16,6 @@ const MealReviewsModal = ({ hideReviews, rating, id }) => {
   }, [fetchRatings]);
 
   if (loading) return;
-
-  console.log(ratings);
-  // const ratings = [
   //   {
   //     value: 5,
   //     rating: 12,
