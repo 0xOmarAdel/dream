@@ -1,15 +1,15 @@
 import { IoCartOutline } from "react-icons/io5";
 import CartItems from "../components/CartItems/CartItems";
-import CartSummary from "../components/CartSummary/CartSummary";
+import CartSummary from "../components/OrderSummary/OrderSummary";
 import PaymentMethods from "../components/PaymentMethods/PaymentMethods";
 import Card from "../ui/Card";
 import CardTitle from "../ui/CardTitle";
 import Section from "../ui/Section";
-import CartForm from "../components/CartForm/CartForm";
+import CartForm from "../components/CartForm/OrderAddressForm";
 import { useState } from "react";
 import Button from "../ui/Button";
-import CartFormValues from "../components/CartForm/CartFormValues";
 import { addressFormatter } from "../utils/addressFormatter";
+import { AnimatePresence } from "framer-motion";
 
 const Cart = () => {
   const [formikValues, setFormikValues] = useState({});
@@ -30,32 +30,36 @@ const Cart = () => {
         />
         <CartItems />
       </Card>
-      <div className="min-w-[20%] flex flex-col gap-12">
-        <Card classes="grow">
-          <CardTitle title="Shipping Address" />
-          {formSubmitted ? (
-            <CartFormValues formikValues={formikValues} />
+      <Card classes="grow min-w-[20%]">
+        <AnimatePresence>
+          {!formSubmitted ? (
+            <>
+              <CardTitle title="Shipping Address" />
+              <CartForm
+                setFormSubmitted={setFormSubmitted}
+                setFormikValues={setFormikValues}
+              />
+            </>
           ) : (
-            <CartForm
-              setFormSubmitted={setFormSubmitted}
-              setFormikValues={setFormikValues}
-            />
+            <>
+              <CardTitle title="Order Summary" />
+              <div className="flex flex-col gap-4">
+                <CartSummary formikValues={formikValues} />
+                <PaymentMethods />
+                <Button
+                  type="submit"
+                  text="Confirm"
+                  onClick={submitOrderHandler}
+                />
+                <Button
+                  text="Cancel"
+                  onClick={() => setFormSubmitted(false)}
+                />
+              </div>
+            </>
           )}
-        </Card>
-        <Card>
-          <CardTitle title="Order Summary" />
-          <div className="flex flex-col gap-4">
-            <CartSummary />
-            <PaymentMethods />
-            <Button
-              type="submit"
-              text="Confirm"
-              disabled={!formSubmitted}
-              onClick={submitOrderHandler}
-            />
-          </div>
-        </Card>
-      </div>
+        </AnimatePresence>
+      </Card>
     </Section>
   );
 };

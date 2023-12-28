@@ -3,7 +3,7 @@ import FormikField from "../../ui/FormikField";
 import { orderSchema } from "../../schemas/orderSchema";
 import Button from "../../ui/Button";
 
-const CartForm = ({ setFormSubmitted, setFormikValues }) => {
+const OrderAddressForm = ({ setFormSubmitted, setFormikValues }) => {
   return (
     <Formik
       initialValues={{
@@ -65,4 +65,4 @@ const CartForm = ({ setFormSubmitted, setFormikValues }) => {
   );
 };
 
-export default CartForm;
+export default OrderAddressForm;
