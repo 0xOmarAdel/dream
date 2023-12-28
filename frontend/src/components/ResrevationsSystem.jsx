@@ -29,7 +29,7 @@ const ReservationSystem = () => {
         seatGrid.push(
           <div
             key={seatNumber}
-            className={`seat ${isSelected ? "selected" : ""}`}
+            className={`seat ${isSelected ? "selected rounded-xl" : ""}`}
             onClick={() => handleSeatClick(seatNumber)}
           >
             <div className="table">
