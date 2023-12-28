@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer p-10 bg-gray-50 text-base-content">
-      <aside className="px-4">
+    <footer className="footer border-t p-10 bg-gray-50 text-base-content">
+      <aside className="lg:px-4">
         <Link to="/" className="text-2xl text-sky-500 font-semibold">
           Dream
         </Link>
