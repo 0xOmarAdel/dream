@@ -12,7 +12,7 @@ export const reservationsSchema = Yup.object().shape({
     .required("Required"),
   resDate: Yup.date().required("Required"),
   resTime: Yup.string().required("Required"),
-  guests: Yup.string().required("Required"),
+  guests: Yup.string().min(1).max(10).required("Required"),
   occasion: Yup.string(),
   comments: Yup.string().min(2, "Too Short!").max(50, "Too Long!"),
 });

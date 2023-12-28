@@ -20,7 +20,7 @@ const Reservations = () => {
             initialValues={{
               resDate: "",
               resTime: "17",
-              guests: "",
+              guests: "1",
               occasion: "anniversaries",
               name: "",
               email: "",
@@ -42,6 +42,7 @@ const Reservations = () => {
                     placeholder="resDate"
                     error={errors.resDate}
                     touched={touched.resDate}
+                    inputClasses={"input input-bordered input-primary"}
                   />
                   <FormikField
                     as="select"
@@ -56,6 +57,7 @@ const Reservations = () => {
                       { value: "21", text: "21:00" },
                       { value: "22", text: "22:00" },
                     ]}
+                    inputClasses={"input input-bordered input-primary"}
                   />
                 </div>
                 <div className="w-full flex flex-row gap-8">
@@ -64,6 +66,7 @@ const Reservations = () => {
                     placeholder="Name"
                     error={errors.name}
                     touched={touched.name}
+                    inputClasses={"input input-bordered input-primary"}
                   />
                   <FormikField
                     as="select"
@@ -77,6 +80,7 @@ const Reservations = () => {
                       { value: "engagement", text: "Engagement" },
                       { value: "other", text: "Other" },
                     ]}
+                    inputClasses={"input input-bordered input-primary"}
                   />
                 </div>
                 <FormikField
@@ -84,12 +88,14 @@ const Reservations = () => {
                   placeholder="Email"
                   error={errors.email}
                   touched={touched.email}
+                  inputClasses={"input input-bordered input-primary"}
                 />
                 <FormikField
                   name="phone"
                   placeholder="Phone Number"
                   error={errors.phone}
                   touched={touched.phone}
+                  inputClasses={"input input-bordered input-primary"}
                 />
                 <FormikField
                   type="number"
@@ -97,6 +103,7 @@ const Reservations = () => {
                   placeholder="Guests"
                   error={errors.guests}
                   touched={touched.guests}
+                  inputClasses={"input input-bordered input-primary"}
                 />
                 <FormikField
                   as="textarea"
@@ -104,6 +111,7 @@ const Reservations = () => {
                   placeholder="Comment (optional)"
                   error={errors.comment}
                   touched={touched.comment}
+                  inputClasses={"input input-bordered input-primary"}
                 />
                 <Button type="submit" text="Book A Table" disabled={!isValid} />
               </Form>
