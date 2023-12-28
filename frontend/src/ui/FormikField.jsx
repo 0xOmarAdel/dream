@@ -6,13 +6,16 @@ const FormikField = ({
   name,
   type,
   placeholder,
-  classes,
   error,
   touched,
   selectOptions,
+  label,
+  inputClasses,
+  containerClasses,
 }) => {
   return (
-    <div className="flex flex-col gap-1">
+    <div className={twMerge("flex flex-col gap-1", containerClasses || "")}>
+      {label && <label htmlFor={name}>{label}</label>}
       <Field
         as={as}
         name={name}
@@ -22,7 +25,7 @@ const FormikField = ({
           `w-full px-3 py-2 bg-transparent border outline-none rounded-md transition duration-300 focus:border-primary ${
             error ? "border-red-300" : "border-gray-300"
           }`,
-          classes || ""
+          inputClasses || ""
         )}
       >
         {selectOptions &&
