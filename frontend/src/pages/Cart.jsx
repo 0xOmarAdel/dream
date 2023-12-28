@@ -11,7 +11,7 @@ import Button from "../ui/Button";
 import CartFormValues from "../components/CartFormValues";
 
 const Cart = () => {
-  const [formikValues, setFormikValues] = useState([]);
+  const [formikValues, setFormikValues] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   return (
