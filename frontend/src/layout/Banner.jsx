@@ -1,4 +1,4 @@
-import banner from "../assets/banner.png";
+import banner from "../assets/banner.jpg";
 
 const Banner = () => {
   const bannerStyle = {
@@ -6,18 +6,17 @@ const Banner = () => {
   };
 
   return (
-    <div
-      className="bg-cover bg-center py-20 flex flex-col items-center text-gray-100"
-      style={bannerStyle}
-    >
-      <h1 className="text-3xl font-bold">Menu Page</h1>
-      <div className="breadcrumbs text-lg">
-        <ul>
-          <li>Home</li>
-          <li>Menu</li>
-          <li>All Categories</li>
-        </ul>
+    <div className="relative bg-cover bg-center py-28" style={bannerStyle}>
+      <div className="relative z-20 flex flex-col items-center text-gray-200">
+        <h1 className="text-4xl font-bold">Menu Page</h1>
+        <div className="breadcrumbs text-xl">
+          <ul>
+            <li>Home</li>
+            <li>Menu</li>
+          </ul>
+        </div>
       </div>
+      <div className="absolute inset-0 z-10 bg-black bg-opacity-60"></div>
     </div>
   );
 };
