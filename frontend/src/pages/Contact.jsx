@@ -107,7 +107,7 @@ const Contact = () => {
                     </div>
                     <div className="relative mb-6">
                       <FormikField
-                        type="text"
+                        as="textarea"
                         name="message"
                         placeholder="Message"
                         touched={touched.message}
