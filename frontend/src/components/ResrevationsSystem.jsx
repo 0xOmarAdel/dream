@@ -46,7 +46,7 @@ const ReservationSystem = ({ selectedSeats, setSelectedSeats }) => {
   return (
     <>
       <div className="reservation-system">
-        <div className="hero min-h-screen flex items-center justify-center text-center">
+        <div className="flex items-center justify-center text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-medium text-sky-500 mb-4 pb-7">
               Choose Your Table

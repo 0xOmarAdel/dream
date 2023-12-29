@@ -1,13 +1,15 @@
-import Hero from "../layout/Hero";
-import WeeklySpecials from "../components/WeeklySpecials";
+import Hero from "../components/Hero/Hero";
 import About from "../components/AboutRestaurant";
 import Features from "../components/Features";
+import SpecialOffers from "../components/SpecialOffers/SpecialOffers";
+import ReservationsSystem from "../components/ReservationsSystem/ReservationsSystem";
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <WeeklySpecials />
+      <SpecialOffers />
+      <ReservationsSystem />
       <About />
       <Features />
     </>
