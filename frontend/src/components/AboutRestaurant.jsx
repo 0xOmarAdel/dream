@@ -1,4 +1,3 @@
-import restaurant from "/assets/restaurant.jpg";
 const About = () => {
   return (
     <section className="overflow-hidden px-4 pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white">
