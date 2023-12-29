@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik";
 import FormikField from "../ui/FormikField";
-import emailjs, { send } from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import { contactSchema } from "../schemas/contactSchema";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
@@ -9,11 +9,7 @@ import { FaMoneyBills } from "react-icons/fa6";
 import Button from "../ui/Button";
 
 const Contact = () => {
-  const serviceID = "service_zb2yxl4";
-  const templateID = "contact_form";
-  const userID = "NLgzz5fawZg6HAw9o";
-
-  function SendEmail(values) {
+  const sendEmail = (values) => {
     const { name, email, message } = values;
 
     const templateParams = {
@@ -23,15 +19,22 @@ const Contact = () => {
       message: message,
     };
 
-    emailjs.send(serviceID, templateID, templateParams, userID).then(
-      (result) => {
-        console.log(result.text);
-      },
-      (error) => {
-        console.log(error.text);
-      }
-    );
-  }
+    emailjs
+      .send(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
   return (
     <div className="container my-24 mx-auto md:px-6">
       <h1 className="text-center text-sky-500 font-bold text-3xl lg:text-4xl mb-6 px-4 lg:px-0">
@@ -69,7 +72,7 @@ const Contact = () => {
                 }}
                 onSubmit={(values, actions) => {
                   setTimeout(() => {
-                    SendEmail(values);
+                    sendEmail(values);
                     actions.setSubmitting(false);
                   }, 1000);
                   console.log(values);
