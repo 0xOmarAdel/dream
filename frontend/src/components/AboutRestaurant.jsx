@@ -36,19 +36,19 @@ const About = () => {
 
           <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
             <div className="mt-10 lg:mt-0">
-              <span className="block mb-4 text-xl font-semibold text-primary">
+              <span className="block mb-4 text-3xl font-semibold text-primary">
                 About Us
               </span>
-              <h2 className="mb-5 text-3xl font-bold text-dark sm:text-[40px]/[48px]">
+              <h2 className="mb-5 text-3xl font-bold text-gray-700 sm:text-[40px]/[48px]">
                 We are making customers happy by giving them our Meals.
               </h2>
-              <p className="mb-5 text-base text-body-color font-medium">
-                At <span className="text-sky-500 font-semibold">Dream</span>,
+              <p className="mb-5 text-lg text-gray-600 font-medium leading-8">
+                At <span className="text-primary font-semibold">Dream</span>,
                 our journey began with a passion for cooking. Established in
                 2023, we set out to create a haven for food enthusiasts, a place
-                where every meal tells a story. Over the years, we've evolved
-                and refined our menu to bring you a curated selection of dishes
-                that reflect our commitment to quality and innovation.
+                where every meal tells a story. Over the years, we&apos;ve
+                evolved and refined our menu to bring you a curated selection of
+                dishes that reflect our commitment to quality and innovation.
               </p>
             </div>
           </div>
