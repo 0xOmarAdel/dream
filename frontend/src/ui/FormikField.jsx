@@ -12,6 +12,7 @@ const FormikField = ({
   label,
   inputClasses,
   containerClasses,
+  errorClasses,
 }) => {
   return (
     <div
@@ -38,9 +39,14 @@ const FormikField = ({
           ))}
       </Field>
       {error && touched && (
-        <div className="flex flex-row gap-1">
+        <div
+          className={twMerge(
+            "flex flex-row gap-1 text-sm text-gray-600",
+            errorClasses || ""
+          )}
+        >
           <span className="text-lg text-red-500 -translate-y-0.5">*</span>
-          <p className="text-sm text-gray-600">{error}</p>
+          <p>{error}</p>
         </div>
       )}
     </div>
