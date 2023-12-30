@@ -28,24 +28,21 @@ const ImagesSlider = () => {
   }, [images.length]);
 
   return (
-    <div>
-      <AnimatePresence>
-        {images.map((image) => (
-          <>
-            {activeImage === image.id && (
-              <motion.img
-                key={image.id}
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale:1 }}
-                exit={{ opacity: 0, scale: 0.7 }}
-                src={image.src}
-                className="col-span-1"
-              />
-            )}
-          </>
-        ))}
-      </AnimatePresence>
-    </div>
+    <AnimatePresence>
+      {images.map((image) => (
+        <div key={image.id}>
+          {activeImage === image.id && (
+            <motion.img
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.7 }}
+              src={image.src}
+              className="col-span-1"
+            />
+          )}
+        </div>
+      ))}
+    </AnimatePresence>
   );
 };
 
