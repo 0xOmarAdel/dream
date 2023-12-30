@@ -99,12 +99,12 @@ body {
 }
 
 .reservationDatePicker .react-date-picker__wrapper,
-.reservationTimePicker .react-time-picker__wrapper
- {
+.reservationTimePicker .react-time-picker__wrapper {
   @apply border-transparent border-b-gray-300;
 }
 
-.reservationDatePicker .react-date-picker__wrapper input {
+.reservationDatePicker .react-date-picker__wrapper input,
+.reservationTimePicker .react-time-picker__wrapper input {
   @apply outline-none;
 }
 
@@ -112,7 +112,8 @@ body {
   @apply !bg-gray-900 !border-black shadow-lg;
 }
 
-.reservationDatePickerCalender .react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+.reservationDatePickerCalender .react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
   @apply !bg-black;
 }
 
@@ -129,7 +130,7 @@ body {
 }
 
 .reservationDatePickerCalender .react-calendar__tile:disabled {
- @apply bg-transparent text-gray-500
+  @apply bg-transparent text-gray-500;
 }
 
 .reservationDatePickerCalender
@@ -141,7 +142,8 @@ body {
   @apply bg-primary;
 }
 
-.reservationDatePickerCalender .react-calendar__tile--active.react-calendar__tile--now {
+.reservationDatePickerCalender
+  .react-calendar__tile--active.react-calendar__tile--now {
   @apply bg-primary text-gray-200;
 }
 
@@ -155,5 +157,5 @@ reservationDatePickerCalender .react-calendar__tile--active:enabled:hover,
 }
 
 .reservationDatePicker svg {
-  @apply !text-gray-200
+  @apply !text-gray-200;
 }
