@@ -9,8 +9,12 @@ import { SlCalender } from "react-icons/sl";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/slices/userAuthSlice";
 
 const ReservationForm = () => {
+  const user = useSelector(selectUser);
+
   const today = new Date();
 
   const tomorrow = new Date(today);
@@ -24,8 +28,8 @@ const ReservationForm = () => {
   return (
     <Formik
       initialValues={{
-        name: "",
-        email: "",
+        name: user ? `${user.firstName} ${user.lastName}` : "",
+        email: user ? user.email : "",
         phone: "",
         guests: "1",
         resDate: today,
