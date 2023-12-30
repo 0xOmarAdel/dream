@@ -4,7 +4,7 @@ import GridImages from "./GridImages";
 
 const SpecialOffers = () => {
   return (
-    <Section classes="max-w-7xl mx-auto py-24 grid lg:grid-cols-2 items-center">
+    <Section classes="max-w-7xl mx-auto py-24 grid lg:grid-cols-2 items-center gap-12">
       <div className="flex flex-col gap-10">
         <div className="flex flex-col gap-2">
           <p className="text-2xl text-primary capitalize">from the menu</p>
