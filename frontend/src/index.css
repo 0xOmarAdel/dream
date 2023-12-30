@@ -97,3 +97,63 @@ body {
 .float {
   animation: float 4s infinite;
 }
+
+.reservationDatePicker .react-date-picker__wrapper,
+.reservationTimePicker .react-time-picker__wrapper
+ {
+  @apply border-transparent border-b-gray-300;
+}
+
+.reservationDatePicker .react-date-picker__wrapper input {
+  @apply outline-none;
+}
+
+.reservationDatePickerCalender {
+  @apply !bg-gray-900 !border-black shadow-lg;
+}
+
+.reservationDatePickerCalender .react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+  @apply !bg-black;
+}
+
+.reservationDatePickerCalender .react-calendar__navigation button:disabled {
+  @apply !bg-transparent text-transparent;
+}
+
+.reservationDatePickerCalender .react-calendar__tile {
+  @apply text-gray-200;
+}
+
+.reservationDatePickerCalender .react-calendar__tile--now {
+  @apply bg-transparent text-primary;
+}
+
+.reservationDatePickerCalender .react-calendar__tile:disabled {
+ @apply bg-transparent text-gray-500
+}
+
+.reservationDatePickerCalender
+  .react-calendar__month-view__days__day--neighboringMonth {
+  @apply text-gray-400;
+}
+
+.reservationDatePickerCalender .react-calendar__tile--active {
+  @apply bg-primary;
+}
+
+.reservationDatePickerCalender .react-calendar__tile--active.react-calendar__tile--now {
+  @apply bg-primary text-gray-200;
+}
+
+.reservationDatePickerCalender button:enabled:hover {
+  @apply bg-primary bg-opacity-70;
+}
+
+reservationDatePickerCalender .react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  @apply !bg-black;
+}
+
+.reservationDatePicker svg {
+  @apply !text-gray-200
+}
