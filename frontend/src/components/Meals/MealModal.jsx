@@ -2,7 +2,7 @@ import { AnimatePresence } from "framer-motion";
 import MealDetailsModal from "./MealDetailsModal";
 import MealReviewsModal from "./MealReviewsModal";
 
-const MealModal = ({ mealData, showReviews, setShowReviews }) => {
+const MealModal = ({ mealData, showReviews, setShowReviews, isAdminMeals }) => {
   return (
     <dialog id="meal_modal" className="modal modal-middle">
       <div className="modal-box max-w-[40rem]">
@@ -16,6 +16,7 @@ const MealModal = ({ mealData, showReviews, setShowReviews }) => {
           ) : (
             <MealDetailsModal
               {...mealData}
+              isAdminMeals={isAdminMeals}
               showReviews={() => setShowReviews(true)}
             />
           )}

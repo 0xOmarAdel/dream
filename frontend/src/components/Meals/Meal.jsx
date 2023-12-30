@@ -14,6 +14,7 @@ const Meal = ({
   options,
   image,
   rating,
+  isAdminMeals,
   changeActivateModal,
 }) => {
   const [selectedSize, setSelectedSize] = useState(options[0].size);
@@ -23,7 +24,7 @@ const Meal = ({
   };
 
   const showModal = () => {
-    changeActivateModal({ _id, title, description, image, rating });
+    changeActivateModal({ _id, title, description, image, options, rating });
   };
 
   return (
@@ -37,16 +38,18 @@ const Meal = ({
         starsContainerClasses="mt-1.5"
       />
       <MealSizes options={options} onSizeClick={handleSizeClick} />
-      <MealAddToCartButton
-        meal={{
-          id: _id,
-          title,
-          categoryName,
-          options,
-          image,
-        }}
-        selectedSize={selectedSize}
-      />
+      {!isAdminMeals && (
+        <MealAddToCartButton
+          meal={{
+            id: _id,
+            title,
+            categoryName,
+            options,
+            image,
+          }}
+          selectedSize={selectedSize}
+        />
+      )}
     </div>
   );
 };
