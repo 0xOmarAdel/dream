@@ -1,11 +1,32 @@
+import { motion } from "framer-motion";
 import MealTitle from "../Meals/MealTitle";
 import MealImage from "../Meals/MealImage";
 import MealDescription from "../Meals/MealDescription";
 import { priceFormatter } from "../../utils/priceFormatter";
 
-const FeaturedMeal = ({ featuredMeal }) => {
+const FeaturedMeal = ({ featuredMeal, index, isInView }) => {
   return (
-    <div key={featuredMeal.id} className="flex flex-row justify-between gap-4">
+    <motion.div
+      key={featuredMeal.id}
+      className="flex flex-row justify-between gap-4"
+      variants={{
+        hidden: {
+          x: -100,
+          opacity: 0,
+        },
+        visible: {
+          x: 0,
+          opacity: 1,
+          transition: {
+            ease: "easeInOut",
+            duration: 0.5,
+            delay: index * 0.2,
+          },
+        },
+      }}
+      initial={"hidden"}
+      animate={isInView ? "visible" : "hidden"}
+    >
       <div className="flex flex-row gap-4">
         <MealImage image={featuredMeal.image} classes="w-36" />
         <div className="">
@@ -27,7 +48,7 @@ const FeaturedMeal = ({ featuredMeal }) => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

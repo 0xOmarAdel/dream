@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import FeaturedMeal from "./FeaturedMeal";
 
-const FeaturedMeals = () => {
+const FeaturedMeals = ({ isInView }) => {
   const {
     runAxios: fetchFeaturedMeals,
     data: featuredMeals,
@@ -17,8 +17,13 @@ const FeaturedMeals = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      {featuredMeals.map((featuredMeal) => (
-        <FeaturedMeal key={featuredMeal.id} featuredMeal={featuredMeal} />
+      {featuredMeals.map((featuredMeal, index) => (
+        <FeaturedMeal
+          key={featuredMeal.id}
+          featuredMeal={featuredMeal}
+          index={index}
+          isInView={isInView}
+        />
       ))}
     </div>
   );
