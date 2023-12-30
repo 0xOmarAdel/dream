@@ -44,7 +44,7 @@ const OrderStatus = ({ status, isAdminOrders, id }) => {
   }
 
   const statusOptions = ["Pending", "Confirmed", "Shipping", "Delivered"];
-  const [stat, setStat] = useState("");
+  const [stat, setStat] = useState(status);
 
   const { runAxios: updateOrderStatus, loading: loadingUpdateStatus } =
     useAxios(`/orders/${id}`, "PUT", {
