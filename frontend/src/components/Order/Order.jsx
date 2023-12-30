@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import OrderStatus from "./OrderStatus";
 import { selectUser } from "../../store/slices/userAuthSlice";
+import { PiPhone } from "react-icons/pi";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Order = ({
   OrderStat,
@@ -11,15 +14,19 @@ const Order = ({
   shipping,
   subtotal,
   total,
+  status,
 }) => {
   const user = useSelector(selectUser);
-
+  const location = useLocation();
+  const isAdminOrders = location.pathname === "/admin/orders";
+  const [stat, setStat] = useState(status);
   return (
     <>
-      <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+      <div className="lg:py-16 h-screen overflow-y-scroll py-18 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
         <div className="flex justify-start item-start space-y-2 flex-col ">
           <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">
-            Order #{_id.slice(4, 10)} <OrderStatus status={OrderStat} />
+            Order #{_id.slice(4, 10)}{" "}
+            <OrderStatus status={stat} isAdminOrders={isAdminOrders} id={_id} />
           </h1>
           <p className="text-base font-medium leading-6 text-gray-600">
             24 December 2023 at 01:23 PM
@@ -64,7 +71,7 @@ const Order = ({
                     </div>
                     <div className="flex justify-between space-x-8 items-start w-full">
                       <p className="text-base xl:text-lg leading-6">
-                        ${meal.price}
+                        ${meal.price.toFixed(2)}
                       </p>
                       <p className="text-base xl:text-lg leading-6 text-gray-800">
                         {meal.quantity}
@@ -90,7 +97,7 @@ const Order = ({
                       Subtotal
                     </p>
                     <p className="text-base leading-4 text-gray-600">
-                      ${subtotal}
+                      ${subtotal.toFixed(2)}
                     </p>
                   </div>
 
@@ -108,7 +115,7 @@ const Order = ({
                     Total
                   </p>
                   <p className="text-base font-semibold leading-4 text-gray-600">
-                    ${total}
+                    ${total.toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -151,6 +158,14 @@ const Order = ({
                       {user.email}
                     </p>
                   </div>
+                  <div className="flex justify-center space-x-4 items-center pt-2">
+                    <span className="text-xl">
+                      <PiPhone />
+                    </span>
+                    <p className="cursor-pointer text-sm leading-5 text-gray-800">
+                      {phone}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex justify-between xl:h-full  items-stretch w-full flex-col mt-6 md:mt-0">
                   <div className="flex justify-center md:justify-start xl:flex-col flex-col md:space-x-6 lg:space-x-8 xl:space-x-0 space-y-4 xl:space-y-12 md:space-y-0 md:flex-row  items-center md:items-start ">
@@ -163,7 +178,7 @@ const Order = ({
                       </p>
                     </div>
                   </div>
-                  {OrderStat === "Pending" && (
+                  {!isAdminOrders && OrderStat === "Pending" && (
                     <div className="flex w-full mt-4 justify-center items-center md:justify-start md:items-start">
                       <button className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800">
                         Edit Details

@@ -28,6 +28,11 @@ const orderSchema = new mongoose.Schema({
   subtotal: { type: Number, required: true },
   shipping: { type: Number, default: 5 },
   total: { type: Number, required: true },
+  status: {
+    type: String,
+    enum: ["Pending", "Confirmed", "Shipping", "Delivered"],
+    default: "Pending",
+  },
 });
 
 function notEmptyValidator(value) {
