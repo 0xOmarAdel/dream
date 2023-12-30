@@ -37,7 +37,7 @@ const ReservationForm = () => {
       }}
     >
       {({ errors, touched, isValid }) => (
-        <Form className="mt-10 flex flex-col gap-12">
+        <Form className="mt-10 flex flex-col gap-8 md:gap-12">
           <div className="w-full grid md:grid-cols-3 gap-8">
             <FormikField
               name="name"
