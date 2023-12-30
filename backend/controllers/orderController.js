@@ -58,8 +58,13 @@ const createOrder = async (req, res) => {
 
 const getAllOrders = async (req, res) => {
   try {
-    const userId = req.user._id;
-    const orders = await Order.find({ userId }).populate({
+    let query = {};
+
+    if (req.user.role !== "admin") {
+      query.userId = req.user._id;
+    }
+
+    const orders = await Order.find(query).populate({
       path: "meals.mealId",
       model: "Meal",
       select: "title image",

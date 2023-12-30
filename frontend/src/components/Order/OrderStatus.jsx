@@ -1,4 +1,7 @@
-const OrderStatus = ({ status }) => {
+import { useState } from "react";
+import useAxios from "../../hooks/useAxios";
+
+const OrderStatus = ({ status, isAdminOrders, id }) => {
   let style = "";
   let text = "";
 
@@ -40,7 +43,41 @@ const OrderStatus = ({ status }) => {
       break;
   }
 
-  return <span className={style}>{text}</span>;
+  const statusOptions = ["Pending", "Confirmed", "Shipping", "Delivered"];
+  const [stat, setStat] = useState("");
+
+  const { runAxios: updateOrderStatus, loading: loadingUpdateStatus } =
+    useAxios(`/orders/${id}`, "PUT", {
+      status: stat,
+    });
+
+  const updateStatus = async () => {
+    await updateOrderStatus();
+  };
+
+  return !isAdminOrders ? (
+    <span className={style}>{text}</span>
+  ) : (
+    <>
+      <select
+        value={stat}
+        className="text-lg outline-none"
+        onChange={(e) => setStat(e.target.value)}
+      >
+        {statusOptions.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      <button
+        className="btn btn-primary text-white px-4 py-1 ml-4"
+        onClick={updateOrderStatus}
+      >
+        Set
+      </button>
+    </>
+  );
 };
 
 export default OrderStatus;

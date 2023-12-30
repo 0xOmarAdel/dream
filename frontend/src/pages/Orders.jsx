@@ -5,8 +5,6 @@ import useAxios from "../hooks/useAxios";
 const Orders = () => {
   const { runAxios: fetchOrders, data: orders, loading } = useAxios("/orders");
 
-  console.log(orders);
-
   useEffect(() => {
     fetchOrders();
   }, [fetchOrders]);
@@ -23,7 +21,7 @@ const Orders = () => {
         <h1>Loading...</h1>
       ) : (
         orders.map((order) => (
-          <Order key={order._id} {...order} OrderStat="Pending" />
+          <Order key={order._id} {...order} OrderStat={order.status} />
         ))
       )}
     </>
