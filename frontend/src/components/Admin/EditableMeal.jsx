@@ -47,6 +47,7 @@ const EditableMeal = ({ title, options, description, id }) => {
         </div>
       ) : (
         <div>
+          <label className="font-medium">Meal Name: </label>
           <h2>{title}</h2>
         </div>
       )}
@@ -69,6 +70,7 @@ const EditableMeal = ({ title, options, description, id }) => {
         </div>
       ) : (
         <div>
+          <label className="font-medium">Meal Description:</label>
           <p>{description}</p>
         </div>
       )}
