@@ -5,8 +5,10 @@ const Button = ({ type, text, disabled, classes, onClick }) => {
     <button
       type={type || "button"}
       className={twMerge(
-        `btn min-h-fit h-fit py-3 text-white ${
-          disabled ? "btn-disabled" : "btn-primary"
+        `btn min-h-fit h-fit py-3 ${
+          disabled
+            ? "!bg-gray-400 !bg-opacity-100 !text-black"
+            : "btn-primary text-white"
         }`,
         classes || ""
       )}
