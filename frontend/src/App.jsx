@@ -17,6 +17,11 @@ import { selectUser, setUser } from "./store/slices/userAuthSlice";
 import axios from "axios";
 import { getCartItems } from "./store/slices/cartSlice";
 import Contact from "./pages/Contact";
+import AdminLayout from "./pages/Admin/AdminLayout";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AdminMeals from "./pages/Admin/AdminMeals";
+import AdminOrders from "./pages/Admin/AdminOrders";
+import AdminReservations from "./pages/Admin/AdminReservations";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,8 +58,13 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
       <Routes>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="dashboard" index element={<AdminDashboard />} />
+          <Route path="meals" element={<AdminMeals />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="reservations" element={<AdminReservations />} />
+        </Route>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/reservations" element={<Reservations />} />
@@ -82,7 +92,8 @@ const App = () => {
           element={user ? <Orders /> : <Navigate to="/login" />}
         />
       </Routes>
-      <Footer />
+
+      {!isAdmin && <Footer />}
     </>
   );
 };
