@@ -64,11 +64,17 @@ const getAllOrders = async (req, res) => {
       query.userId = req.user._id;
     }
 
-    const orders = await Order.find(query).populate({
-      path: "meals.mealId",
-      model: "Meal",
-      select: "title image",
-    });
+    const orders = await Order.find(query)
+      .populate({
+        path: "userId",
+        model: "User",
+        select: "firstName lastName email",
+      })
+      .populate({
+        path: "meals.mealId",
+        model: "Meal",
+        select: "title image",
+      });
 
     const formattedOrders = orders.map((order) => ({
       ...order.toObject(),
@@ -110,7 +116,7 @@ const editOrder = async (req, res) => {
   const userId = req.user._id;
 
   try {
-    const existingOrder = await Order.findOne({ _id: id, userId });
+    const existingOrder = await Order.findById(id);
 
     if (!existingOrder) {
       return res.status(404).json({ error: "Order not found or unauthorized" });

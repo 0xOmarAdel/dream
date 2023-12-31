@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 import OrderStatus from "./OrderStatus";
-import { selectUser } from "../../store/slices/userAuthSlice";
 import { PiPhone } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
 
 const Order = ({
   OrderStat,
@@ -15,18 +12,21 @@ const Order = ({
   subtotal,
   total,
   status,
+  userId,
 }) => {
-  const user = useSelector(selectUser);
   const location = useLocation();
   const isAdminOrders = location.pathname === "/admin/orders";
-  const [stat, setStat] = useState(status);
   return (
-    <>
-      <div className="lg:py-16 h-screen overflow-y-scroll py-18 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+    <div>
+      <div className="lg:py-16 py-24 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
         <div className="flex justify-start item-start space-y-2 flex-col ">
           <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">
             Order #{_id.slice(4, 10)}{" "}
-            <OrderStatus status={stat} isAdminOrders={isAdminOrders} id={_id} />
+            <OrderStatus
+              status={status}
+              isAdminOrders={isAdminOrders}
+              id={_id}
+            />
           </h1>
           <p className="text-base font-medium leading-6 text-gray-600">
             24 December 2023 at 01:23 PM
@@ -36,7 +36,7 @@ const Order = ({
           <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
             <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
               <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">
-                {user.firstName}’s Order
+                {userId.firstName}’s Order
               </p>
               {meals.map((meal) => (
                 <div
@@ -129,7 +129,7 @@ const Order = ({
                   <div className="flex justify-center  w-full  md:justify-start items-center space-x-4 py-5 border-b border-gray-200">
                     <div className="flex justify-start items-start flex-col space-y-2">
                       <p className="text-base font-semibold leading-4 text-left text-gray-800">
-                        {`${user.firstName} ${user.lastName}`}
+                        {`${userId.firstName} ${userId.lastName}`}
                       </p>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ const Order = ({
                       />
                     </svg>
                     <p className="cursor-pointer text-sm leading-5 text-gray-800">
-                      {user.email}
+                      {userId.email}
                     </p>
                   </div>
                   <div className="flex justify-center space-x-4 items-center pt-2">
@@ -192,7 +192,7 @@ const Order = ({
         </div>
       </div>
       <div className="border-gray-200 border-b-2"></div>
-    </>
+    </div>
   );
 };
 export default Order;
