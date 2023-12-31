@@ -47,7 +47,7 @@ const AdminDashboard = () => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid grid-cols-2 mt-16 lg:mt-0 px-4 lg:grid-cols-4 h-fit overflow-y-auto gap-4">
+        <div className="grid grid-cols-2 px-4 lg:grid-cols-4 h-fit overflow-y-auto gap-4">
           {cardsData.map((card, index) => (
             <Card
               key={index}
