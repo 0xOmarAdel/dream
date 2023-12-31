@@ -14,7 +14,6 @@ const AdminDashboard = () => {
     data: dashboard,
     loading,
   } = useAxios("/admin/dashboard");
-  console.log(dashboard);
 
   useEffect(() => {
     fetchDashboard();
