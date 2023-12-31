@@ -34,10 +34,14 @@ const getReservations = async (req, res) => {
     let reservations;
 
     if (req.user.role === "admin") {
-      reservations = await Reservation.find().populate("user");
+      reservations = await Reservation.find().populate(
+        "user",
+        "_id firstName lastName email"
+      );
     } else {
       reservations = await Reservation.find({ user: req.user._id }).populate(
-        "user"
+        "user",
+        "_id firstName lastName email"
       );
     }
 
@@ -105,6 +109,8 @@ const deleteReservation = async (req, res) => {
         .status(404)
         .json({ status: "error", message: "Reservation not found." });
     }
+
+    console.log(reservation);
 
     if (req.user._id.toString() !== reservation.user.toString()) {
       return res.status(403).json({
