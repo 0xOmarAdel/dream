@@ -49,15 +49,37 @@ const getReservations = async (req, res) => {
 
 const editReservation = async (req, res) => {
   try {
-    const { reservationId, status } = req.body;
+    const { reservationId } = req.params;
+    const { status } = req.body;
 
     if (req.user.role !== "admin") {
-      return res
-        .status(403)
-        .json({
-          status: "error",
-          message: "Forbidden. Admin access required.",
-        });
+      return res.status(403).json({
+        status: "error",
+        message: "Forbidden. Admin access required.",
+      });
+    }
+
+    if (!reservationId) {
+      return res.status(400).json({
+        status: "error",
+        message: "Reservation ID is required.",
+      });
+    }
+
+    const existingReservation = await Reservation.findById(reservationId);
+    if (!existingReservation) {
+      return res.status(404).json({
+        status: "error",
+        message: "Reservation not found.",
+      });
+    }
+
+    if (!status || !["pending", "confirmed", "declined"].includes(status)) {
+      return res.status(400).json({
+        status: "error",
+        message:
+          "Invalid status. Status must be one of: pending, confirmed, declined.",
+      });
     }
 
     const updatedReservation = await Reservation.findByIdAndUpdate(
@@ -72,8 +94,36 @@ const editReservation = async (req, res) => {
   }
 };
 
+const deleteReservation = async (req, res) => {
+  try {
+    const reservationId = req.params.id;
+
+    const reservation = await Reservation.findById(reservationId);
+
+    if (!reservation) {
+      return res
+        .status(404)
+        .json({ status: "error", message: "Reservation not found." });
+    }
+
+    if (req.user._id.toString() !== reservation.user.toString()) {
+      return res.status(403).json({
+        status: "error",
+        message: "Forbidden. You can only delete your own reservations.",
+      });
+    }
+
+    await Reservation.deleteOne({ _id: reservationId });
+
+    res.status(204).json({ status: "success", data: null });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+};
+
 module.exports = {
   createReservation,
   getReservations,
   editReservation,
+  deleteReservation,
 };
