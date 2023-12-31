@@ -49,8 +49,10 @@ const ReservationForm = () => {
         resTime: `${currentHour}:00`,
       }}
       validationSchema={reservationsSchema}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         submitReservation(values);
+
+        resetForm();
       }}
     >
       {({ errors, touched, isValid }) => (
