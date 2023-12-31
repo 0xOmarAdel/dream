@@ -10,6 +10,7 @@ const FormikField = ({
   touched,
   selectOptions,
   label,
+  disabled,
   inputClasses,
   containerClasses,
   errorClasses,
@@ -24,6 +25,7 @@ const FormikField = ({
         name={name}
         type={!as && (type || "text")}
         placeholder={placeholder}
+        disabled={disabled}
         autocomplete="off"
         className={twMerge(
           `w-full px-3 py-2 bg-transparent border outline-none rounded-md transition duration-300 focus:border-primary ${
