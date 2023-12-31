@@ -27,6 +27,7 @@ const mealRoutes = require("./routes/mealRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const reservationRoutes = require("./routes/reservationRoutes");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -68,6 +69,7 @@ app.use("/api/v1/meals", mealRoutes);
 app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/cart", cartRoutes);
+app.use("/api/v1/reservation", reservationRoutes);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
