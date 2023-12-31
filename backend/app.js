@@ -28,6 +28,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -70,6 +71,7 @@ app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/reservation", reservationRoutes);
+app.use("/api/v1/admin", dashboardRoutes);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
