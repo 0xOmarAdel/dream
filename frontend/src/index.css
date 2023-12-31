@@ -6,6 +6,10 @@ body {
   @apply bg-gray-100;
 }
 
+option {
+  @apply bg-gray-900 text-gray-200;
+}
+
 .footer-title {
   @apply text-sky-500;
 }
@@ -104,7 +108,8 @@ body {
 }
 
 .reservationDatePicker .react-date-picker__wrapper input,
-.reservationTimePicker .react-time-picker__wrapper input {
+.reservationTimePicker .react-time-picker__wrapper input,
+.reservationTimePicker .react-time-picker__wrapper select {
   @apply outline-none;
 }
 
