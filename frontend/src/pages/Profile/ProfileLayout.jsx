@@ -1,5 +1,4 @@
-import React from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import ProfileSidebar from "../../components/Profile/ProfileSidebar";
 import { useState } from "react";
 import ProfileNavbar from "../../components/Profile/ProfileNavbar";
