@@ -62,32 +62,29 @@ const AdminDashboard = () => {
               </div>
             </Card>
           ))}
-          <div className="w-full col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
             <div className="flex items-center justify-between mb-4">
-              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+              <h5 className="text-xl font-bold leading-none text-gray-900">
                 Latest Customers
               </h5>
             </div>
             <div>
-              <ul
-                role="list"
-                className="divide-y divide-gray-200 dark:divide-gray-700"
-              >
+              <ul role="list" className="divide-y divide-gray-200">
                 {dashboard.usersCount.latestCustomers
                   .filter((order) => order.latestOrder.spent >= 1)
                   .map((order, index) => (
                     <li key={index} className="py-3 sm:py-4">
                       <div className="flex items-center">
                         <div className="flex-1 min-w-0 ms-4">
-                          <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                          <p className="text-sm font-medium text-gray-900 truncate">
                             {`${order.firstName} ${order.lastName}`}
                           </p>
-                          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                          <p className="text-sm text-gray-500 truncate">
                             {order.email}
                           </p>
                         </div>
                         {order.latestOrder.spent >= 1 && (
-                          <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                          <div className="inline-flex items-center text-base font-semibold text-gray-900">
                             {"$" + order.latestOrder.spent.toFixed(2)}
                           </div>
                         )}
@@ -97,9 +94,9 @@ const AdminDashboard = () => {
               </ul>
             </div>
           </div>
-          <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
             <div className="flex flex-col items-center justify-between space-y-12 mb-4">
-              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+              <h5 className="text-xl font-bold leading-none text-gray-900">
                 Total Money
               </h5>
               <p className="font-medium text-3xl items-center">
@@ -107,9 +104,9 @@ const AdminDashboard = () => {
               </p>
             </div>
           </div>
-          <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
             <div className="flex flex-col items-center space-y-12 justify-between mb-4">
-              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+              <h5 className="text-xl font-bold leading-none text-gray-900">
                 Users
               </h5>
               <p className="font-medium text-3xl items-center">

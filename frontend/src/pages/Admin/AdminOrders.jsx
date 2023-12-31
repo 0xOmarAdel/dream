@@ -15,16 +15,12 @@ const AdminOrders = () => {
   }, [fetchOrders]);
 
   const filteredOrders = () => {
-    console.log("All Orders:", orders);
-
     if (selectedStatus === "all") {
-      console.log("Filtered Orders (All):", orders);
       return orders;
     } else {
       const filtered = orders.filter(
         (order) => order.status === selectedStatus
       );
-      console.log(`Filtered Orders (${selectedStatus}):`, filtered);
       return filtered;
     }
   };
