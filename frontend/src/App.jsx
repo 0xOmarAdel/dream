@@ -5,7 +5,6 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
-import OrderOnline from "./pages/OrderOnline";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
@@ -21,6 +20,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminMeals from "./pages/Admin/AdminMeals";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import AdminReservations from "./pages/Admin/AdminReservations";
+import Reservations from "./pages/Reservations";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -72,7 +72,6 @@ const App = () => {
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/OrderOnline" element={<OrderOnline />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route
@@ -94,6 +93,10 @@ const App = () => {
         <Route
           path="/orders"
           element={user ? <Orders /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/reservations"
+          element={user ? <Reservations /> : <Navigate to="/login" />}
         />
       </Routes>
 
