@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom";
 
-const NavItem = ({ to, text }) => (
+const NavItem = ({ path, text }) => (
   <li>
     <NavLink
       className={({ isActive }) =>
-        isActive ? "text-sky-500" : "text-gray-600"
+        `text-xl capitalize transition duration-300 hover:!text-primary hover:bg-transparent focus:!bg-transparent active:!text-gray-600 active:!bg-transparent ${
+          isActive ? "!text-primary" : "!text-gray-600"
+        }`
       }
-      to={to}
+      to={path}
     >
       {text}
     </NavLink>

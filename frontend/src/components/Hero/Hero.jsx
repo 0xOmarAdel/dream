@@ -3,7 +3,7 @@ import ImagesSlider from "./ImagesSlider";
 const Hero = () => {
   return (
     <div
-      className="relative min-h-[70vh] pt-20 bg-center bg-fixed flex"
+      className="relative min-h-[70vh] bg-center bg-fixed flex"
       style={{
         backgroundImage:
           "url(https://template-html.egprojets.com/food-lover/assets/img/demo/slides/01.jpg)",
