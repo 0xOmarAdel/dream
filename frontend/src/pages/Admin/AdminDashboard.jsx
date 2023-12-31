@@ -65,7 +65,7 @@ const AdminDashboard = () => {
           <div className="w-full col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
             <div className="flex items-center justify-between mb-4">
               <h5 className="text-xl font-bold leading-none text-gray-900">
-                Latest Customers
+                Latest Orders
               </h5>
             </div>
             <div>
