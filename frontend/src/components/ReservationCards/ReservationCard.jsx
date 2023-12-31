@@ -6,8 +6,13 @@ import { LuClock4 } from "react-icons/lu";
 import { timeFormatter } from "../../utils/timeFormatter";
 import Divider from "../../ui/Divider";
 import { dateFormatter } from "../../utils/dateFormatter";
+import ReservationStatus from "./ReservationStatus";
 
-const ReservationCard = ({ reservation }) => {
+const ReservationCard = ({
+  reservation,
+  isAdminReservations,
+  updateStatus,
+}) => {
   return (
     <Card classes="flex flex-col gap-3 text-gray-500 font-medium">
       <div className="flex flex-row items-center justify-between">
@@ -17,12 +22,31 @@ const ReservationCard = ({ reservation }) => {
           </h3>
           <span className="text-sm">#{reservation._id}</span>
         </div>
-        <span className="">{reservation.status}</span>
+        <ReservationStatus status={reservation.status} />
       </div>
       <Divider />
-      <p className="flex flex-row items-center gap-2">
-        <AiOutlineUser className="text-lg text-primary" /> {reservation.name}
-      </p>
+      <div className="flex flex-row justify-between relative">
+        <p className="flex flex-row items-center gap-2">
+          <AiOutlineUser className="text-lg text-primary" /> {reservation.name}
+        </p>
+        {isAdminReservations && (
+          <div className="flex flex-col absolute gap-8 right-0">
+            <button
+              className="px-2 text-primary"
+              onClick={() => updateStatus(reservation._id, "Confirmed")}
+            >
+              Confirm
+            </button>
+            <button
+              className="px-2 text-red-500"
+              onClick={() => updateStatus(reservation._id, "Declined")}
+            >
+              Decline
+            </button>
+          </div>
+        )}
+      </div>
+
       <p className="flex flex-row items-center gap-2">
         <SlEnvolope className="text-primary" /> {reservation.email}
       </p>

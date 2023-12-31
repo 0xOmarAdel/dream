@@ -78,7 +78,7 @@ const editReservation = async (req, res) => {
       });
     }
 
-    if (!status || !["pending", "confirmed", "declined"].includes(status)) {
+    if (!status || !["Pending", "Confirmed", "Declined"].includes(status)) {
       return res.status(400).json({
         status: "error",
         message:

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import ReservationCard from "../../components/ReservationCards/ReservationCard";
+import { useLocation } from "react-router-dom";
+import axiosApi from "../../utils/axiosConfig";
 
 const AdminReservations = () => {
   const {
@@ -14,6 +16,24 @@ const AdminReservations = () => {
   useEffect(() => {
     fetchReservations();
   }, [fetchReservations]);
+  const updateStatus = async (reservationId, newStatus) => {
+    try {
+      await axiosApi.request({
+        method: "PUT",
+        url: `/reservation/edit/${reservationId}`,
+        data: {
+          status: newStatus,
+        },
+      });
+
+      fetchReservations();
+    } catch (error) {
+      console.error("Error updating status:", error.message);
+    }
+  };
+
+  const location = useLocation();
+  const isAdminReservations = location.pathname === "/admin/reservations";
 
   const filteredReservations = () => {
     if (selectedStatus === "all") {
@@ -48,6 +68,8 @@ const AdminReservations = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             {filteredReservations()?.map((reservation) => (
               <ReservationCard
+                isAdminReservations={isAdminReservations}
+                updateStatus={updateStatus}
                 key={reservation._id}
                 reservation={reservation}
               />
