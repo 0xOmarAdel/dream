@@ -8,7 +8,6 @@ import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
-import Profile from "./pages/Profile";
 import ProfileLayout from "./pages/Profile/ProfileLayout";
 import UserInfo from "./pages/Profile/UserInfo";
 import Orders from "./pages/Orders";
@@ -64,13 +63,14 @@ const App = () => {
 
   if (isLoading) return;
 
-  const isProfilePage = pathArray[1] === "profile";
-
   return (
     <>
       {!isAdminPage && <Navbar />}
       <Routes>
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}
+        >
           <Route path="dashboard" index element={<AdminDashboard />} />
           <Route path="meals" element={<AdminMeals />} />
           <Route path="orders" element={<AdminOrders />} />

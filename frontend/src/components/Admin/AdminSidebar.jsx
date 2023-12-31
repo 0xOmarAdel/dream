@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/userAuthSlice";
 import {
   MdCalendarToday,
@@ -10,18 +10,12 @@ import {
 } from "react-icons/md";
 
 const AdminSidebar = () => {
-  const user = useSelector((state) => state.auth.user);
-  const isAdmin = user && user.role === "admin";
-
-  if (!isAdmin) {
-    return null;
-  }
-
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(logout());
-    window.location.reload();
   };
+
   return (
     <>
       <aside className="fixed top-0 left-0 shadow-md z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 hidden lg:block">

@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/slices/userAuthSlice";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import AdminSidebar from "../../components/Admin/AdminSidebar";
 import { useState } from "react";
 import AdminNavbar from "../../components/Admin/AdminNavbar";
@@ -8,11 +6,6 @@ import AdminNavbar from "../../components/Admin/AdminNavbar";
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const user = useSelector(selectUser);
-
-  if (!user || user.role !== "admin") {
-    return <Navigate to="/" />;
-  }
   return (
     <div className="grid grid-cols-12 h-screen overflow-hidden">
       <div className="lg:col-span-3">
