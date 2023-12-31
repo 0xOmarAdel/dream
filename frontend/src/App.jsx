@@ -57,6 +57,7 @@ const App = () => {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" index element={<AdminDashboard />} />
