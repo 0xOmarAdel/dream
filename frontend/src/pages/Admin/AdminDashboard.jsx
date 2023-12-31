@@ -5,7 +5,6 @@ import {
   MdCalendarToday,
   MdDashboard,
   MdFastfood,
-  MdLogout,
   MdOutlineChecklist,
 } from "react-icons/md";
 
