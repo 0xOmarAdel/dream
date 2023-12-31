@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import BurgerAnimation from "../../assets/burger-animation.json";
+import BurgerAnimation from "../../src/assets/BurgerAnimation.json";
 
 export default function Loading() {
   return (

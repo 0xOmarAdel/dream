@@ -24,6 +24,7 @@ import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
 import OrderHistory from "./pages/Profile/OrderHistory";
 import ReservationHistory from "./pages/Profile/ReservationHistory";
+import Loading from "./ui/Loading";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -61,7 +62,7 @@ const App = () => {
 
   const isAdminPage = pathArray[1] === "admin";
 
-  if (isLoading) return;
+  if (isLoading) return <Loading />;
 
   return (
     <>
