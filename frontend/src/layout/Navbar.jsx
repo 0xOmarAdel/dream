@@ -7,6 +7,7 @@ import { logout } from "../store/slices/userAuthSlice";
 import { emptyCart } from "../store/slices/cartSlice";
 import { priceFormatter } from "../utils/priceFormatter";
 import { menuLinks } from "../data/menuLinks";
+import NavItem from "./NavItem";
 
 const Navbar = () => {
   const isLoggedIn = !!useSelector((state) => state.auth.user);
@@ -66,14 +67,11 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal">
             {menuLinks.map((menuLink) => (
-              <li key={menuLink.id}>
-                <Link
-                  to={menuLink.path}
-                  className="text-xl !text-gray-600 capitalize transition duration-300 hover:!text-primary hover:bg-transparent focus:!bg-transparent active:!text-gray-600 active:!bg-transparent"
-                >
-                  {menuLink.text}
-                </Link>
-              </li>
+              <NavItem
+                key={menuLink.id}
+                text={menuLink.text}
+                path={menuLink.path}
+              />
             ))}
           </ul>
         </div>
