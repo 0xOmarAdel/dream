@@ -21,6 +21,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminMeals from "./pages/Admin/AdminMeals";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import AdminReservations from "./pages/Admin/AdminReservations";
+import Reservations from "./pages/Reservations";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -93,6 +94,10 @@ const App = () => {
         <Route
           path="/orders"
           element={user ? <Orders /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/reservations"
+          element={user ? <Reservations /> : <Navigate to="/login" />}
         />
       </Routes>
 
