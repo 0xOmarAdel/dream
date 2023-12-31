@@ -71,7 +71,8 @@ const App = () => {
           path="/admin"
           element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}
         >
-          <Route path="dashboard" index element={<AdminDashboard />} />
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="meals" element={<AdminMeals />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="reservations" element={<AdminReservations />} />
