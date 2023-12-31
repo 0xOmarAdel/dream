@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/footer";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
@@ -53,11 +53,16 @@ const App = () => {
     fetchToken();
   }, [dispatch, localToken]);
 
+  const location = useLocation();
+  const pathArray = location.pathname.split("/");
+
+  const isAdminPage = pathArray[1] === "admin";
+
   if (isLoading) return;
 
   return (
     <>
-      <Navbar />
+      {!isAdminPage && <Navbar />}
       <Routes>
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" index element={<AdminDashboard />} />
@@ -92,7 +97,7 @@ const App = () => {
         />
       </Routes>
 
-      {!isAdmin && <Footer />}
+      {!isAdminPage && <Footer />}
     </>
   );
 };
