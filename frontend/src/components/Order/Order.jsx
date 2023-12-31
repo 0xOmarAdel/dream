@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 import OrderStatus from "./OrderStatus";
-import { selectUser } from "../../store/slices/userAuthSlice";
 import { PiPhone } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
 
 const Order = ({
   OrderStat,
@@ -17,17 +14,19 @@ const Order = ({
   status,
   userId,
 }) => {
-  const user = useSelector(selectUser);
   const location = useLocation();
   const isAdminOrders = location.pathname === "/admin/orders";
-  const [stat, setStat] = useState(status);
   return (
     <div>
       <div className="lg:py-16 py-24 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
         <div className="flex justify-start item-start space-y-2 flex-col ">
           <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">
             Order #{_id.slice(4, 10)}{" "}
-            <OrderStatus status={stat} isAdminOrders={isAdminOrders} id={_id} />
+            <OrderStatus
+              status={status}
+              isAdminOrders={isAdminOrders}
+              id={_id}
+            />
           </h1>
           <p className="text-base font-medium leading-6 text-gray-600">
             24 December 2023 at 01:23 PM
