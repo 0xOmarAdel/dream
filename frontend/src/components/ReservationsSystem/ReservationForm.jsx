@@ -61,6 +61,7 @@ const ReservationForm = () => {
             <FormikField
               name="name"
               placeholder="Name"
+              disabled={true}
               error={errors.name}
               touched={touched.name}
               inputClasses="px-0 border-transparent border-b-gray-300 rounded-none text-xl focus:border-transparent focus:border-b-primary placeholder:text-gray-300"
@@ -69,6 +70,7 @@ const ReservationForm = () => {
             <FormikField
               name="email"
               placeholder="Email"
+              disabled={true}
               error={errors.email}
               touched={touched.email}
               inputClasses="px-0 border-transparent border-b-gray-300 rounded-none text-xl focus:border-transparent focus:border-b-primary placeholder:text-gray-300"
