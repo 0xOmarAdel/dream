@@ -15,6 +15,7 @@ const Order = ({
   subtotal,
   total,
   status,
+  userId,
 }) => {
   const user = useSelector(selectUser);
   const location = useLocation();
@@ -36,7 +37,7 @@ const Order = ({
           <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
             <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
               <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">
-                {user.firstName}’s Order
+                {userId.firstName}’s Order
               </p>
               {meals.map((meal) => (
                 <div
@@ -129,7 +130,7 @@ const Order = ({
                   <div className="flex justify-center  w-full  md:justify-start items-center space-x-4 py-5 border-b border-gray-200">
                     <div className="flex justify-start items-start flex-col space-y-2">
                       <p className="text-base font-semibold leading-4 text-left text-gray-800">
-                        {`${user.firstName} ${user.lastName}`}
+                        {`${userId.firstName} ${userId.lastName}`}
                       </p>
                     </div>
                   </div>
@@ -155,7 +156,7 @@ const Order = ({
                       />
                     </svg>
                     <p className="cursor-pointer text-sm leading-5 text-gray-800">
-                      {user.email}
+                      {userId.email}
                     </p>
                   </div>
                   <div className="flex justify-center space-x-4 items-center pt-2">
