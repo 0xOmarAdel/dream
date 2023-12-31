@@ -24,6 +24,7 @@ const FormikField = ({
         name={name}
         type={!as && (type || "text")}
         placeholder={placeholder}
+        autocomplete="off"
         className={twMerge(
           `w-full px-3 py-2 bg-transparent border outline-none rounded-md transition duration-300 focus:border-primary ${
             error && touched ? "border-red-300" : "border-gray-300"
