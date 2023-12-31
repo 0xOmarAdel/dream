@@ -11,6 +11,7 @@ import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/slices/userAuthSlice";
+import axiosApi from "../../utils/axiosConfig";
 
 const ReservationForm = () => {
   const user = useSelector(selectUser);
@@ -25,6 +26,18 @@ const ReservationForm = () => {
 
   const currentHour = today.getHours();
 
+  const submitReservation = async (values) => {
+    try {
+      await axiosApi.request({
+        method: "POST",
+        url: "/reservation",
+        data: values,
+      });
+    } catch (error) {
+      console.error("Error submitting reservation:", error.message);
+    }
+  };
+
   return (
     <Formik
       initialValues={{
@@ -37,7 +50,7 @@ const ReservationForm = () => {
       }}
       validationSchema={reservationsSchema}
       onSubmit={(values) => {
-        console.log(values);
+        submitReservation(values);
       }}
     >
       {({ errors, touched, isValid }) => (
