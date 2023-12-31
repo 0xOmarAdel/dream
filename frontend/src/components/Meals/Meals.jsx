@@ -4,7 +4,7 @@ import MealModal from "./MealModal";
 import Meal from "./Meal";
 import { useLocation } from "react-router-dom";
 
-const Meals = () => {
+const Meals = ({ searchQuery }) => {
   const { runAxios: fetchMeals, data: meals, loading } = useAxios("/meals");
 
   useEffect(() => {
@@ -14,7 +14,13 @@ const Meals = () => {
   const location = useLocation();
   const isAdminMeals = location.pathname === "/admin/meals";
 
-  console.log(location);
+  const filteredMeals = isAdminMeals
+    ? meals
+      ? meals.filter((meal) =>
+          meal.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : []
+    : meals;
   const Classes = `grid grid-cols-1 ${
     isAdminMeals ? "overflow-y-scroll h-screen" : ""
   } lg:grid-cols-4 gap-8`;
@@ -37,7 +43,7 @@ const Meals = () => {
         setShowReviews={setShowReviews}
         isAdminMeals={isAdminMeals}
       />
-      {meals.map((meal) => (
+      {filteredMeals.map((meal) => (
         <Meal
           key={meal._id}
           {...meal}
