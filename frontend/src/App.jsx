@@ -9,6 +9,8 @@ import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
 import Profile from "./pages/Profile";
+import ProfileLayout from "./pages/Profile/ProfileLayout";
+import UserInfo from "./pages/Profile/UserInfo";
 import Orders from "./pages/Orders";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "./store/slices/userAuthSlice";
@@ -21,6 +23,8 @@ import AdminMeals from "./pages/Admin/AdminMeals";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
+import OrderHistory from "./pages/Profile/OrderHistory";
+import ReservationHistory from "./pages/Profile/ReservationHistory";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -60,6 +64,8 @@ const App = () => {
 
   if (isLoading) return;
 
+  const isProfilePage = pathArray[1] === "profile";
+
   return (
     <>
       {!isAdminPage && <Navbar />}
@@ -88,8 +94,12 @@ const App = () => {
         />
         <Route
           path="/profile"
-          element={user ? <Profile /> : <Navigate to="/login" />}
-        />
+          element={user ? <ProfileLayout /> : <Navigate to="/login" />}
+        >
+          <Route path="UserInfo" index element={<UserInfo user={user} />} />
+          <Route path="OrderHistory" element={<OrderHistory />} />
+          <Route path="ReservationHistory" element={<ReservationHistory />} />
+        </Route>
         <Route
           path="/orders"
           element={user ? <Orders /> : <Navigate to="/login" />}

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import UserInfo from "../components/Profile/UserInfo";
-import OrderHistory from "../components/Profile/OrderHistory";
-import ReservationHistory from "../components/Profile/ReservationHistory";
+import OrderHistory from "./Profile/OrderHistory";
 import { MdOutlineHistory } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 
