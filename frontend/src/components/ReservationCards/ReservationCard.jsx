@@ -1,4 +1,3 @@
-import { formatDistanceToNow } from "date-fns";
 import Card from "../../ui/Card";
 import { AiOutlineUser } from "react-icons/ai";
 import { SlEnvolope, SlCalender } from "react-icons/sl";
