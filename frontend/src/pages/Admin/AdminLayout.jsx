@@ -23,7 +23,7 @@ const AdminLayout = () => {
       </div>
       <div className="col-span-12 lg:col-span-9">
         <div className="relative flex flex-1 flex-col">
-          <div className="w-full">
+          <div className="w-full mb-20 lg:mb-0">
             <AdminNavbar />
           </div>
         </div>
