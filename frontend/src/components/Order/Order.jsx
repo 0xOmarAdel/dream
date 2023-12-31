@@ -22,7 +22,7 @@ const Order = ({
   const [stat, setStat] = useState(status);
   return (
     <>
-      <div className="lg:py-16 h-screen overflow-y-scroll py-18 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+      <div className="lg:py-16 h-screen overflow-y-scroll py-24 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
         <div className="flex justify-start item-start space-y-2 flex-col ">
           <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">
             Order #{_id.slice(4, 10)}{" "}

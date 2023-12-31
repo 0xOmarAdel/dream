@@ -51,10 +51,6 @@ const OrderStatus = ({ status, isAdminOrders, id }) => {
       status: stat,
     });
 
-  const updateStatus = async () => {
-    await updateOrderStatus();
-  };
-
   return !isAdminOrders ? (
     <span className={style}>{text}</span>
   ) : (

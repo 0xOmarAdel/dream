@@ -110,7 +110,7 @@ const editOrder = async (req, res) => {
   const userId = req.user._id;
 
   try {
-    const existingOrder = await Order.findOne({ _id: id, userId });
+    const existingOrder = await Order.findById(id);
 
     if (!existingOrder) {
       return res.status(404).json({ error: "Order not found or unauthorized" });
