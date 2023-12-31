@@ -15,7 +15,7 @@ exports.getAdminDashboardData = async (req, res) => {
     const categoriesCount = await getCategoriesCount();
     const mealsCount = await getMealsCount();
     const reservationsCount = await getReservationsCount();
-    const usersCount = await getUsersCount();
+    const usersCount = await getUsersWithLatestOrders();
     const totalAmountOfCompletedOrders =
       await getTotalAmountOfCompletedOrders();
 
@@ -50,8 +50,76 @@ const getReservationsCount = async () => {
   return await Reservation.countDocuments();
 };
 
-const getUsersCount = async () => {
-  return await User.countDocuments();
+const getUsersWithLatestOrders = async () => {
+  try {
+    const latestCustomers = await User.aggregate([
+      {
+        $lookup: {
+          from: "orders",
+          let: { userId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$userId", "$$userId"] },
+              },
+            },
+            {
+              $sort: { createdAt: -1 },
+            },
+            {
+              $limit: 1,
+            },
+          ],
+          as: "latestOrder",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          firstName: "$firstName",
+          lastName: "$lastName",
+          email: "$email",
+          latestOrder: {
+            $ifNull: ["$latestOrder", []],
+          },
+        },
+      },
+      {
+        $unwind: {
+          path: "$latestOrder",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $sort: { "latestOrder.createdAt": -1 },
+      },
+      {
+        $limit: 5,
+      },
+      {
+        $project: {
+          _id: 1,
+          firstName: 1,
+          lastName: 1,
+          email: 1,
+          latestOrder: {
+            spent: { $sum: "$latestOrder.total" },
+          },
+        },
+      },
+    ]);
+
+    const usersCount = await User.countDocuments();
+
+    const data = {
+      usersCount,
+      latestCustomers,
+    };
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 const getTotalAmountOfCompletedOrders = async () => {
