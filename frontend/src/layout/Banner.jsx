@@ -1,6 +1,6 @@
 import banner from "../assets/banner.jpg";
 
-const Banner = () => {
+const Banner = ({ title }) => {
   const bannerStyle = {
     backgroundImage: `url(${banner})`,
   };
@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <div className="relative bg-cover bg-center py-28" style={bannerStyle}>
       <div className="relative z-20 flex flex-col items-center text-gray-200">
-        <h1 className="text-4xl font-bold">Menu Page</h1>
+        <h1 className="text-4xl font-bold capitalize">{title}</h1>
         <div className="breadcrumbs text-xl">
           <ul>
             <li>Home</li>
