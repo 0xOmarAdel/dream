@@ -37,7 +37,7 @@ const Profile = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const notify = () => toast("Profile updated successfully!");
+  const notify = () => toast.success("Profile updated successfully!");
 
   return (
     <div className="grid grid-cols-12 h-screen overflow-hidden">

@@ -14,8 +14,19 @@ import useAxios from "../hooks/useAxios";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCart } from "../store/slices/cartSlice";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Cart = () => {
+  const notify = () => {
+    toast.success({
+      position: toast.POSITION.TOP_CENTER,
+    });
+
+    toast.error({
+      position: toast.POSITION.TOP_LEFT,
+    });
+  };
+
   const cartItems = useSelector((state) => state.cart.items);
 
   const [formikValues, setFormikValues] = useState({});
@@ -41,8 +52,10 @@ const Cart = () => {
     submitOrder();
 
     if (error) {
+      notify(toast.error("An error occurred while confirming your order."));
       console.log("An error occurred while confirming your order.");
     } else {
+      notify(toast.success("You've successfully confirmed your order."));
       dispatch(emptyCart());
       console.log("You've successfully confirmed your order.");
     }
@@ -94,6 +107,7 @@ const Cart = () => {
               </div>
             </>
           )}
+          <ToastContainer />
         </AnimatePresence>
       </Card>
     </Section>

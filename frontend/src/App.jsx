@@ -21,7 +21,6 @@ import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
 import Loading from "./ui/Loading";
 import Profile from "./pages/Profile";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {

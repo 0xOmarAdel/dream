@@ -3,6 +3,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { login } from "../store/slices/userAuthSlice";
 import { logInSchema } from "../schemas/loginSchema";
 import { Link } from "react-router-dom";
+import Lottie from "lottie-react";
+import Login from "../assets/Login.json";
 
 const LogIn = () => {
   const dispatch = useDispatch();
@@ -19,15 +21,10 @@ const LogIn = () => {
   return (
     <div className="flex justify-center items-center w-full  min-h-screen bg-white px-5 py-5">
       <div className="xl:max-w-7xl bg-white w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
-        <div className="sm:w-[60%] lg:w-[50%] bg-cover bg-center items-center justify-center hidden md:flex ">
-          {/* Add usericon image */}
-          <img
-            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            alt="login"
-            className="h-[500px]"
-          />
+        <div className="sm:w-[60%] lg:w-[50%] items-center justify-center hidden md:flex ">
+          <Lottie animationData={Login} loop={true} />
         </div>
-        <div className="mx-auto w-full lg:w-1/2 md:p-10 py-5 md:py-0">
+        <div className="mx-auto md:p-10 py-5 md:py-0">
           <h1 className="text-start text-4xl sm:text-3xl font-semibold text-sky-500 mb-5">
             Sign In
           </h1>
