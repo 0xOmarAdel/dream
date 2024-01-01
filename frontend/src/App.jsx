@@ -20,8 +20,7 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
 import Loading from "./ui/Loading";
-import UserInfo from "./pages/Profile/UserInfo";
-import ProfileLayout from "./pages/Profile/ProfileLayout";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,10 +81,8 @@ const App = () => {
         />
         <Route
           path="/profile"
-          element={user ? <ProfileLayout /> : <Navigate to="/login" />}
-        >
-          <Route path="userinfo" element={<UserInfo user={user} />} />
-        </Route>
+          element={user ? <Profile user={user} /> : <Navigate to="/login" />}
+        />
         <Route
           path="/cart"
           element={

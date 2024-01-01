@@ -17,7 +17,7 @@ const ProfileSidebar = () => {
           <ul className="space-y-2 font-medium">
             <li>
               <NavLink
-                to="/profile/userinfo"
+                to="/profile"
                 className={({ isActive }) =>
                   isActive
                     ? "flex items-center p-2 text-white bg-sky-500 rounded-lg hover:bg-sky-600 group"
