@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { userMenu } from "../data/userMenu";
@@ -8,6 +8,7 @@ import { emptyCart } from "../store/slices/cartSlice";
 import { priceFormatter } from "../utils/priceFormatter";
 import { menuLinks } from "../data/menuLinks";
 import NavItem from "./NavItem";
+import Button from "../ui/Button";
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
@@ -23,6 +24,8 @@ const Navbar = () => {
     dispatch(emptyCart());
     dispatch(logout());
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="navbar px-8 sm:px-10 md:px-16 lg:px-16 xl:px-22 bg-base-100">
@@ -117,11 +120,11 @@ const Navbar = () => {
                   Subtotal: {priceFormatter(totalPrice)}
                 </span>
                 <div className="card-actions">
-                  <Link to="/cart" className="btn btn-primary btn-block">
-                    <button className="btn btn-primary btn-block">
-                      View cart
-                    </button>
-                  </Link>
+                  <Button
+                    text="view cart"
+                    onClick={() => navigate("/cart")}
+                    classes="w-full"
+                  />
                 </div>
               </div>
             </div>
