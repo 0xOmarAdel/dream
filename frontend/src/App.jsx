@@ -12,7 +12,7 @@ import ProfileLayout from "./pages/Profile/ProfileLayout";
 import UserInfo from "./pages/Profile/UserInfo";
 import Orders from "./pages/Orders";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, setUser } from "./store/slices/userAuthSlice";
+import { selectUser, setUser, logout } from "./store/slices/userAuthSlice";
 import axios from "axios";
 import { getCartItems } from "./store/slices/cartSlice";
 import Contact from "./pages/Contact";
@@ -48,9 +48,8 @@ const App = () => {
         );
         dispatch(setUser(response.data.userData));
         dispatch(getCartItems());
-        console.log(response.data.userData);
       } catch (error) {
-        console.error(error);
+        dispatch(logout());
       }
       setIsLoading(false);
     };
