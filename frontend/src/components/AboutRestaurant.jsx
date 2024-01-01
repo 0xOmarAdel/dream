@@ -1,32 +1,86 @@
+import { useRef } from "react";
+import { useInView, motion } from "framer-motion";
+
 const About = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section className="overflow-hidden px-4 pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white">
+    <section
+      className="overflow-hidden px-4 pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white"
+      ref={ref}
+    >
       <div className="container mx-auto">
         <div className="flex flex-wrap items-center justify-between -mx-4">
           <div className="w-full px-4 lg:w-6/12">
             <div className="flex items-center -mx-3 sm:-mx-4">
               <div className="w-full px-3 sm:px-4 xl:w-1/2">
                 <div className="py-3 sm:py-4">
-                  <img
+                  <motion.img
                     src="https://axwwgrkdco.cloudimg.io/v7/__gmpics__/794a4fda36a64b7fafd20fbcb5971633"
                     alt=""
                     className="w-full rounded-2xl"
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                      },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          ease: "easeInOut",
+                          duration: 0.5,
+                          delay: 0.2,
+                        },
+                      },
+                    }}
+                    initial={"hidden"}
+                    animate={isInView ? "visible" : "hidden"}
                   />
                 </div>
                 <div className="py-3 sm:py-4">
-                  <img
+                  <motion.img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Restaurant_N%C3%A4sinneula.jpg/640px-Restaurant_N%C3%A4sinneula.jpg"
                     alt=""
                     className="w-full rounded-2xl"
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                      },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          ease: "easeInOut",
+                          duration: 0.5,
+                          delay: 0.4,
+                        },
+                      },
+                    }}
+                    initial={"hidden"}
+                    animate={isInView ? "visible" : "hidden"}
                   />
                 </div>
               </div>
               <div className="w-full px-3 sm:px-4 xl:w-1/2">
                 <div className="relative z-10 my-4">
-                  <img
+                  <motion.img
                     src="https://cdn.sortiraparis.com/images/80/100789/834083-too-restaurant-too-hotel-paris-photos-menu-plats.jpg"
                     alt=""
                     className="w-full rounded-2xl"
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                      },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          ease: "easeInOut",
+                          duration: 0.5,
+                          delay: 0.6,
+                        },
+                      },
+                    }}
+                    initial={"hidden"}
+                    animate={isInView ? "visible" : "hidden"}
                   />
                 </div>
               </div>
