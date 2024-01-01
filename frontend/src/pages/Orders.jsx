@@ -4,6 +4,7 @@ import useAxios from "../hooks/useAxios";
 import Banner from "../layout/Banner";
 import Loading from "../ui/Loading";
 import Error from "../ui/Error";
+import Section from "../ui/Section";
 
 const Orders = () => {
   const {
@@ -20,7 +21,7 @@ const Orders = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className={`flex flex-col ${error ? "" : "gap-10"}`}>
+    <div className="flex flex-col">
       <Banner
         title="orders history"
         breadcrumbs={[
@@ -29,13 +30,15 @@ const Orders = () => {
         ]}
       />
       {error ? (
-        <Error />
+        <Error message="An error occurred while fetching your data!" />
+      ) : orders.length === 0 ? (
+        <Error message="Your orders history is empty!" />
       ) : (
-        <div className="px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+        <Section>
           {orders.map((order) => (
             <Order key={order._id} {...order} OrderStat={order.status} />
           ))}
-        </div>
+        </Section>
       )}
     </div>
   );

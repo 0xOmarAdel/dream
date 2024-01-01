@@ -30,7 +30,9 @@ const Reservations = () => {
         ]}
       />
       {error ? (
-        <Error />
+        <Error message="An error occurred while fetching your data!" />
+      ) : reservations.data.length === 0 ? (
+        <Error message="Your reservations history is empty!" />
       ) : (
         <Section classes="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
           {reservations.data.map((reservation) => (
