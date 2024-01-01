@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar px-20 bg-base-100">
+    <div className="navbar px-8 sm:px-10 md:px-16 lg:px-16 xl:px-22 bg-base-100">
       <div className="flex-1">
         <Link to="/" className="text-4xl text-primary font-semibold">
           Dream
@@ -52,7 +52,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="z-50 menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <Link to="/">Home</Link>
@@ -162,7 +162,9 @@ const Navbar = () => {
           </ul>
         </div>
         {isAdmin && (
-          <span className="text-gray-600 font-medium">Welcome, {user.firstName}</span>
+          <span className="hidden sm:block text-gray-600 font-medium">
+            Welcome, {user.firstName}
+          </span>
         )}
       </div>
     </div>
