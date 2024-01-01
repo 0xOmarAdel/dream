@@ -22,7 +22,13 @@ const Reservations = () => {
 
   return (
     <div className="flex flex-col">
-      <Banner title="reservations history" />
+      <Banner
+        title="reservations history"
+        breadcrumbs={[
+          { text: "profile", path: "/profile" },
+          { text: "reservations" },
+        ]}
+      />
       {error ? (
         <Error />
       ) : (

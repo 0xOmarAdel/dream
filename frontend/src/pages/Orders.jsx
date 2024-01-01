@@ -21,11 +21,17 @@ const Orders = () => {
 
   return (
     <div className={`flex flex-col ${error ? "" : "gap-10"}`}>
-      <Banner title="orders history" />
+      <Banner
+        title="orders history"
+        breadcrumbs={[
+          { text: "profile", path: "/profile" },
+          { text: "orders" },
+        ]}
+      />
       {error ? (
         <Error />
       ) : (
-        <div className=" px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+        <div className="px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
           {orders.map((order) => (
             <Order key={order._id} {...order} OrderStat={order.status} />
           ))}
