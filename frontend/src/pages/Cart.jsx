@@ -25,7 +25,7 @@ const Cart = () => {
 
   const {
     runAxios: submitOrder,
-    loading,
+    isExecuting,
     error,
   } = useAxios("/orders", "POST", {
     address: addressFormatter(formikValues),
@@ -33,8 +33,19 @@ const Cart = () => {
   });
 
   const submitOrderHandler = () => {
+    if (cartItems.length === 0) {
+      console.log("Your cart is empty.");
+      return;
+    }
+
     submitOrder();
-    dispatch(emptyCart());
+
+    if (error) {
+      console.log("An error occurred while confirming your order.");
+    } else {
+      dispatch(emptyCart());
+      console.log("You've successfully confirmed your order.");
+    }
   };
 
   return (
@@ -77,7 +88,7 @@ const Cart = () => {
                   type="submit"
                   text="Confirm"
                   onClick={submitOrderHandler}
-                  disabled={loading}
+                  disabled={isExecuting}
                 />
                 <Button text="Cancel" onClick={() => setFormSubmitted(false)} />
               </div>
