@@ -1,7 +1,7 @@
-const Error = () => {
+const Error = ({ message }) => {
   return (
     <p className="py-32 text-2xl text-gray-500 font-medium text-center">
-      An error occurred while fetching your data!
+      {message}
     </p>
   );
 };
