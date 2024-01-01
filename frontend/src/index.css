@@ -164,3 +164,7 @@ reservationDatePickerCalender .react-calendar__tile--active:enabled:hover,
 .reservationDatePicker svg {
   @apply !text-gray-200;
 }
+
+.Toastify__toast-icon > svg {
+  @apply fill-primary;
+}
