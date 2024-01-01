@@ -8,8 +8,6 @@ import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
-import ProfileLayout from "./pages/Profile/ProfileLayout";
-import UserInfo from "./pages/Profile/UserInfo";
 import Orders from "./pages/Orders";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "./store/slices/userAuthSlice";
@@ -22,9 +20,9 @@ import AdminMeals from "./pages/Admin/AdminMeals";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
-import OrderHistory from "./pages/Profile/OrderHistory";
-import ReservationHistory from "./pages/Profile/ReservationHistory";
 import Loading from "./ui/Loading";
+import UserInfo from "./pages/Profile/UserInfo";
+import ProfileLayout from "./pages/Profile/ProfileLayout";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -98,9 +96,7 @@ const App = () => {
           path="/profile"
           element={user ? <ProfileLayout /> : <Navigate to="/login" />}
         >
-          <Route path="UserInfo" index element={<UserInfo user={user} />} />
-          <Route path="OrderHistory" element={<OrderHistory />} />
-          <Route path="ReservationHistory" element={<ReservationHistory />} />
+          <Route path="userinfo" element={<UserInfo user={user} />} />
         </Route>
         <Route
           path="/orders"

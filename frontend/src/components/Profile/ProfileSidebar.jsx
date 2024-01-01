@@ -1,18 +1,18 @@
 import { NavLink } from "react-router-dom";
-import {
-  MdCalendarToday,
-  MdDashboard,
-  MdFastfood,
-  MdLogout,
-  MdOutlineChecklist,
-} from "react-icons/md";
-import { MdOutlineHistory } from "react-icons/md";
+import { MdCalendarToday, MdFastfood, MdLogout } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/slices/userAuthSlice";
 
 const ProfileSidebar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <>
-      <aside className="fixed top-0 left-0 shadow-md z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 hidden lg:block">
+      <aside className="absolute left-0 shadow-md z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 hidden lg:block">
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50">
           <ul className="space-y-2 font-medium">
             <li>
@@ -30,7 +30,7 @@ const ProfileSidebar = () => {
             </li>
             <li>
               <NavLink
-                to="/profile/orderhistory"
+                to="/orders"
                 className={({ isActive }) =>
                   isActive
                     ? "flex items-center p-2 text-white bg-sky-500 rounded-lg hover:bg-sky-600 hover:text-white group"
@@ -43,7 +43,7 @@ const ProfileSidebar = () => {
             </li>
             <li>
               <NavLink
-                to="/profile/reservationhistory"
+                to="/reservations"
                 className={({ isActive }) =>
                   isActive
                     ? " flex items-center p-2 text-white bg-sky-500 rounded-lg hover:bg-sky-600 hover:text-white group"
@@ -54,7 +54,7 @@ const ProfileSidebar = () => {
                 <span className="ms-3">Reservations History</span>
               </NavLink>
             </li>
-            <li>
+            <li onClick={handleLogout}>
               <div className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-sky-600 hover:text-white cursor-pointer group">
                 <MdLogout />
                 <span className="ms-3">Logout</span>
