@@ -3,7 +3,7 @@ import BurgerAnimation from "../../src/assets/BurgerAnimation.json";
 
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
       <Lottie animationData={BurgerAnimation} loop={true} />
     </div>
   );
