@@ -4,6 +4,7 @@ import useAxios from "../hooks/useAxios";
 import ReservationCard from "../components/ReservationCards/ReservationCard";
 import Loading from "../ui/Loading";
 import Error from "../ui/Error";
+import Section from "../ui/Section";
 
 const Reservations = () => {
   const {
@@ -25,11 +26,11 @@ const Reservations = () => {
       {error ? (
         <Error />
       ) : (
-        <div className="px-20 pb-14 grid grid-cols-3 gap-10">
+        <Section classes="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
           {reservations.data.map((reservation) => (
             <ReservationCard key={reservation._id} reservation={reservation} />
           ))}
-        </div>
+        </Section>
       )}
     </div>
   );
