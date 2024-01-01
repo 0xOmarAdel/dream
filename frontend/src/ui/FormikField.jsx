@@ -23,7 +23,7 @@ const FormikField = ({
       <Field
         as={as}
         name={name}
-        type={!as && (type || "text")}
+        type={!as ? type || "text" : undefined}
         placeholder={placeholder}
         disabled={disabled}
         autoComplete="off"
