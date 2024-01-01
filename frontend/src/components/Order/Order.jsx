@@ -20,7 +20,7 @@ const Order = ({
   const isAdminOrders = location.pathname === "/admin/orders";
 
   return (
-    <div className="py-16 border-b last-of-type:border-none">
+    <div className="py-16 first-of-type:pt-0 last-of-type:pb-0 border-b last-of-type:border-none">
       <div className="flex justify-start item-start space-y-2 flex-col ">
         <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">
           Order #{_id.slice(4, 10)}{" "}
