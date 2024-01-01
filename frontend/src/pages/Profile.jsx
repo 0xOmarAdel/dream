@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../store/slices/userAuthSlice";
 import axiosApi from "../utils/axiosConfig";
 import ProfileSidebar from "../components/Profile/ProfileSidebar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -35,6 +37,8 @@ const Profile = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const notify = () => toast("Profile updated successfully!");
+
   return (
     <div className="grid grid-cols-12 h-screen overflow-hidden">
       <div className="lg:col-span-3">
@@ -58,7 +62,6 @@ const Profile = () => {
                 onSubmit={(values, actions) => {
                   submitEdit(values);
                   setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
                     actions.setSubmitting(false);
                   }, 1000);
                   console.log(values);
@@ -110,7 +113,25 @@ const Profile = () => {
                       />
                     </div>
                     <div className="mx-auto mb-6 text-center">
-                      <Button type="submit" text={"Save"} disabled={!isValid} />
+                      <Button
+                        type="submit"
+                        text={"Save"}
+                        disabled={!isValid}
+                        onClick={notify}
+                      />
+                      <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        progressStyle={{ backgroundColor: "#0ea5ea" }}
+                      />
                     </div>
                   </Form>
                 )}

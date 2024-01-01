@@ -134,19 +134,6 @@ const App = () => {
         </Route>
       </Routes>
       {!isAdminPage && <Footer />}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        progressStyle={{ backgroundColor: "#0ea5ea" }}
-      />
     </>
   );
 };
