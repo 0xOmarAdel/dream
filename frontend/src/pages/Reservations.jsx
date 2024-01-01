@@ -21,7 +21,7 @@ const Reservations = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className={`flex flex-col ${error ? "" : "gap-14"}`}>
+    <div className="flex flex-col">
       <Banner title="reservations history" />
       {error ? (
         <Error />
