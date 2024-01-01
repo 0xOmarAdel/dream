@@ -21,6 +21,8 @@ import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
 import Loading from "./ui/Loading";
 import Profile from "./pages/Profile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -131,8 +133,20 @@ const App = () => {
           <Route path="reservations" element={<AdminReservations />} />
         </Route>
       </Routes>
-
       {!isAdminPage && <Footer />}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        progressStyle={{ backgroundColor: "#0ea5ea" }}
+      />
     </>
   );
 };
