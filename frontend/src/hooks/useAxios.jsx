@@ -3,7 +3,7 @@ import axiosApi from "../utils/axiosConfig";
 
 const useAxios = (url, method, body) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const runAxios = useCallback(async () => {
