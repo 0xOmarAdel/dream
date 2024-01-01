@@ -11,10 +11,13 @@ import Button from "../ui/Button";
 import { addressFormatter } from "../utils/addressFormatter";
 import { AnimatePresence } from "framer-motion";
 import useAxios from "../hooks/useAxios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { emptyCart } from "../store/slices/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+
   const [formikValues, setFormikValues] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -42,7 +45,17 @@ const Cart = () => {
           icon={IoCartOutline}
           iconClasses="text-4xl"
         />
-        <CartItems />
+        {cartItems.length === 0 ? (
+          <p className="text-lg text-gray-500">
+            Your cart is empty. Add meals to your cart from our{" "}
+            <Link to="/menu" className="text-primary font-medium">
+              menu
+            </Link>{" "}
+            to be able to make an order!
+          </p>
+        ) : (
+          <CartItems />
+        )}
       </Card>
       <Card classes="min-w-[20%]">
         <AnimatePresence>
