@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { MdCalendarToday, MdFastfood, MdLogout } from "react-icons/md";
-import { MdCalendarToday, MdFastfood, MdLogout } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/userAuthSlice";
