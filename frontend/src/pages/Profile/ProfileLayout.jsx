@@ -15,11 +15,6 @@ const ProfileLayout = () => {
         />
       </div>
       <div className="col-span-12 lg:col-span-9">
-        <div className="relative flex flex-1 flex-col">
-          <div className="w-full mb-20 lg:mb-0">
-            <ProfileNavbar />
-          </div>
-        </div>
         <main>
           <div className="max-w-screen-2xl lg:p-4">
             <Outlet />
