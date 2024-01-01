@@ -4,7 +4,6 @@ import Footer from "./layout/footer";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
@@ -69,20 +68,8 @@ const App = () => {
       <Routes>
         <Route path="*" element={<Navigate to="/" />} />
 
-        <Route
-          path="/admin"
-          element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}
-        >
-          <Route index element={<Navigate to="dashboard" />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="meals" element={<AdminMeals />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="reservations" element={<AdminReservations />} />
-        </Route>
         <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
         <Route
           path="/register"
           element={!user ? <Register /> : <Navigate to="/" />}
@@ -92,8 +79,8 @@ const App = () => {
           element={!user ? <LogIn /> : <Navigate to="/" />}
         />
         <Route
-          path="/cart"
-          element={user ? <Cart /> : <Navigate to="/login" />}
+          path="/menu"
+          element={isAdmin ? <Navigate to="/meals" /> : <Menu />}
         />
         <Route
           path="/profile"
@@ -104,13 +91,52 @@ const App = () => {
           <Route path="ReservationHistory" element={<ReservationHistory />} />
         </Route>
         <Route
+          path="/cart"
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/orders" />
+            ) : user ? (
+              <Cart />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
           path="/orders"
-          element={user ? <Orders /> : <Navigate to="/login" />}
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/orders" />
+            ) : user ? (
+              <Orders />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/reservations"
-          element={user ? <Reservations /> : <Navigate to="/login" />}
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/reservations" />
+            ) : user ? (
+              <Reservations />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
+
+        <Route
+          path="/admin"
+          element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}
+        >
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="meals" element={<AdminMeals />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="reservations" element={<AdminReservations />} />
+        </Route>
       </Routes>
 
       {!isAdminPage && <Footer />}
