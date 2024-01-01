@@ -4,13 +4,12 @@ import Footer from "./layout/footer";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
 import Orders from "./pages/Orders";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, setUser } from "./store/slices/userAuthSlice";
+import { selectUser, setUser, logout } from "./store/slices/userAuthSlice";
 import axios from "axios";
 import { getCartItems } from "./store/slices/cartSlice";
 import Contact from "./pages/Contact";
@@ -46,9 +45,8 @@ const App = () => {
         );
         dispatch(setUser(response.data.userData));
         dispatch(getCartItems());
-        console.log(response.data.userData);
       } catch (error) {
-        console.error(error);
+        dispatch(logout());
       }
       setIsLoading(false);
     };
@@ -66,6 +64,65 @@ const App = () => {
     <>
       {!isAdminPage && <Navbar />}
       <Routes>
+        <Route path="*" element={<Navigate to="/" />} />
+
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/register"
+          element={!user ? <Register /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/login"
+          element={!user ? <LogIn /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/menu"
+          element={isAdmin ? <Navigate to="/meals" /> : <Menu />}
+        />
+        <Route
+          path="/profile"
+          element={user ? <ProfileLayout /> : <Navigate to="/login" />}
+        >
+          <Route path="userinfo" element={<UserInfo user={user} />} />
+        </Route>
+        <Route
+          path="/cart"
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/orders" />
+            ) : user ? (
+              <Cart />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/orders" />
+            ) : user ? (
+              <Orders />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/reservations"
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/reservations" />
+            ) : user ? (
+              <Reservations />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
         <Route
           path="/admin"
           element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}
@@ -76,36 +133,6 @@ const App = () => {
           <Route path="orders" element={<AdminOrders />} />
           <Route path="reservations" element={<AdminReservations />} />
         </Route>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route
-          path="/register"
-          element={!user ? <Register /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/login"
-          element={!user ? <LogIn /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/cart"
-          element={user ? <Cart /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/profile"
-          element={user ? <ProfileLayout /> : <Navigate to="/login" />}
-        >
-          <Route path="userinfo" element={<UserInfo user={user} />} />
-        </Route>
-        <Route
-          path="/orders"
-          element={user ? <Orders /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/reservations"
-          element={user ? <Reservations /> : <Navigate to="/login" />}
-        />
       </Routes>
 
       {!isAdminPage && <Footer />}

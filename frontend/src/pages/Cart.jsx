@@ -11,10 +11,13 @@ import Button from "../ui/Button";
 import { addressFormatter } from "../utils/addressFormatter";
 import { AnimatePresence } from "framer-motion";
 import useAxios from "../hooks/useAxios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { emptyCart } from "../store/slices/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+
   const [formikValues, setFormikValues] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -22,8 +25,7 @@ const Cart = () => {
 
   const {
     runAxios: submitOrder,
-    data,
-    loading,
+    isExecuting,
     error,
   } = useAxios("/orders", "POST", {
     address: addressFormatter(formikValues),
@@ -31,9 +33,19 @@ const Cart = () => {
   });
 
   const submitOrderHandler = () => {
-    // dispatch(emptyCart());
+    if (cartItems.length === 0) {
+      console.log("Your cart is empty.");
+      return;
+    }
 
     submitOrder();
+
+    if (error) {
+      console.log("An error occurred while confirming your order.");
+    } else {
+      dispatch(emptyCart());
+      console.log("You've successfully confirmed your order.");
+    }
   };
 
   return (
@@ -44,7 +56,17 @@ const Cart = () => {
           icon={IoCartOutline}
           iconClasses="text-4xl"
         />
-        <CartItems />
+        {cartItems.length === 0 ? (
+          <p className="text-lg text-gray-500">
+            Your cart is empty. Add meals to your cart from our{" "}
+            <Link to="/menu" className="text-primary font-medium">
+              menu
+            </Link>{" "}
+            to be able to make an order!
+          </p>
+        ) : (
+          <CartItems />
+        )}
       </Card>
       <Card classes="min-w-[20%]">
         <AnimatePresence>
@@ -66,6 +88,7 @@ const Cart = () => {
                   type="submit"
                   text="Confirm"
                   onClick={submitOrderHandler}
+                  disabled={isExecuting}
                 />
                 <Button text="Cancel" onClick={() => setFormSubmitted(false)} />
               </div>

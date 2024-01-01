@@ -7,7 +7,11 @@ const CartItems = () => {
   return (
     <div
       className={`grid grid-cols-1 ${
-        cartItems.length === 1 ? "grid-cols-1" : "lg:grid-cols-2"
+        cartItems.length === 1
+          ? "grid-cols-1"
+          : cartItems.length > 1
+          ? "lg:grid-cols-2"
+          : ""
       } gap-x-10 gap-y-7`}
     >
       {cartItems.map((cartItem) => (

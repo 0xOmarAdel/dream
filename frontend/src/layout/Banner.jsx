@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import banner from "../assets/banner.jpg";
 
-const Banner = ({ title }) => {
+const Banner = ({ title, breadcrumbs }) => {
   const bannerStyle = {
     backgroundImage: `url(${banner})`,
   };
@@ -11,8 +12,30 @@ const Banner = ({ title }) => {
         <h1 className="text-4xl font-bold capitalize">{title}</h1>
         <div className="breadcrumbs text-xl">
           <ul>
-            <li>Home</li>
-            <li>Menu</li>
+            {breadcrumbs.map((breadcrumb) => (
+              <>
+                {breadcrumb.path ? (
+                  <li
+                    key={breadcrumb}
+                    className="text-gray-300 capitalize before:!opacity-100"
+                  >
+                    <Link
+                      to={breadcrumb.path}
+                      className="transition duration-300 hover:!no-underline hover:text-primary"
+                    >
+                      {breadcrumb.text}
+                    </Link>
+                  </li>
+                ) : (
+                  <li
+                    key={breadcrumb}
+                    className="text-gray-300 capitalize before:!opacity-100"
+                  >
+                    {breadcrumb.text}
+                  </li>
+                )}
+              </>
+            ))}
           </ul>
         </div>
       </div>

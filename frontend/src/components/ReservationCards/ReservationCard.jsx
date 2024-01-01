@@ -1,5 +1,6 @@
 import Card from "../../ui/Card";
 import { AiOutlineUser } from "react-icons/ai";
+import { PiUsersThree } from "react-icons/pi";
 import { SlEnvolope, SlCalender } from "react-icons/sl";
 import { BsTelephone } from "react-icons/bs";
 import { LuClock4 } from "react-icons/lu";
@@ -46,13 +47,20 @@ const ReservationCard = ({
           </div>
         )}
       </div>
-
       <p className="flex flex-row items-center gap-2">
         <SlEnvolope className="text-primary" /> {reservation.email}
       </p>
-      <p className="flex flex-row items-center gap-2">
-        <BsTelephone className="text-lg text-primary" /> {reservation.phone}
-      </p>
+      <div className="flex flex-row justify-between">
+        <p className="flex flex-row items-center gap-2">
+          <BsTelephone className="text-lg text-primary" /> {reservation.phone}
+        </p>
+        <p className="flex flex-row items-center gap-2">
+          <PiUsersThree className="text-xl text-primary" />
+          {`${reservation.guests} ${
+            reservation.guests === 1 ? "Person" : "People"
+          }`}
+        </p>
+      </div>
       <div className="flex flex-row justify-between">
         <p className="flex flex-row items-center gap-2">
           <SlCalender className="text-primary" />

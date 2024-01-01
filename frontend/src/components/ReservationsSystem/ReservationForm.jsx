@@ -33,6 +33,8 @@ const ReservationForm = () => {
         url: "/reservation",
         data: values,
       });
+
+      console.log("You've successfully submitted a reservation");
     } catch (error) {
       console.error("Error submitting reservation:", error.message);
     }
@@ -50,9 +52,10 @@ const ReservationForm = () => {
       }}
       validationSchema={reservationsSchema}
       onSubmit={(values, { resetForm }) => {
-        submitReservation(values);
-
-        resetForm();
+        if (user?.role === "user") {
+          submitReservation(values);
+          resetForm();
+        }
       }}
     >
       {({ errors, touched, isValid }) => (
