@@ -2,29 +2,35 @@ import Banner from "../layout/Banner";
 import { useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 import ReservationCard from "../components/ReservationCards/ReservationCard";
+import Loading from "../ui/Loading";
+import Error from "../ui/Error";
 
 const Reservations = () => {
   const {
     runAxios: fetchReservations,
     data: reservations,
     loading,
+    error,
   } = useAxios("/reservation");
 
   useEffect(() => {
     fetchReservations();
   }, [fetchReservations]);
 
-  if (loading) return;
+  if (loading) return <Loading />;
 
-  console.log(reservations.data);
   return (
-    <div className="flex flex-col gap-10">
+    <div className={`flex flex-col ${error ? "" : "gap-14"}`}>
       <Banner title="reservations history" />
-      <div className="px-20 grid grid-cols-3 gap-10">
-        {reservations.data.map((reservation) => (
-          <ReservationCard key={reservation._id} reservation={reservation} />
-        ))}
-      </div>
+      {error ? (
+        <Error />
+      ) : (
+        <div className="px-20 pb-14 grid grid-cols-3 gap-10">
+          {reservations.data.map((reservation) => (
+            <ReservationCard key={reservation._id} reservation={reservation} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
