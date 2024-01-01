@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import Order from "../components/Order/Order";
 import useAxios from "../hooks/useAxios";
+import Banner from "../layout/Banner";
+import Loading from "../ui/Loading";
 
 const Orders = () => {
   const { runAxios: fetchOrders, data: orders, loading } = useAxios("/orders");
@@ -10,21 +12,18 @@ const Orders = () => {
   }, [fetchOrders]);
 
   return (
-    <>
-      <div className="flex justify-start item-start space-y-4 flex-col">
-        <h1 className="ml-6 mt-3 text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-primary">
-          My Orders
-        </h1>
-        <div className="border-gray-200 border-b-4 w-24 ml-6"></div>
-      </div>
+    <div className="flex flex-col gap-10">
+      <Banner title="orders history" />
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
-        orders.map((order) => (
-          <Order key={order._id} {...order} OrderStat={order.status} />
-        ))
+        <div className=" px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+          {orders.map((order) => (
+            <Order key={order._id} {...order} OrderStat={order.status} />
+          ))}
+        </div>
       )}
-    </>
+    </div>
   );
 };
 
