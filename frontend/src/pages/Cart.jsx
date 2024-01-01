@@ -22,7 +22,6 @@ const Cart = () => {
 
   const {
     runAxios: submitOrder,
-    data,
     loading,
     error,
   } = useAxios("/orders", "POST", {
@@ -31,9 +30,8 @@ const Cart = () => {
   });
 
   const submitOrderHandler = () => {
-    // dispatch(emptyCart());
-
     submitOrder();
+    dispatch(emptyCart());
   };
 
   return (
@@ -66,6 +64,7 @@ const Cart = () => {
                   type="submit"
                   text="Confirm"
                   onClick={submitOrderHandler}
+                  disabled={loading}
                 />
                 <Button text="Cancel" onClick={() => setFormSubmitted(false)} />
               </div>
