@@ -10,8 +10,9 @@ import { menuLinks } from "../data/menuLinks";
 import NavItem from "./NavItem";
 
 const Navbar = () => {
-  const isLoggedIn = !!useSelector((state) => state.auth.user);
-  const isAdmin = !!(useSelector((state) => state.auth.user)?.role == "admin");
+  const user = useSelector((state) => state.auth.user);
+  const isLoggedIn = !!user;
+  const isAdmin = user?.role == "admin";
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
@@ -160,6 +161,9 @@ const Navbar = () => {
             )}
           </ul>
         </div>
+        {isAdmin && (
+          <span className="text-gray-600 font-medium">Welcome, {user.firstName}</span>
+        )}
       </div>
     </div>
   );
