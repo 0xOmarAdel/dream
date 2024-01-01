@@ -68,6 +68,8 @@ const App = () => {
     <>
       {!isAdminPage && <Navbar />}
       <Routes>
+        <Route path="*" element={<Navigate to="/" />} />
+
         <Route
           path="/admin"
           element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}
