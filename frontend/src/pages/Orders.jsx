@@ -36,7 +36,7 @@ const Orders = () => {
       ) : (
         <Section>
           {orders.map((order) => (
-            <Order key={order._id} {...order} OrderStat={order.status} />
+            <Order key={order._id} {...order} />
           ))}
         </Section>
       )}

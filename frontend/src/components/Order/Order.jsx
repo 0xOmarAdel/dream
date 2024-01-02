@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { priceFormatter } from "../../utils/priceFormatter";
 import { SlEnvolope } from "react-icons/sl";
 import OrderMeals from "./OrderMeals";
+import { dateFormatter } from "../../utils/dateFormatter";
 
 const Order = ({
   _id,
@@ -15,6 +16,7 @@ const Order = ({
   total,
   status,
   userId,
+  createdAt,
 }) => {
   const location = useLocation();
   const isAdminOrders = location.pathname === "/admin/orders";
@@ -27,7 +29,7 @@ const Order = ({
           <OrderStatus status={status} isAdminOrders={isAdminOrders} id={_id} />
         </h1>
         <p className="text-base font-medium leading-6 text-gray-600">
-          24 December 2023 at 01:23 PM
+          Created At: {dateFormatter(createdAt)}
         </p>
       </div>
       <div className="flex flex-col xl:flex-row justify-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
