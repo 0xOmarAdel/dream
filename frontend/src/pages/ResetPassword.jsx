@@ -1,16 +1,18 @@
-import sign from "../assets/sign.jpg";
+import sign from "../assets/formBg.jpg";
 import { Formik, Form } from "formik";
 import FormikField from "../ui/FormikField";
 import { resetPasswordSchema } from "../schemas/resetPasswordSchema";
 import Button from "../ui/Button";
+import Lottie from "lottie-react";
+import login from "../assets/Login.json";
 const ResetPassword = () => {
   return (
-    <div
-      className="h-screen bg-no-repeat bg-cover"
-      style={{ backgroundImage: `url('${sign}')` }}
-    >
+    <div className="">
       <div className="min-h-screen flex justify-center items-center h-full">
-        <div className="bg-slate-100 border border-slate-400 rounded-md p-8 shadow-lg backdrop:filter backdrop:blur-sm bg-opacity-30 relative">
+        <div>
+          <Lottie animationData={login} loop={true} />
+        </div>
+        <div className="glass border border-slate-100 rounded-md p-8 shadow-lg backdrop:filter backdrop:blur-sm  relative">
           <h1 className="text-4xl sm:text-3xl font-semibold mb-5 text-center">
             Reset Password
           </h1>

@@ -20,8 +20,8 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center w-full  min-h-screen bg-white px-5 py-5">
-      <div className="mx-auto min-h-screen md:p-10 py-5 md:py-0">
-        <h1 className="text-start text-4xl sm:text-3xl font-semibold text-sky-500 mb-5">
+      <div className="mx-auto min-h-screen md:p-10 py-5 md:py-0 glass">
+        <h1 className="text-start text-4xl sm:text-3xl font-semibold text-sky-500 my-6">
           Sign Up
         </h1>
         <Formik
