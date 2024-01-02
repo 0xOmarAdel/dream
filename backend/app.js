@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 var cron = require("node-cron");
 const axios = require("axios");
+const yup = require("yup");
 const authenticateUser = require("./middleware/authenticateUser");
 
 const app = express();
@@ -29,6 +30,7 @@ const reviewRoutes = require("./routes/reviewRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const User = require("./models/User");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -72,6 +74,29 @@ app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/reservation", reservationRoutes);
 app.use("/api/v1/admin", dashboardRoutes);
+
+const userUpdateSchema = yup.object().shape({
+  firstName: yup.string().required("First Name is required"),
+  lastName: yup.string().required("Last Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+});
+
+app.put("/api/v1/users/:id", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const userData = req.body;
+
+    await userUpdateSchema.validate(userData, { abortEarly: false });
+
+    const updatedUser = await User.findByIdAndUpdate(userId, userData, {
+      new: true,
+    });
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 const port = process.env.PORT || 5000;
 const start = async () => {
