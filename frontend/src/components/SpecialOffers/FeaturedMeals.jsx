@@ -17,7 +17,7 @@ const FeaturedMeals = ({ isInView }) => {
 
   return (
     <div className="flex flex-col gap-6">
-      {featuredMeals.map((featuredMeal, index) => (
+      {featuredMeals?.map((featuredMeal, index) => (
         <FeaturedMeal
           key={featuredMeal.id}
           featuredMeal={featuredMeal}
