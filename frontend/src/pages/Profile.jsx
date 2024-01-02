@@ -27,11 +27,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 min-h-screen overflow-hidden">
-      <div className="lg:col-span-3">
-        <ProfileSidebar />
-      </div>
-      <Section classes="col-span-12 lg:col-span-9">
+    <div className="flex flex-row overflow-hidden">
+      <ProfileSidebar />
+      <Section classes="grow xl:px-44 py-24">
         <h1 className="text-3xl text-gray-600 font-bold mb-6">Profile</h1>
         <Formik
           initialValues={{
@@ -75,7 +73,7 @@ const Profile = () => {
                 touched={touched.confirmPassword}
                 error={errors.confirmPassword}
               />
-              <Button type="submit" text="save" disabled={!isValid} />
+              <Button type="submit" text="save" disabled={!isValid} classes="mt-4" />
             </Form>
           )}
         </Formik>
