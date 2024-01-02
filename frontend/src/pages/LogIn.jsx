@@ -38,7 +38,7 @@ const LogIn = () => {
           }}
           validationSchema={logInSchema}
           onSubmit={(values) => {
-            handleLogin(values);
+            submitHandler(values);
           }}
         >
           <Form className="flex flex-col gap-5">
