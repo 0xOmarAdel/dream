@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import axiosApi from "../utils/axiosConfig";
+import axios from "axios";
 
 const useAxios = (url, method, body) => {
   const [data, setData] = useState(null);
@@ -9,13 +9,20 @@ const useAxios = (url, method, body) => {
 
   const runAxios = useCallback(async () => {
     try {
+      const localToken = localStorage.getItem("token");
+
       setLoading(true);
       setIsExecuting(true);
-      const response = await axiosApi.request({
+      const response = await axios({
         method: method || "GET",
-        url,
+        url: `http://localhost:5000/api/v1${url}`,
         data: body,
+        headers: {
+          "Content-Type": "application/json",
+          ...(localToken && { Authorization: `Bearer ${localToken}` }),
+        },
       });
+
       setData(response.data);
     } catch (error) {
       setError(!!error);
