@@ -74,7 +74,8 @@ const getAllOrders = async (req, res) => {
         path: "meals.mealId",
         model: "Meal",
         select: "title image",
-      });
+      })
+      .sort({ createdAt: "desc" });
 
     const formattedOrders = orders.map((order) => ({
       ...order.toObject(),

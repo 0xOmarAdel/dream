@@ -1,4 +1,5 @@
 const Reservation = require("../models/Reservation");
+const User = require("../models/User");
 
 const createReservation = async (req, res) => {
   try {
@@ -22,7 +23,11 @@ const createReservation = async (req, res) => {
       resDate,
       resTime,
     });
-
+    await User.findByIdAndUpdate(
+      userId,
+      { $push: { reservations: reservation._id } },
+      { new: true }
+    );
     res.status(201).json({ status: "success", data: reservation });
   } catch (error) {
     res.status(400).json({ status: "error", message: error.message });
@@ -34,15 +39,13 @@ const getReservations = async (req, res) => {
     let reservations;
 
     if (req.user.role === "admin") {
-      reservations = await Reservation.find().populate(
-        "user",
-        "_id firstName lastName email"
-      );
+      reservations = await Reservation.find()
+        .populate("user", "_id firstName lastName email")
+        .sort({ createdAt: "desc" });
     } else {
-      reservations = await Reservation.find({ user: req.user._id }).populate(
-        "user",
-        "_id firstName lastName email"
-      );
+      reservations = await Reservation.find({ user: req.user._id })
+        .populate("user", "_id firstName lastName email")
+        .sort({ createdAt: "desc" });
     }
 
     res.status(200).json({ status: "success", data: reservations });
