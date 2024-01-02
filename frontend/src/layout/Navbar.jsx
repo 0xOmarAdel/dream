@@ -164,11 +164,10 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        {isAdmin && (
-          <span className="hidden sm:block text-gray-600 font-medium">
-            Welcome, {user.firstName}
-          </span>
-        )}
+
+        <span className="hidden sm:block text-gray-600 font-medium">
+          Welcome, {user.firstName}
+        </span>
       </div>
     </div>
   );
