@@ -94,7 +94,7 @@ export const removeItemFromCart = createAsyncThunk(
 
         return {
           cartItems: updatedCartItems,
-          subtractedQuantity: 1,
+          subtractedQuantity: mealToRemove.quantity,
           subtractedPrice: mealToRemove.price,
         };
       } else {
