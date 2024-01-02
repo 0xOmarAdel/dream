@@ -19,12 +19,12 @@ const LogIn = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full  min-h-screen bg-white px-5 py-5">
+    <div className="flex justify-center items-center w-full  bg-white px-5 py-5">
       <div className="xl:max-w-7xl bg-white w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
-        <div className="sm:w-[60%] lg:w-[50%] items-center justify-center hidden md:flex ">
-          <Lottie animationData={Login} loop={true} />
+        <div className="">
+          <Lottie animationData={Login} loop={true} className="min-h-screen" />
         </div>
-        <div className="mx-auto md:p-10 py-5 md:py-0">
+        <div className="mx-auto md:p-10 py-5 md:py-0 items-center justify-center">
           <h1 className="text-start text-4xl sm:text-3xl font-semibold text-sky-500 mb-5">
             Sign In
           </h1>
