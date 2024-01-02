@@ -8,11 +8,13 @@ import {
   MdLogout,
   MdOutlineChecklist,
 } from "react-icons/md";
+import { emptyCart } from "../../store/slices/cartSlice";
 
 const AdminSidebar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    dispatch(emptyCart());
     dispatch(logout());
   };
 
