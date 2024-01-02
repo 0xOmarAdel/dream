@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Formik, Form } from "formik";
 import FormikField from "../ui/FormikField";
 import { userEditSchema } from "../schemas/userEditSchema";
@@ -7,7 +6,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../store/slices/userAuthSlice";
 import axiosApi from "../utils/axiosConfig";
 import ProfileSidebar from "../components/Profile/ProfileSidebar";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
@@ -20,32 +19,17 @@ const Profile = () => {
         url: "/user",
         data: values,
       });
+
+      toast.error("You've successfully updated your account information.");
     } catch (error) {
-      console.error("Error submitting edit:", error.message);
+      toast.error("An error occurred while submitting your request.");
     }
   };
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const toggleShowConfirmPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const notify = () => toast.success("Profile updated successfully!");
 
   return (
     <div className="grid grid-cols-12 h-screen overflow-hidden">
       <div className="lg:col-span-3">
-        <ProfileSidebar
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-        />
+        <ProfileSidebar />
       </div>
       <div className="col-span-12 lg:col-span-9">
         <main>
@@ -98,7 +82,6 @@ const Profile = () => {
                         touched={touched.password}
                         error={errors.password}
                         inputClasses={"input input-bordered input-primary"}
-                        onClick={toggleShowPassword}
                       />
                     </div>
                     <div className="mx-auto mb-6 text-center">
@@ -109,29 +92,10 @@ const Profile = () => {
                         touched={touched.confirmPassword}
                         error={errors.confirmPassword}
                         inputClasses={"input input-bordered input-primary"}
-                        onClick={toggleShowConfirmPassword}
                       />
                     </div>
                     <div className="mx-auto mb-6 text-center">
-                      <Button
-                        type="submit"
-                        text={"Save"}
-                        disabled={!isValid}
-                        onClick={notify}
-                      />
-                      <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="light"
-                        progressStyle={{ backgroundColor: "#0ea5ea" }}
-                      />
+                      <Button type="submit" text={"Save"} disabled={!isValid} />
                     </div>
                   </Form>
                 )}
