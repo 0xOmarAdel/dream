@@ -7,7 +7,6 @@ import { selectUser } from "../store/slices/userAuthSlice";
 import axiosApi from "../utils/axiosConfig";
 import ProfileSidebar from "../components/Profile/ProfileSidebar";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Section from "../ui/Section";
 
 const Profile = () => {
@@ -17,7 +16,7 @@ const Profile = () => {
     try {
       await axiosApi.request({
         method: "PUT",
-        url: "/user",
+        url: `/users/${user._id}`,
         data: values,
       });
 
@@ -36,17 +35,13 @@ const Profile = () => {
         <h1 className="text-3xl text-gray-600 font-bold mb-6">Profile</h1>
         <Formik
           initialValues={{
-            name: user ? `${user.firstName} ${user.lastName}` : "",
+            firstName: user ? user.firstName : "",
+            lastName: user ? user.lastName : "",
             email: user ? user.email : "",
-            password: "",
             confirmPassword: "",
           }}
-          onSubmit={(values, actions) => {
+          onSubmit={(values) => {
             submitEdit(values);
-            setTimeout(() => {
-              actions.setSubmitting(false);
-            }, 1000);
-            console.log(values);
           }}
           validationSchema={userEditSchema}
         >
@@ -54,10 +49,17 @@ const Profile = () => {
             <Form className="flex flex-col gap-6">
               <FormikField
                 type="text"
-                name="name"
+                name="firstName"
                 placeholder="First Name"
-                touched={touched.name}
-                error={errors.name}
+                touched={touched.firstName}
+                error={errors.firstName}
+              />
+              <FormikField
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                touched={touched.lastName}
+                error={errors.lastName}
               />
               <FormikField
                 type="email"
@@ -68,19 +70,12 @@ const Profile = () => {
               />
               <FormikField
                 type="password"
-                name="password"
-                placeholder="Password"
-                touched={touched.password}
-                error={errors.password}
-              />
-              <FormikField
-                type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 touched={touched.confirmPassword}
                 error={errors.confirmPassword}
               />
-              <Button type="submit" text={"Save"} disabled={!isValid} />
+              <Button type="submit" text="save" disabled={!isValid} />
             </Form>
           )}
         </Formik>

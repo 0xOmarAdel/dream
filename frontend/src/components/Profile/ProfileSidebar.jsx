@@ -4,7 +4,6 @@ import { FaUserEdit } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/userAuthSlice";
 
-
 const ProfileSidebar = () => {
   const dispatch = useDispatch();
 
