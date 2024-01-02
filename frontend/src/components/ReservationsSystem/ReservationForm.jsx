@@ -12,12 +12,9 @@ import TimePicker from "react-time-picker";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/slices/userAuthSlice";
 import axiosApi from "../../utils/axiosConfig";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const ReservationForm = () => {
-  const notify = () => toast.success("Reservation created successfully!");
-
   const user = useSelector(selectUser);
 
   const today = new Date();
@@ -37,10 +34,9 @@ const ReservationForm = () => {
         url: "/reservation",
         data: values,
       });
-      notify();
-      console.log("You've successfully submitted a reservation");
+      toast.success("You've successfully submitted a reservation.");
     } catch (error) {
-      console.error("Error submitting reservation:", error.message);
+      toast.error("An error occurred while confirming your reservation.");
     }
   };
 
@@ -159,7 +155,6 @@ const ReservationForm = () => {
             classes="mt-5"
             disabled={!isValid}
           />
-          <ToastContainer />
         </Form>
       )}
     </Formik>
