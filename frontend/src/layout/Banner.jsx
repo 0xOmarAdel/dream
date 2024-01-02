@@ -13,28 +13,21 @@ const Banner = ({ title, breadcrumbs }) => {
         <div className="breadcrumbs text-xl">
           <ul>
             {breadcrumbs.map((breadcrumb) => (
-              <>
+              <li
+                key={breadcrumb.text}
+                className="text-gray-300 capitalize before:!opacity-100"
+              >
                 {breadcrumb.path ? (
-                  <li
-                    key={breadcrumb}
-                    className="text-gray-300 capitalize before:!opacity-100"
-                  >
-                    <Link
-                      to={breadcrumb.path}
-                      className="transition duration-300 hover:!no-underline hover:text-primary"
-                    >
-                      {breadcrumb.text}
-                    </Link>
-                  </li>
-                ) : (
-                  <li
-                    key={breadcrumb}
-                    className="text-gray-300 capitalize before:!opacity-100"
+                  <Link
+                    to={breadcrumb.path}
+                    className="transition duration-300 hover:!no-underline hover:text-primary"
                   >
                     {breadcrumb.text}
-                  </li>
+                  </Link>
+                ) : (
+                  breadcrumb.text
                 )}
-              </>
+              </li>
             ))}
           </ul>
         </div>
