@@ -28,7 +28,7 @@ const ImagesSlider = () => {
   }, [images.length]);
 
   return (
-    <div className="col-span-1">
+    <div className="col-span-1 hidden lg:block">
       <AnimatePresence>
         {images.map((image) => (
           <div key={image.id}>

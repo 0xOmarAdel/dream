@@ -8,7 +8,7 @@ const FeaturedMeal = ({ featuredMeal, index, isInView }) => {
   return (
     <motion.div
       key={featuredMeal.id}
-      className="flex flex-row justify-between gap-4"
+      className="flex flex-col sm:flex-row justify-between gap-4"
       variants={{
         hidden: {
           x: -100,
@@ -27,20 +27,20 @@ const FeaturedMeal = ({ featuredMeal, index, isInView }) => {
       initial={"hidden"}
       animate={isInView ? "visible" : "hidden"}
     >
-      <div className="flex flex-row gap-4">
-        <MealImage image={featuredMeal.image} classes="w-36" />
-        <div className="">
+      <div className="flex flex-col sm:flex-row items-center gap-4">
+        <MealImage image={featuredMeal.image} classes="w-60 sm:w-36" />
+        <div className="flex flex-col items-center sm:items-start">
           <MealTitle
             title={featuredMeal.title}
             classes="text-xl text-primary font-medium"
           />
           <MealDescription
             description={featuredMeal.description}
-            classes="text-gray-500 font-medium"
+            classes="text-gray-500 font-medium text-center"
           />
         </div>
       </div>
-      <div className="flex flex-col justify-center items-end gap-1 text- text-gray-600 font-medium">
+      <div className="flex flex-col justify-center items-center sm:items-end gap-1 text- text-gray-600 font-medium">
         {featuredMeal.options.map((featuredMealOption) => (
           <div key={featuredMealOption._id} className="flex flex-row gap-2">
             <p>{featuredMealOption.size}</p>

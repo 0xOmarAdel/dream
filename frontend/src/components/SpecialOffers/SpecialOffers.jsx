@@ -14,7 +14,7 @@ const SpecialOffers = () => {
       ref={ref}
     >
       <div className="flex flex-col gap-10">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-center sm:items-start gap-2">
           <p className="text-2xl text-primary capitalize">from the menu</p>
           <p className="text-4xl text-gray-700 font-medium uppercase">
             special offers

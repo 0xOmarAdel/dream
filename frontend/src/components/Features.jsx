@@ -11,7 +11,7 @@ const Features = () => {
           <div className="text-5xl text-sky-500">
             <BiCalendar />
           </div>
-          <h3 className="my-3 text-3xl font-semibold flex items-center cursor-pointer">
+          <h3 className="my-3 text-3xl font-semibold text-center">
             Reservation
           </h3>
         </div>
@@ -19,19 +19,19 @@ const Features = () => {
           <div className="text-5xl text-sky-500">
             <LiaShippingFastSolid />
           </div>
-          <h3 className="my-3 text-3xl font-semibold">Delivery</h3>
+          <h3 className="my-3 text-3xl font-semibold text-center">Delivery</h3>
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="text-5xl text-sky-500">
             <FaCreditCard />
           </div>
-          <h3 className="my-3 text-3xl font-semibold">Online Payments</h3>
+          <h3 className="my-3 text-3xl font-semibold text-center">Online Payments</h3>
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="text-5xl text-sky-500">
             <PiCoffeeBold />
           </div>
-          <h3 className="my-3 text-3xl font-semibold">Desserts</h3>
+          <h3 className="my-3 text-3xl font-semibold text-center">Desserts</h3>
         </div>
       </div>
     </section>
