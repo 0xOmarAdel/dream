@@ -64,7 +64,7 @@ const LogIn = () => {
               <div>
                 <p className="text-center">
                   Forgot your password?{" "}
-                  <Link to="/forgot-password" className="text-sky-500">
+                  <Link to="/resetpassword" className="text-sky-500">
                     Reset Password
                   </Link>
                 </p>

@@ -21,6 +21,7 @@ import AdminReservations from "./pages/Admin/AdminReservations";
 import Reservations from "./pages/Reservations";
 import Loading from "./ui/Loading";
 import Profile from "./pages/Profile";
+import ResetPassword from "./pages/ResetPassword";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -77,6 +78,7 @@ const App = () => {
           path="/login"
           element={!user ? <LogIn /> : <Navigate to="/" />}
         />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route
           path="/menu"
           element={isAdmin ? <Navigate to="/meals" /> : <Menu />}
