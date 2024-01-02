@@ -9,8 +9,8 @@ const Hero = () => {
           "url(https://template-html.egprojets.com/food-lover/assets/img/demo/slides/01.jpg)",
       }}
     >
-      <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-3 items-center">
-        <h1 className="col-span-3 lg:col-span-2 font-bold text-5xl md:text-6xl text-gray-200 leading-[1.4] text-center">
+      <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-5 items-center">
+        <h1 className="col-span-5 lg:col-span-3 font-bold text-5xl md:text-6xl text-gray-200 leading-[1.3] md:!leading-[1.4] text-center">
           <span className="text-primary">Dream Restaurant,</span> the best food
           you&apos;ll ever <span className="text-primary">dream</span> of.
         </h1>

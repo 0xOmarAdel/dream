@@ -5,15 +5,15 @@ const ImagesSlider = () => {
   const images = [
     {
       id: 1,
-      src: "https://swigo.dexignzone.com/xhtml/assets/images/main-slider/slider2/pic1.png",
+      src: "https://cafeu.vercel.app/img/slider/baner1.png",
     },
     {
       id: 2,
-      src: "https://swigo.dexignzone.com/xhtml/assets/images/main-slider/slider2/pic2.png",
+      src: "https://cafeu.vercel.app/img/slider/baner.png",
     },
     {
       id: 3,
-      src: "https://swigo.dexignzone.com/xhtml/assets/images/main-slider/slider2/pic3.png",
+      src: "https://cafeu.vercel.app/img/slider/first-slider.png",
     },
   ];
 
@@ -28,7 +28,7 @@ const ImagesSlider = () => {
   }, [images.length]);
 
   return (
-    <div className="col-span-1 hidden lg:block">
+    <div className="col-span-2 hidden lg:block">
       <AnimatePresence>
         {images.map((image) => (
           <div key={image.id}>
