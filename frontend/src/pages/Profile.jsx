@@ -8,6 +8,7 @@ import axiosApi from "../utils/axiosConfig";
 import ProfileSidebar from "../components/Profile/ProfileSidebar";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Section from "../ui/Section";
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -27,83 +28,63 @@ const Profile = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 h-screen overflow-hidden">
+    <div className="grid grid-cols-12 min-h-screen overflow-hidden">
       <div className="lg:col-span-3">
         <ProfileSidebar />
       </div>
-      <div className="col-span-12 lg:col-span-9">
-        <main>
-          <div className="max-w-screen-2xl lg:p-4">
-            <div className="container mx-auto">
-              <h1 className="text-3xl font-bold mb-6">Profile</h1>
-              <Formik
-                initialValues={{
-                  name: user ? `${user.firstName} ${user.lastName}` : "",
-                  email: user ? user.email : "",
-                  password: "",
-                  confirmPassword: "",
-                }}
-                onSubmit={(values, actions) => {
-                  submitEdit(values);
-                  setTimeout(() => {
-                    actions.setSubmitting(false);
-                  }, 1000);
-                  console.log(values);
-                }}
-                validationSchema={userEditSchema}
-              >
-                {({ isValid, errors, touched }) => (
-                  <Form className="w-full">
-                    <div className="mx-auto mb-6 text-center">
-                      <FormikField
-                        type="text"
-                        name="name"
-                        placeholder="First Name"
-                        touched={touched.name}
-                        error={errors.name}
-                        inputClasses={"input input-bordered input-primary"}
-                      />
-                    </div>
-                    <div className="mx-auto mb-6 text-center">
-                      <FormikField
-                        type="email"
-                        name="email"
-                        placeholder="Email address"
-                        touched={touched.email}
-                        error={errors.email}
-                        inputClasses={"input input-bordered input-primary"}
-                      />
-                    </div>
-                    <div className="mx-auto mb-6 text-center">
-                      <FormikField
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        touched={touched.password}
-                        error={errors.password}
-                        inputClasses={"input input-bordered input-primary"}
-                      />
-                    </div>
-                    <div className="mx-auto mb-6 text-center">
-                      <FormikField
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm Password"
-                        touched={touched.confirmPassword}
-                        error={errors.confirmPassword}
-                        inputClasses={"input input-bordered input-primary"}
-                      />
-                    </div>
-                    <div className="mx-auto mb-6 text-center">
-                      <Button type="submit" text={"Save"} disabled={!isValid} />
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-          </div>
-        </main>
-      </div>
+      <Section classes="col-span-12 lg:col-span-9">
+        <h1 className="text-3xl text-gray-600 font-bold mb-6">Profile</h1>
+        <Formik
+          initialValues={{
+            name: user ? `${user.firstName} ${user.lastName}` : "",
+            email: user ? user.email : "",
+            password: "",
+            confirmPassword: "",
+          }}
+          onSubmit={(values, actions) => {
+            submitEdit(values);
+            setTimeout(() => {
+              actions.setSubmitting(false);
+            }, 1000);
+            console.log(values);
+          }}
+          validationSchema={userEditSchema}
+        >
+          {({ isValid, errors, touched }) => (
+            <Form className="flex flex-col gap-6">
+              <FormikField
+                type="text"
+                name="name"
+                placeholder="First Name"
+                touched={touched.name}
+                error={errors.name}
+              />
+              <FormikField
+                type="email"
+                name="email"
+                placeholder="Email address"
+                touched={touched.email}
+                error={errors.email}
+              />
+              <FormikField
+                type="password"
+                name="password"
+                placeholder="Password"
+                touched={touched.password}
+                error={errors.password}
+              />
+              <FormikField
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                touched={touched.confirmPassword}
+                error={errors.confirmPassword}
+              />
+              <Button type="submit" text={"Save"} disabled={!isValid} />
+            </Form>
+          )}
+        </Formik>
+      </Section>
     </div>
   );
 };
