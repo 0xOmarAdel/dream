@@ -1,63 +1,62 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const token = localStorage.getItem("token");
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 const initialState = {
   user: null,
-  loading: false,
-  error: null,
 };
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (registrationData, { rejectWithValue }) => {
+  async (registrationData) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/v1/auth/register",
         registrationData
       );
-      console.log(response);
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
       }
+
+      toast.success("Account created successfully.");
       return response.data.user;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        return rejectWithValue(error.response.data.message);
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred while logging in.");
       }
-      return rejectWithValue("An error occurred while registering.");
     }
   }
 );
 
-export const login = createAsyncThunk(
-  "auth/login",
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/login",
-        credentials
-      );
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.data.token}`;
-      }
-      return response.data.user;
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        return rejectWithValue(error.response.data.message);
-      }
-      return rejectWithValue("An error occurred while logging in.");
+export const login = createAsyncThunk("auth/login", async (credentials) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/v1/auth/login",
+      credentials
+    );
+    if (response.data.token) {
+      localStorage.setItem("token", response.data.token);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${response.data.token}`;
+    }
+    return response.data.user;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      toast.error(error.response.data.message);
+    } else {
+      toast.error("An error occurred while logging in.");
     }
   }
-);
+});
 
 const userAuthSlice = createSlice({
   name: "auth",
@@ -73,29 +72,11 @@ const userAuthSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
         state.user = action.payload;
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload ? action.payload : "An error occurred.";
-      })
-      .addCase(register.pending, (state) => {
-        state.loading = true;
-        state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.loading = false;
         state.user = action.payload;
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload ? action.payload : "An error occurred.";
       });
   },
 });
