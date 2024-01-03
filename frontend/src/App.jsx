@@ -78,7 +78,10 @@ const App = () => {
           path="/login"
           element={!user ? <LogIn /> : <Navigate to="/" />}
         />
-        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route
+          path="/resetpassword"
+          element={!user ? <ResetPassword /> : <Navigate to="/" />}
+        />
         <Route
           path="/menu"
           element={isAdmin ? <Navigate to="/meals" /> : <Menu />}

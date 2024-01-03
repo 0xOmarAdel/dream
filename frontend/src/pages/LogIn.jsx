@@ -78,13 +78,22 @@ const LogIn = () => {
               )}
             </Formik>
             <Divider />
-            <p className="text-center">
-              Don&apos;t have an account?{" "}
-              <Link to="/register" className="text-primary">
-                Sign Up
-              </Link>
-              .
-            </p>
+            <div className="flex flex-col gap-3">
+              <p className="text-gray-600 text-center">
+                Forgot your password?{" "}
+                <Link to="/resetpassword" className="text-primary">
+                  Reset Password
+                </Link>
+                .
+              </p>
+              <p className="text-gray-600 text-center">
+                Don&apos;t have an account?{" "}
+                <Link to="/register" className="text-primary">
+                  Sign Up
+                </Link>
+                .
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,54 +1,82 @@
-import sign from "../assets/formBg.jpg";
 import { Formik, Form } from "formik";
 import FormikField from "../ui/FormikField";
 import { resetPasswordSchema } from "../schemas/resetPasswordSchema";
 import Button from "../ui/Button";
 import Lottie from "lottie-react";
-import login from "../assets/Login.json";
+import chef from "../assets/chef.json";
+import { Link } from "react-router-dom";
+import Divider from "../ui/Divider";
+
 const ResetPassword = () => {
+  const submitHandler = async (values) => {
+    console.log(values);
+  };
+
   return (
-    <div className="">
-      <div className="min-h-screen flex justify-center items-center h-full">
-        <div>
-          <Lottie animationData={login} loop={true} />
-        </div>
-        <div className="glass border border-slate-100 rounded-md p-8 shadow-lg backdrop:filter backdrop:blur-sm  relative">
-          <h1 className="text-4xl sm:text-3xl font-semibold mb-5 text-center">
-            Reset Password
-          </h1>
-          <Formik
-            initialValues={{
-              email: "",
-            }}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
-            validationSchema={resetPasswordSchema}
-          >
-            {({ isValid, errors, touched }) => (
-              <Form>
-                <div className="relative my-4 text-sky-500">
+    <div
+      className="min-h-[80vh] flex justify-center items-center w-full bg-white px-5 py-5"
+      style={{
+        backgroundImage:
+          "url(https://cdn.myshoptet.com/usr/www.gymclothes.cz/user/documents/upload/blog2/co%20je%20to%20cico%20dieta.jpg)",
+      }}
+    >
+      <div className="items-center justify-center glass rounded-xl">
+        <div className="grid grid-cols-2 items-center">
+          <Lottie
+            animationData={chef}
+            className="col-span-1 h-full hidden md:block bg-primary rounded-ss-xl rounded-es-xl"
+          />
+
+          <div className="col-span-2 md:col-span-1 p-14 flex flex-col gap-6">
+            <h1 className="text-start text-4xl sm:text-3xl font-semibold text-primary">
+              Reset Password
+            </h1>
+            <Formik
+              initialValues={{
+                email: "",
+              }}
+              onSubmit={(values) => {
+                submitHandler(values);
+              }}
+              validationSchema={resetPasswordSchema}
+            >
+              {({ isValid, errors, touched }) => (
+                <Form className="flex flex-col gap-6">
                   <FormikField
-                    type="email"
                     name="email"
-                    placeholder="Email address"
-                    touched={touched.email}
+                    type="email"
+                    placeholder="Email"
                     error={errors.email}
-                    inputClasses={"input input-bordered input-primary"}
-                    label={"Email"}
-                    labelClasses={
-                      "absolute text-sm duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-500 peer-focus:dark:text-sky-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    }
+                    touched={touched.email}
+                    inputClasses="border-gray-400"
                   />
-                </div>
-                <Button
-                  type="submit"
-                  text="Reset Password"
-                  disabled={!isValid}
-                />
-              </Form>
-            )}
-          </Formik>
+                  <Button
+                    type="submit"
+                    text="Submit"
+                    disabled={!isValid}
+                    classes="mt-2"
+                  />
+                </Form>
+              )}
+            </Formik>
+            <Divider />
+            <div className="flex flex-col gap-3">
+              <p className="text-gray-600 text-center">
+                Remember your password?{" "}
+                <Link to="/login" className="text-primary">
+                  Sign In
+                </Link>
+                .
+              </p>
+              <p className="text-gray-600 text-center">
+                Don&apos;t have an account?{" "}
+                <Link to="/register" className="text-primary">
+                  Sign Up
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
