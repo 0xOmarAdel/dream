@@ -6,6 +6,7 @@ import useAxios from "../hooks/useAxios";
 import Loading from "../ui/Loading";
 import { useSearchParams } from "react-router-dom";
 import useEffectExceptFirstRender from "../hooks/useEffectExceptFirstRender";
+import Section from "../ui/Section";
 
 const Menu = () => {
   const [selectedMinPrice, setSelectedMinPrice] = useState(null);
@@ -82,13 +83,13 @@ const Menu = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col">
       <Banner
         title="menu page"
         breadcrumbs={[{ text: "home", path: "/" }, { text: "menu" }]}
       />
-      <div className="px-20 grid grid-cols-5 gap-10">
-        <div className="col-span-1">
+      <Section classes="grid grid-cols-5 gap-10">
+        <div className="hidden lg:block lg:col-span-1">
           <MenuFilters
             selectedMinPrice={selectedMinPrice}
             selectedMaxPrice={selectedMaxPrice}
@@ -103,10 +104,10 @@ const Menu = () => {
             setQueryStrings={setQueryStrings}
           />
         </div>
-        <div className="col-span-4">
+        <div className="col-span-5 lg:col-span-4">
           <Meals meals={meals} />
         </div>
-      </div>
+      </Section>
     </div>
   );
 };
