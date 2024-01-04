@@ -61,7 +61,7 @@ const MealReviewsModal = ({ hideReviews, rating, id }) => {
             >
               <span className="w-3">{rating.value}</span>
               <FaStar className="text-primary" />
-              <div className="w-44 h-4 relative bg-gray-300">
+              <div className="w-24 sm:w-44 h-4 relative bg-gray-300">
                 <div
                   className="absolute h-full z-10 bg-primary"
                   style={{
