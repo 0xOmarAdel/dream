@@ -7,8 +7,11 @@ import Loading from "../ui/Loading";
 import { useSearchParams } from "react-router-dom";
 import useEffectExceptFirstRender from "../hooks/useEffectExceptFirstRender";
 import Section from "../ui/Section";
+import { CiFilter } from "react-icons/ci";
 
 const Menu = () => {
+  const [showFilters, setShowFilters] = useState(false);
+
   const [selectedMinPrice, setSelectedMinPrice] = useState(null);
   const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -88,8 +91,18 @@ const Menu = () => {
         title="menu page"
         breadcrumbs={[{ text: "home", path: "/" }, { text: "menu" }]}
       />
-      <Section classes="grid grid-cols-5 gap-10">
-        <div className="hidden lg:block lg:col-span-1">
+      <Section classes="relative grid grid-cols-5 gap-10">
+        <button
+          onClick={() => setShowFilters((prevState) => !prevState)}
+          className="fixed right-8 sm:right-10 md:right-16 bottom-8 sm:bottom-10 md:bottom-16 z-[60] p-2 bg-primary rounded-full text-2xl text-gray-200 lg:hidden"
+        >
+          <CiFilter />
+        </button>
+        <div
+          className={`absolute lg:static top-0 z-50 h-full w-full px-10 sm:px-28 md:px-36 py-12 lg:p-0 bg-gray-50 lg:bg-transparent ${
+            showFilters ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          } lg:col-span-1 transition duration-500`}
+        >
           <MenuFilters
             selectedMinPrice={selectedMinPrice}
             selectedMaxPrice={selectedMaxPrice}
