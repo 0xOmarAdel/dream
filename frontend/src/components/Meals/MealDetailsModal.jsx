@@ -22,7 +22,9 @@ const MealDetailsModal = ({
       exit={{ opacity: 0 }}
     >
       <div
-        className={`grid ${isAdminMeals ? "grid-cols-1" : "grid-cols-2"} gap-7`}
+        className={`grid ${
+          isAdminMeals ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"
+        } gap-7`}
       >
         {!isAdminMeals && (
           <div className="col-span-1">
@@ -49,7 +51,7 @@ const MealDetailsModal = ({
           )}
 
           {!isAdminMeals && (
-            <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-col md:flex-row md:items-center gap-2">
               <MealRating
                 rating={rating || 0}
                 starsContainerClasses="mt-1 text-xl"
