@@ -1,12 +1,16 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import axios from "axios";
 import queryString from "query-string";
 
-const useAxios = (url, method = "GET", body = null, searchParams = {}) => {
+const useAxios = (url, method = "GET", body = null, searchParams = null) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isExecuting, setIsExecuting] = useState(false);
   const [error, setError] = useState(false);
+
+  const memoizedSearchParams = useMemo(() => {
+    return queryString.parse(searchParams);
+  }, [searchParams]);
 
   const runAxios = useCallback(async () => {
     try {
@@ -14,12 +18,12 @@ const useAxios = (url, method = "GET", body = null, searchParams = {}) => {
 
       setLoading(true);
       setIsExecuting(true);
-      
+
       const response = await axios({
         method: method,
         url: `http://localhost:5000/api/v1${url}`,
         data: body,
-        params: queryString.parse(searchParams),
+        params: memoizedSearchParams,
         headers: {
           "Content-Type": "application/json",
           ...(localToken && { Authorization: `Bearer ${localToken}` }),
@@ -33,7 +37,7 @@ const useAxios = (url, method = "GET", body = null, searchParams = {}) => {
       setLoading(false);
       setIsExecuting(false);
     }
-  }, [method, url, searchParams, body]);
+  }, [method, url, memoizedSearchParams, body]);
 
   return { runAxios, data, loading, isExecuting, error };
 };
