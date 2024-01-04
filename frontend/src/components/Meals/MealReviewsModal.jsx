@@ -3,6 +3,8 @@ import useAxios from "../../hooks/useAxios";
 import { motion } from "framer-motion";
 import MealRating from "./MealRating";
 import { useEffect } from "react";
+import Lottie from "lottie-react";
+import BurgerAnimation from "../../assets/BurgerAnimation.json";
 
 const MealReviewsModal = ({ hideReviews, rating, id }) => {
   const {
@@ -15,28 +17,17 @@ const MealReviewsModal = ({ hideReviews, rating, id }) => {
     fetchRatings();
   }, [fetchRatings]);
 
-  if (loading) return;
-  //   {
-  //     value: 5,
-  //     rating: 12,
-  //   },
-  //   {
-  //     value: 4,
-  //     rating: 6,
-  //   },
-  //   {
-  //     value: 3,
-  //     rating: 2,
-  //   },
-  //   {
-  //     value: 2,
-  //     rating: 0,
-  //   },
-  //   {
-  //     value: 1,
-  //     rating: 3,
-  //   },
-  // ];
+  if (loading)
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="w-full flex flex-row justify-center items-center"
+      >
+        <Lottie animationData={BurgerAnimation} loop={true} className="w-28" />
+      </motion.div>
+    );
 
   const totalReviews = ratings.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.rating;
