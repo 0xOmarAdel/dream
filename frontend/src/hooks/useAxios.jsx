@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
-const useAxios = (url, method, body) => {
+const useAxios = (url, method, body, searchParams) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -15,7 +15,9 @@ const useAxios = (url, method, body) => {
       setIsExecuting(true);
       const response = await axios({
         method: method || "GET",
-        url: `http://localhost:5000/api/v1${url}`,
+        url: `http://localhost:5000/api/v1${url}${
+          searchParams ? `?${searchParams}` : ""
+        }`,
         data: body,
         headers: {
           "Content-Type": "application/json",
