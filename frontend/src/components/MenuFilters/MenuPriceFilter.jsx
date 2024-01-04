@@ -31,10 +31,10 @@ const MenuPriceFilter = ({
           minDistance={minDistance}
           step={1}
         />
-        <div className="mt-5 flex flex-row justify-between gap-4">
+        <div className="mt-5 flex flex-row justify-between">
           <input
             type="number"
-            className="w-24 bg-transparent border border-gray-300 rounded-sm text-slate-900 text-center font-semibold tracking-wider transition duration-700 focus:outline-none focus:border-gray-500"
+            className="w-fit bg-transparent border border-gray-300 rounded-sm text-slate-900 text-center font-semibold tracking-wider transition duration-700 focus:outline-none focus:border-gray-500"
             min={priceRange[0]}
             max={maxPrice - minDistance}
             value={minPrice}
@@ -43,7 +43,7 @@ const MenuPriceFilter = ({
           <span className="text-lg select-none">-</span>
           <input
             type="number"
-            className="w-24 bg-transparent border border-gray-300 rounded-sm text-slate-900 text-center font-semibold tracking-wider transition duration-700 focus:outline-none focus:border-gray-500"
+            className="w-fit bg-transparent border border-gray-300 rounded-sm text-slate-900 text-center font-semibold tracking-wider transition duration-700 focus:outline-none focus:border-gray-500"
             min={minPrice + minDistance}
             max={priceRange[1]}
             value={maxPrice}
