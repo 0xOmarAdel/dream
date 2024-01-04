@@ -29,7 +29,11 @@ const Meal = ({
 
   return (
     <div className="col-span-1 flex flex-col items-center p-3 shadow-md rounded-md text-center">
-      <MealImage image={image} showModal={showModal} />
+      <MealImage
+        image={image}
+        showModal={showModal}
+        classes="w-full h-40 object-fill"
+      />
       <MealTitle title={title} showModal={showModal} />
       <MealPrice options={options} selectedSize={selectedSize} />
       <MealRating
