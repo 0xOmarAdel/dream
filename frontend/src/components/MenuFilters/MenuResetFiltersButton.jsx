@@ -1,12 +1,8 @@
 import { FaArrowRotateLeft } from "react-icons/fa6";
+import Button from "../../ui/Button";
 
 const MenuResetFiltersButton = ({ resetFilter }) => {
-  return (
-    <button className="btn btn-outline btn-primary" onClick={resetFilter}>
-      <FaArrowRotateLeft />
-      reset filters
-    </button>
-  );
+  return <Button onClick={resetFilter} text="reset" icon={FaArrowRotateLeft} />;
 };
 
 export default MenuResetFiltersButton;

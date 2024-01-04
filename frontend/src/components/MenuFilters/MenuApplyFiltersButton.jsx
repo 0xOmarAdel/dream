@@ -1,12 +1,8 @@
 import { IoFilter } from "react-icons/io5";
+import Button from "../../ui/Button";
 
 const MenuApplyFiltersButton = ({ applyFilters }) => {
-  return (
-    <button className="btn btn-outline btn-primary" onClick={applyFilters}>
-      <IoFilter className="text-lg" />
-      apply filters
-    </button>
-  );
+  return <Button onClick={applyFilters} text="apply" icon={IoFilter} />;
 };
 
 export default MenuApplyFiltersButton;
