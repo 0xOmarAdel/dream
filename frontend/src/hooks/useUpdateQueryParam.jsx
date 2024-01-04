@@ -4,7 +4,9 @@ const useUpdateQueryParam = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const updateQueryParam = (paramName, paramValue, expand = false) => {
-    if (expand) {
+    if (!paramValue) {
+      searchParams.delete(paramName);
+    } else if (expand) {
       const currentValues = searchParams.getAll(paramName);
 
       currentValues.push(paramValue);
