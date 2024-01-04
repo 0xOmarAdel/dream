@@ -44,7 +44,7 @@ const MealReviewsModal = ({ hideReviews, rating, id }) => {
         className="text-2xl text-gray-500 cursor-pointer transition duration-500 hover:text-primary"
       />
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="flex flex-col items-center gap-2 mb-3">
           <span className="text-2xl">
             <span className="font-semibold">{rating}</span>
@@ -53,7 +53,7 @@ const MealReviewsModal = ({ hideReviews, rating, id }) => {
           <MealRating rating={rating || 0} starsContainerClasses="text-2xl" />
           <span>{totalReviews} customer reviews</span>
         </div>
-        <div className="">
+        <div className="flex flex-col items-center">
           {ratings.map((rating) => (
             <div
               key={rating.value}
