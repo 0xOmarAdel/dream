@@ -32,7 +32,7 @@ const useAxios = (url, method, body, searchParams) => {
       setLoading(false);
       setIsExecuting(false);
     }
-  }, [method, url, body]);
+  }, [method, url, searchParams, body]);
 
   return { runAxios, data, loading, isExecuting, error };
 };
