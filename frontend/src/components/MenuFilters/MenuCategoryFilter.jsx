@@ -1,19 +1,19 @@
-import { useState } from "react";
-
-const MenuCategoryFilter = ({ list: categories }) => {
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
+const MenuCategoryFilter = ({
+  list: categories,
+  selectedCategories,
+  setSelectedCategories,
+}) => {
   const toggleCategory = (category) => {
     setSelectedCategories((prevSelectedCategories) => {
-      const updatedCategories = { ...prevSelectedCategories };
+      const updatedArray = [...prevSelectedCategories];
 
-      if (updatedCategories[category.title]) {
-        delete updatedCategories[category.title];
-      } else {
-        updatedCategories[category.title] = true;
-      }
+      const elementIndex = updatedArray.indexOf(category);
 
-      return updatedCategories;
+      updatedArray.indexOf(category) !== -1
+        ? updatedArray.splice(elementIndex, 1)
+        : updatedArray.push(category);
+
+      return updatedArray;
     });
   };
 
@@ -23,15 +23,15 @@ const MenuCategoryFilter = ({ list: categories }) => {
       <div className="collapse-title px-0 text-xl font-medium">Category</div>
       <div className="collapse-content px-0">
         {categories.map((category) => (
-          <div key={category._id} className="form-control">
+          <div key={category} className="form-control">
             <label className="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
-                checked={!!selectedCategories[category.title]}
+                checked={selectedCategories.includes(category)}
                 className="checkbox checkbox-primary checkbox-sm"
                 onChange={() => toggleCategory(category)}
               />
-              <span className="label-text">{category.title}</span>
+              <span className="label-text">{category}</span>
             </label>
           </div>
         ))}

@@ -1,8 +1,8 @@
 import { IoFilter } from "react-icons/io5";
 
-const MenuApplyFiltersButton = () => {
+const MenuApplyFiltersButton = ({ applyFilters }) => {
   return (
-    <button className="btn btn-outline btn-primary">
+    <button className="btn btn-outline btn-primary" onClick={applyFilters}>
       <IoFilter className="text-lg" />
       apply filters
     </button>

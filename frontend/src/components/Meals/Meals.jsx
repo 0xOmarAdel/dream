@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import MealModal from "./MealModal";
 import Meal from "./Meal";
-import { useLocation } from "react-router-dom";
 
-const Meals = ({ searchQuery }) => {
-  const { runAxios: fetchMeals, data: meals, loading } = useAxios("/meals");
-
-  useEffect(() => {
-    fetchMeals();
-  }, [fetchMeals]);
-
+const Meals = ({ meals, searchQuery }) => {
   const location = useLocation();
   const isAdminMeals = location.pathname === "/admin/meals";
 
@@ -21,7 +14,8 @@ const Meals = ({ searchQuery }) => {
         )
       : []
     : meals;
-  const Classes = `grid grid-cols-1 ${
+
+  const classes = `grid grid-cols-1 ${
     isAdminMeals ? "overflow-y-scroll h-screen" : ""
   } lg:grid-cols-4 gap-8`;
 
@@ -34,9 +28,8 @@ const Meals = ({ searchQuery }) => {
     document.getElementById("meal_modal").showModal();
   };
 
-  if (loading) return;
   return (
-    <div className={Classes}>
+    <div className={classes}>
       <MealModal
         mealData={activeModalData}
         showReviews={showReviews}

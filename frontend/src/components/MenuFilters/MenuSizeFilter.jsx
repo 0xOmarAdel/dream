@@ -1,19 +1,15 @@
-import { useState } from "react";
+const MenuSizeFilter = ({ list: sizes, selectedSizes, setSelectedSizes }) => {
+  const toggleSize = (size) => {
+    setSelectedSizes((prevSelectedSizes) => {
+      const updatedArray = [...prevSelectedSizes];
 
-const MenuSizeFilter = ({ list: sizes }) => {
-  const [selectedSizes, setSelectedCategories] = useState([]);
+      const elementIndex = updatedArray.indexOf(size);
 
-  const toggleSize = (category) => {
-    setSelectedCategories((prevSelectedCategories) => {
-      const updatedCategories = { ...prevSelectedCategories };
+      updatedArray.indexOf(size) !== -1
+        ? updatedArray.splice(elementIndex, 1)
+        : updatedArray.push(size);
 
-      if (updatedCategories[category.name]) {
-        delete updatedCategories[category.name];
-      } else {
-        updatedCategories[category.name] = true;
-      }
-
-      return updatedCategories;
+      return updatedArray;
     });
   };
 
@@ -22,16 +18,16 @@ const MenuSizeFilter = ({ list: sizes }) => {
       <input type="checkbox" />
       <div className="collapse-title px-0 text-xl font-medium">Size</div>
       <div className="collapse-content px-0">
-        {sizes.map((category) => (
-          <div key={category.id} className="form-control">
+        {sizes.map((size) => (
+          <div key={size} className="form-control">
             <label className="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
-                checked={!!selectedSizes[category.name]}
+                checked={selectedSizes.includes(size)}
                 className="checkbox checkbox-primary checkbox-sm"
-                onChange={() => toggleSize(category)}
+                onChange={() => toggleSize(size)}
               />
-              <span className="label-text capitalize">{category.name}</span>
+              <span className="label-text capitalize">{size}</span>
             </label>
           </div>
         ))}
