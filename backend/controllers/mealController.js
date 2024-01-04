@@ -33,6 +33,8 @@ const getAllMeals = async (req, res) => {
   try {
     const isFeaturedQuery = req.query.featured === "true";
 
+    console.log(req.query);
+
     const query = isFeaturedQuery ? { featured: true } : {};
 
     const meals = await Meal.find(query).populate("reviews");
