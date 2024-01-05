@@ -72,7 +72,7 @@ const Menu = () => {
       const paramValue = searchParams.get(paramName);
 
       updatedQueryStrings += `${
-        paramValue !== null ? `&${paramName}=${paramValue}` : ""
+        paramValue !== null ? `&${paramName}=${paramValue.toLowerCase()}` : ""
       }`;
     });
 

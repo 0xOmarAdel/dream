@@ -49,7 +49,7 @@ const MenuFilters = ({
     updateQueryParam("rating", selectedRatings.join(","));
 
     const updatedQueryStrings = `${
-      searchValue !== "" ? "&search=" + searchValue : ""
+      searchValue !== "" ? "&search=" + searchValue.toLowerCase() : ""
     }${
       selectedMinPrice !== null && selectedMinPrice !== filters.minPrice
         ? "&minPrice=" + selectedMinPrice
@@ -61,15 +61,15 @@ const MenuFilters = ({
     }${
       selectedCategories.length !== filters.categories.length &&
       selectedCategories.length > 0
-        ? "&category=" + selectedCategories
+        ? "&category=" + selectedCategories.toLowerCase()
         : ""
     }${
       selectedSizes.length !== filters.sizes.length && selectedSizes.length > 0
-        ? "&size=" + selectedSizes
+        ? "&size=" + selectedSizes.toLowerCase()
         : ""
     }${
       selectedRatings.length !== 5 && selectedRatings.length > 0
-        ? "&rating=" + selectedRatings
+        ? "&rating=" + selectedRatings.toLowerCase()
         : ""
     }`;
 
