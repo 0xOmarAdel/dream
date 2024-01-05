@@ -10,7 +10,6 @@ import Section from "../ui/Section";
 import { CiFilter } from "react-icons/ci";
 import MenuPagination from "../components/MenuFilters/MenuPagination";
 import queryString from "query-string";
-import useUpdateQueryParam from "../hooks/useUpdateQueryParam";
 
 const Menu = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -108,10 +107,9 @@ const Menu = () => {
     fetchMeals();
   }, [fetchMeals, queryStrings]);
 
-  const updateQueryParam = useUpdateQueryParam();
-
   useEffect(() => {
-    updateQueryParam("page", page);
+    searchParams.set("page", page);
+    setSearchParams(searchParams);
 
     setQueryStrings((prevState) => {
       const queryParams = queryString.parse(prevState) || {};
@@ -120,7 +118,8 @@ const Menu = () => {
 
       return updatedQueryString;
     });
-  }, [page, updateQueryParam]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   if (loading) return <Loading />;
 
