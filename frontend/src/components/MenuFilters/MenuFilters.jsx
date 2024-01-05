@@ -8,6 +8,7 @@ import MenuSizeFilter from "./MenuSizeFilter";
 import MenuRatingFilter from "./MenuRatingFilter";
 import { useSearchParams } from "react-router-dom";
 import useUpdateQueryParam from "../../hooks/useUpdateQueryParam";
+import MenuSearch from "./MenuSearch";
 
 const MenuFilters = ({
   searchValue,
@@ -136,12 +137,7 @@ const MenuFilters = ({
     <div className="sticky top-8 flex flex-col gap-5">
       <MenuApplyFiltersButton applyFilters={applyFilters} />
       <MenuResetFiltersButton resetFilter={resetFilter} />
-      <input
-        className="w-full px-3 py-2 bg-white border outline-none rounded-md transition duration-300 focus:border-primary"
-        placeholder="Search.."
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
+      <MenuSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <MenuSortOrder
         selectedOption={selectedOption}
         onChange={(selectedOption) => setSelectedOption(selectedOption)}
