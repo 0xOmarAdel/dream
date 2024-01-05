@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialCartState = {
   items: [],
@@ -59,16 +60,18 @@ export const addItemToCart = createAsyncThunk(
           ...cartItems,
         ];
 
+        toast.success("Product has been successfully added to your cart.");
+
         return {
           cartItems: updatedCartItems,
           additionalQuantity: 1,
           additionalPrice: newMeal.price,
         };
       } else {
-        console.log("Product is already in cart!");
+        toast.error("Product is already in cart.");
       }
     } catch (error) {
-      console.log("You need to log in first!");
+      toast.error("You need to log in first.");
     }
   }
 );
@@ -98,10 +101,10 @@ export const removeItemFromCart = createAsyncThunk(
           subtractedPrice: mealToRemove.price,
         };
       } else {
-        console.log("Product is not in cart!");
+        toast.error("Product is not in cart.");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("You need to log in first.");
     }
   }
 );
@@ -138,7 +141,7 @@ export const updateItemQuantity = createAsyncThunk(
             updatedCartTotalQuantity += cartItem.quantity;
           }
 
-          console.log(response.data.message);
+          toast.success(response.data.message);
 
           return {
             updatedCartItems,
@@ -147,10 +150,10 @@ export const updateItemQuantity = createAsyncThunk(
           };
         }
       } else {
-        console.log("Item is not in the cart");
+        toast.error("Item is not in the cart");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("You need to log in first.");
     }
   }
 );

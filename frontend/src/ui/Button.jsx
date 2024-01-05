@@ -1,6 +1,14 @@
 import { twMerge } from "tailwind-merge";
 
-const Button = ({ type, icon: Icon, text, disabled, classes, onClick }) => {
+const Button = ({
+  type,
+  icon: Icon,
+  text,
+  disabled,
+  classes,
+  iconClasses,
+  onClick,
+}) => {
   return (
     <button
       type={type || "button"}
@@ -15,7 +23,7 @@ const Button = ({ type, icon: Icon, text, disabled, classes, onClick }) => {
       onClick={onClick || (() => {})}
       disabled={disabled}
     >
-      {Icon ? <Icon /> : ""} {text}
+      {Icon ? <Icon className={iconClasses} /> : ""} {text}
     </button>
   );
 };

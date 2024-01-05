@@ -15,7 +15,7 @@ const MealSizes = ({ options, onSizeClick }) => {
           key={index}
           className={`${
             activeButton === index ? "text-sky-500" : "text-gray-600"
-          } hover:bg-sky-500 hover:text-white`}
+          } transition duration-300 hover:bg-sky-500 hover:text-white`}
           onClick={() => handleButtonClick(index)}
         >
           <span className="capitalize border px-1 py-0.5">{option.size}</span>
