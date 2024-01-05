@@ -93,7 +93,7 @@ export const removeItemFromCart = createAsyncThunk(
           (cartItem) => cartItem.id !== mealToRemove.id
         );
 
-        console.log(response.data.message);
+        toast.success(response.data.message);
 
         return {
           cartItems: updatedCartItems,
