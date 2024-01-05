@@ -66,7 +66,7 @@ const addToCart = async (req, res) => {
     const existingCartItem = await User.findOne({
       _id: userId,
       "cart.mealId": new mongoose.Types.ObjectId(mealId),
-      "cart.option": option,
+      "cart.size": selectedOption.size,
     });
 
     if (existingCartItem) {
