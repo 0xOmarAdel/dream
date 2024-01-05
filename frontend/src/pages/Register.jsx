@@ -98,22 +98,13 @@ const Register = () => {
               )}
             </Formik>
             <Divider />
-            <div className="flex flex-col gap-3">
-              <p className="text-gray-600 text-center">
-                Forgot your password?{" "}
-                <Link to="/resetpassword" className="text-primary">
-                  Reset Password
-                </Link>
-                .
-              </p>
-              <p className="text-gray-600 text-center">
-                Already have an account?{" "}
-                <Link to="/login" className="text-primary">
-                  Sign In
-                </Link>
-                .
-              </p>
-            </div>
+            <p className="text-gray-600 text-center">
+              Already have an account?{" "}
+              <Link to="/login" className="text-primary">
+                Sign In
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </div>
