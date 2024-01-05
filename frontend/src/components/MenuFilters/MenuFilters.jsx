@@ -8,8 +8,11 @@ import MenuSizeFilter from "./MenuSizeFilter";
 import MenuRatingFilter from "./MenuRatingFilter";
 import { useSearchParams } from "react-router-dom";
 import useUpdateQueryParam from "../../hooks/useUpdateQueryParam";
+import MenuSearch from "./MenuSearch";
+import { menuFilters } from "../../data/menuFilters";
 
 const MenuFilters = ({
+  setShowFilters,
   searchValue,
   setSearchValue,
   selectedMinPrice,
@@ -22,6 +25,8 @@ const MenuFilters = ({
   setSelectedSizes,
   selectedRatings,
   setSelectedRatings,
+  page,
+  setPage,
   setQueryStrings,
 }) => {
   const updateQueryParam = useUpdateQueryParam();
@@ -29,49 +34,81 @@ const MenuFilters = ({
   const [, setSearchParams] = useSearchParams();
 
   const resetFilter = () => {
+    setShowFilters(false);
+
     setSearchValue("");
     setSelectedMinPrice(null);
     setSelectedMaxPrice(null);
     setSelectedCategories([]);
     setSelectedSizes([]);
     setSelectedRatings([]);
+    setPage(1);
 
-    setSearchParams("");
-    setQueryStrings("");
+    setSearchParams({ page: 1 });
+    setQueryStrings("page=1");
   };
 
   const applyFilters = () => {
-    updateQueryParam("search", searchValue);
-    updateQueryParam("minPrice", selectedMinPrice);
-    updateQueryParam("maxPrice", selectedMaxPrice);
-    updateQueryParam("category", selectedCategories.join(","));
-    updateQueryParam("size", selectedSizes.join(","));
-    updateQueryParam("rating", selectedRatings.join(","));
+    setShowFilters(false);
 
-    const updatedQueryStrings = `${
-      searchValue !== "" ? "&search=" + searchValue.toLowerCase() : ""
-    }${
-      selectedMinPrice !== null && selectedMinPrice !== filters.minPrice
+    updateQueryParam("search", searchValue);
+    updateQueryParam(
+      "minPrice",
+      selectedMinPrice !== null &&
+        selectedMinPrice !== menuFilters.minPrice &&
+        selectedMinPrice
+    );
+    updateQueryParam(
+      "maxPrice",
+      selectedMaxPrice !== null &&
+        selectedMaxPrice !== menuFilters.maxPrice &&
+        selectedMaxPrice
+    );
+    updateQueryParam(
+      "category",
+      selectedCategories.length !== menuFilters.categories.length &&
+        selectedCategories.length > 0 &&
+        selectedCategories.join(",")
+    );
+    updateQueryParam(
+      "size",
+      selectedSizes.length !== menuFilters.sizes.length &&
+        selectedSizes.length > 0 &&
+        selectedSizes.join(",")
+    );
+    updateQueryParam(
+      "rating",
+      selectedRatings.length !== 5 &&
+        selectedRatings.length > 0 &&
+        selectedRatings.join(",")
+    );
+
+    const loweredCaseCategories = selectedCategories.join(",").toLowerCase();
+    const loweredCaseSizes = selectedSizes.join(",").toLowerCase();
+
+    const updatedQueryStrings = `${searchValue ? "search=" + searchValue : ""}${
+      selectedMinPrice !== null && selectedMinPrice !== menuFilters.minPrice
         ? "&minPrice=" + selectedMinPrice
         : ""
     }${
-      selectedMaxPrice !== null && selectedMaxPrice !== filters.maxPrice
+      selectedMaxPrice !== null && selectedMaxPrice !== menuFilters.maxPrice
         ? "&maxPrice=" + selectedMaxPrice
         : ""
     }${
-      selectedCategories.length !== filters.categories.length &&
+      selectedCategories.length !== menuFilters.categories.length &&
       selectedCategories.length > 0
-        ? "&category=" + selectedCategories.toLowerCase()
+        ? "&category=" + loweredCaseCategories
         : ""
     }${
-      selectedSizes.length !== filters.sizes.length && selectedSizes.length > 0
-        ? "&size=" + selectedSizes.toLowerCase()
+      selectedSizes.length !== menuFilters.sizes.length &&
+      selectedSizes.length > 0
+        ? "&size=" + loweredCaseSizes
         : ""
     }${
       selectedRatings.length !== 5 && selectedRatings.length > 0
-        ? "&rating=" + selectedRatings.toLowerCase()
+        ? "&rating=" + selectedRatings
         : ""
-    }`;
+    }${"&page=" + page}`;
 
     setQueryStrings(
       updatedQueryStrings.startsWith("&")
@@ -80,60 +117,31 @@ const MenuFilters = ({
     );
   };
 
-  const filters = {
-    minPrice: 0,
-    maxPrice: 100,
-    categories: [
-      "Beverages",
-      "Grilled Specialties",
-      "Pasta and Noodles",
-      "Pizza",
-      "Salads",
-      "Seafood",
-      "Desserts",
-    ],
-    sizes: [
-      "regular",
-      "small",
-      "medium",
-      "large",
-      "slice",
-      "whole",
-      "can",
-      "bottle",
-    ],
-  };
-
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     <div className="sticky top-8 flex flex-col gap-5">
       <MenuApplyFiltersButton applyFilters={applyFilters} />
       <MenuResetFiltersButton resetFilter={resetFilter} />
-      <input
-        className="w-full px-3 py-2 bg-white border outline-none rounded-md transition duration-300 focus:border-primary"
-        placeholder="Search.."
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
+      <MenuSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <MenuSortOrder
         selectedOption={selectedOption}
         onChange={(selectedOption) => setSelectedOption(selectedOption)}
       />
       <MenuPriceFilter
-        priceRange={[filters.minPrice, filters.maxPrice]}
+        priceRange={[menuFilters.minPrice, menuFilters.maxPrice]}
         selectedMinPrice={selectedMinPrice}
         selectedMaxPrice={selectedMaxPrice}
         setSelectedMinPrice={setSelectedMinPrice}
         setSelectedMaxPrice={setSelectedMaxPrice}
       />
       <MenuCategoryFilter
-        list={filters.categories}
+        list={menuFilters.categories}
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
       />
       <MenuSizeFilter
-        list={filters.sizes}
+        list={menuFilters.sizes}
         selectedSizes={selectedSizes}
         setSelectedSizes={setSelectedSizes}
       />
