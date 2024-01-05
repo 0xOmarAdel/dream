@@ -12,6 +12,8 @@ import { CiFilter } from "react-icons/ci";
 const Menu = () => {
   const [showFilters, setShowFilters] = useState(false);
 
+  const [searchValue, setSearchValue] = useState("");
+
   const [selectedMinPrice, setSelectedMinPrice] = useState(null);
   const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -41,6 +43,9 @@ const Menu = () => {
       const paramValue = searchParams.get(paramName);
 
       switch (paramName) {
+        case "search":
+          setSearchValue(paramValue || "");
+          break;
         case "minPrice":
           setSelectedMinPrice(paramValue ? parseInt(paramValue) : null);
           break;
@@ -104,15 +109,17 @@ const Menu = () => {
           } lg:col-span-1 transition duration-500`}
         >
           <MenuFilters
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
             selectedMinPrice={selectedMinPrice}
-            selectedMaxPrice={selectedMaxPrice}
-            selectedCategories={selectedCategories}
-            selectedSizes={selectedSizes}
-            selectedRatings={selectedRatings}
             setSelectedMinPrice={setSelectedMinPrice}
+            selectedMaxPrice={selectedMaxPrice}
             setSelectedMaxPrice={setSelectedMaxPrice}
+            selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
+            selectedSizes={selectedSizes}
             setSelectedSizes={setSelectedSizes}
+            selectedRatings={selectedRatings}
             setSelectedRatings={setSelectedRatings}
             setQueryStrings={setQueryStrings}
           />

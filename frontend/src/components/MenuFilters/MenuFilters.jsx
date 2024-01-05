@@ -10,15 +10,17 @@ import { useSearchParams } from "react-router-dom";
 import useUpdateQueryParam from "../../hooks/useUpdateQueryParam";
 
 const MenuFilters = ({
+  searchValue,
+  setSearchValue,
   selectedMinPrice,
-  selectedMaxPrice,
-  selectedCategories,
-  selectedSizes,
-  selectedRatings,
   setSelectedMinPrice,
+  selectedMaxPrice,
   setSelectedMaxPrice,
+  selectedCategories,
   setSelectedCategories,
+  selectedSizes,
   setSelectedSizes,
+  selectedRatings,
   setSelectedRatings,
   setQueryStrings,
 }) => {
@@ -27,17 +29,19 @@ const MenuFilters = ({
   const [, setSearchParams] = useSearchParams();
 
   const resetFilter = () => {
+    setSearchValue("");
+    setSelectedMinPrice(null);
+    setSelectedMaxPrice(null);
     setSelectedCategories([]);
     setSelectedSizes([]);
     setSelectedRatings([]);
-    setSelectedMinPrice(null);
-    setSelectedMaxPrice(null);
 
     setSearchParams("");
     setQueryStrings("");
   };
 
   const applyFilters = () => {
+    updateQueryParam("search", searchValue);
     updateQueryParam("minPrice", selectedMinPrice);
     updateQueryParam("maxPrice", selectedMaxPrice);
     updateQueryParam("category", selectedCategories.join(","));
@@ -45,8 +49,10 @@ const MenuFilters = ({
     updateQueryParam("rating", selectedRatings.join(","));
 
     const updatedQueryStrings = `${
+      selectedMinPrice !== "" ? "&search=" + searchValue : ""
+    }${
       selectedMinPrice !== null && selectedMinPrice !== filters.minPrice
-        ? "minPrice=" + selectedMinPrice
+        ? "&minPrice=" + selectedMinPrice
         : ""
     }${
       selectedMaxPrice !== null && selectedMaxPrice !== filters.maxPrice
@@ -104,6 +110,12 @@ const MenuFilters = ({
     <div className="sticky top-8 flex flex-col gap-5">
       <MenuApplyFiltersButton applyFilters={applyFilters} />
       <MenuResetFiltersButton resetFilter={resetFilter} />
+      <input
+        className="w-full px-3 py-2 bg-transparent border outline-none rounded-md transition duration-300 focus:border-primary"
+        placeholder="Search.."
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
       <MenuSortOrder
         selectedOption={selectedOption}
         onChange={(selectedOption) => setSelectedOption(selectedOption)}
