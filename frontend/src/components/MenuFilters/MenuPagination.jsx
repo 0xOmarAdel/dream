@@ -76,9 +76,11 @@ const MenuPagination = ({
         )}
       </div>
 
-      <div className="text-gray-600 mt-2">
-        Showing {startEntry} to {endEntry} of {totalMeals} entries
-      </div>
+      {currentPage <= totalPages && (
+        <div className="text-gray-600 mt-2">
+          Showing {startEntry} to {endEntry} of {totalMeals} entries
+        </div>
+      )}
     </div>
   );
 };

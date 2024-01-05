@@ -15,7 +15,7 @@ const Meals = ({ meals, searchQuery }) => {
       : []
     : meals;
 
-  const classes = `grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 ${
+  const classes = `h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 ${
     isAdminMeals ? "overflow-y-scroll h-screen" : ""
   } `;
 
@@ -36,14 +36,20 @@ const Meals = ({ meals, searchQuery }) => {
         setShowReviews={setShowReviews}
         isAdminMeals={isAdminMeals}
       />
-      {filteredMeals.map((meal) => (
-        <Meal
-          key={meal._id}
-          {...meal}
-          isAdminMeals={isAdminMeals}
-          changeActivateModal={changeActivateModal}
-        />
-      ))}
+      {filteredMeals.length > 0 ? (
+        filteredMeals.map((meal) => (
+          <Meal
+            key={meal._id}
+            {...meal}
+            isAdminMeals={isAdminMeals}
+            changeActivateModal={changeActivateModal}
+          />
+        ))
+      ) : (
+        <p className="col-span-1 sm:col-span-2 md:col-span-3 xl:col-span-4 text-xl text-gray-600 flex items-center justify-center">
+          Found no results
+        </p>
+      )}
     </div>
   );
 };
