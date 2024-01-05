@@ -66,7 +66,8 @@ const getAllMeals = async (req, res) => {
       ...(maxPrice && { "options.price": { $lte: parseFloat(maxPrice) } }),
     };
 
-    console.log(query);
+    const totalMeals = await Meal.countDocuments(query);
+    const totalPages = Math.ceil(totalMeals / limit);
 
     const meals = await Meal.find(query)
       .populate("reviews")
@@ -81,7 +82,11 @@ const getAllMeals = async (req, res) => {
         : 0,
     }));
 
-    res.status(200).json(mealsWithAverageRating);
+    res.status(200).json({
+      meals: mealsWithAverageRating,
+      totalPages,
+      totalMeals,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
