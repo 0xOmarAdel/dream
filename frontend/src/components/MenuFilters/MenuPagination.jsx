@@ -1,3 +1,8 @@
+import {
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from "react-icons/md";
+
 const MenuPagination = ({
   currentPage,
   setCurrentPage,
@@ -11,13 +16,13 @@ const MenuPagination = ({
   );
 
   return (
-    <div className="join">
+    <div className="flex items-center justify-center mt-4 font-medium">
       {currentPage > 1 && (
         <button
-          className="join-item btn"
+          className="mr-2 px-4 py-2 bg-primary text-white rounded-full focus:outline-none hover:bg-sky-600"
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          &lt;&lt;
+          <MdKeyboardDoubleArrowLeft />
         </button>
       )}
       {pageNumbers.map(
@@ -26,8 +31,10 @@ const MenuPagination = ({
           pageNumber <= totalPages && (
             <button
               key={pageNumber}
-              className={`join-item btn ${
-                pageNumber === currentPage ? "btn-active" : ""
+              className={`mr-2 px-4 py-2 ${
+                pageNumber === currentPage
+                  ? "bg-sky-500 text-white rounded-full focus:outline-none hover:bg-sky-600"
+                  : "bg-gray-200 text-gray-700 rounded-full focus:outline-none hover:bg-gray-300"
               }`}
               onClick={() => setCurrentPage(pageNumber)}
             >
@@ -37,10 +44,10 @@ const MenuPagination = ({
       )}
       {currentPage < totalPages && (
         <button
-          className="join-item btn"
+          className="px-4 py-2 bg-sky-500 text-white rounded-full focus:outline-none hover:bg-sky-600"
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          &gt;&gt;
+          <MdKeyboardDoubleArrowRight />
         </button>
       )}
     </div>
