@@ -51,9 +51,9 @@ const getAllMeals = async (req, res) => {
           { description: { $regex: new RegExp(search, "i") } },
         ],
       }),
-      ...(category && { categoryName: category }),
+      ...(category && { categoryName: category.toLowerCase() }),
       ...(rating && { rating: { $gte: parseFloat(rating) } }),
-      ...(size && { "options.size": size }),
+      ...(size && { "options.size": size.toLowerCase() }),
       ...(minPrice && { "options.price": { $gte: parseFloat(minPrice) } }),
       ...(maxPrice && { "options.price": { $lte: parseFloat(maxPrice) } }),
     };
