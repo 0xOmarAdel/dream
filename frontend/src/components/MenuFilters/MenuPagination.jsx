@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import {
   MdKeyboardDoubleArrowLeft,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import queryString from "query-string";
 
 const MenuPagination = ({
   currentPage,
@@ -10,6 +13,21 @@ const MenuPagination = ({
   totalPages,
 }) => {
   const numPagesToShow = Math.min(totalPages, 5);
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (parseInt(currentPage) > totalPages || parseInt(currentPage) < 0) {
+      const updatedSearchParams = {
+        ...queryString.parse(searchParams.toString()),
+        page: 1,
+      };
+
+      setCurrentPage(1);
+      navigate({ search: queryString.stringify(updatedSearchParams) });
+    }
+  }, [currentPage, navigate, searchParams, setCurrentPage, totalPages]);
 
   const pageNumbers = Array.from(
     { length: numPagesToShow },
