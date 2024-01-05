@@ -42,11 +42,36 @@ const MenuFilters = ({
 
   const applyFilters = () => {
     updateQueryParam("search", searchValue);
-    updateQueryParam("minPrice", selectedMinPrice);
-    updateQueryParam("maxPrice", selectedMaxPrice);
-    updateQueryParam("category", selectedCategories.join(","));
-    updateQueryParam("size", selectedSizes.join(","));
-    updateQueryParam("rating", selectedRatings.join(","));
+    updateQueryParam(
+      "minPrice",
+      selectedMinPrice !== null &&
+        selectedMinPrice !== filters.minPrice &&
+        selectedMinPrice
+    );
+    updateQueryParam(
+      "maxPrice",
+      selectedMaxPrice !== null &&
+        selectedMaxPrice !== filters.maxPrice &&
+        selectedMaxPrice
+    );
+    updateQueryParam(
+      "category",
+      selectedCategories.length !== filters.categories.length &&
+        selectedCategories.length > 0 &&
+        selectedCategories.join(",")
+    );
+    updateQueryParam(
+      "size",
+      selectedSizes.length !== filters.sizes.length &&
+        selectedSizes.length > 0 &&
+        selectedSizes.join(",")
+    );
+    updateQueryParam(
+      "rating",
+      selectedRatings.length !== 5 &&
+        selectedRatings.length > 0 &&
+        selectedRatings.join(",")
+    );
 
     const loweredCaseCategories = selectedCategories.join(",").toLowerCase();
     const loweredCaseSizes = selectedSizes.join(",").toLowerCase();
