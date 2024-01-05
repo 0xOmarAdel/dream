@@ -1,5 +1,6 @@
 import { IoCartOutline } from "react-icons/io5";
 import useCartActions from "../../hooks/useCartActions";
+import Button from "../../ui/Button";
 
 const MealAddToCartButton = ({ meal, selectedSize }) => {
   const { addMealToCart } = useCartActions();
@@ -18,13 +19,13 @@ const MealAddToCartButton = ({ meal, selectedSize }) => {
   };
 
   return (
-    <button
-      className="btn btn-outline btn-primary w-full min-h-fit h-fit mt-3 py-2"
+    <Button
       onClick={() => addMealToCart(newMeal)}
-    >
-      <IoCartOutline className="text-lg" />
-      Add to cart
-    </button>
+      text="add to cart"
+      classes="mt-4 py-1.5 text-sm"
+      icon={IoCartOutline}
+      iconClasses="text-lg"
+    />
   );
 };
 
