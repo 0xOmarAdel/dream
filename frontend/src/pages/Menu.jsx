@@ -137,7 +137,7 @@ const Menu = () => {
           <CiFilter />
         </button>
         <div
-          className={`fixed lg:static top-0 z-50 h-full w-full px-10 sm:px-28 md:px-36 py-12 lg:p-0 bg-gray-50 lg:bg-transparent overflow-auto lg:overflow-hidden ${
+          className={`fixed lg:sticky top-0 lg:top-12 z-50 h-full lg:h-fit w-full px-10 sm:px-28 md:px-36 py-12 lg:p-0 bg-gray-50 lg:bg-transparent overflow-auto lg:overflow-hidden ${
             showFilters ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           } lg:col-span-1 transition duration-500`}
         >
