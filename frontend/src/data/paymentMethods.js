@@ -1,14 +1,18 @@
+import visa from "../assets/visa.png";
+import mastercard from "../assets/mastercard.png";
+import paypal from "../assets/paypal.png";
+
 export const paymentMethods = [
   {
     id: "visa",
-    src: "https://i.postimg.cc/g22HQhX0/70599-visa-curved-icon.png",
+    src: visa,
   },
   {
     id: "mastercard",
-    src: "https://i.postimg.cc/HW38JkkG/38602-mastercard-curved-icon.png",
+    src: mastercard,
   },
   {
     id: "paypal",
-    src: "https://i.postimg.cc/HL57j0V3/38605-paypal-straight-icon.png",
+    src: paypal,
   },
 ];

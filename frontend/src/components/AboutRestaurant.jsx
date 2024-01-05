@@ -1,5 +1,8 @@
 import { useRef } from "react";
 import { useInView, motion } from "framer-motion";
+import about1 from "../assets/about1.webp";
+import about2 from "../assets/about2.jpg";
+import about3 from "../assets/about3.jpg";
 
 const About = () => {
   const ref = useRef(null);
@@ -17,7 +20,7 @@ const About = () => {
               <div className="w-full px-3 sm:px-4 xl:w-1/2">
                 <div className="py-3 sm:py-4">
                   <motion.img
-                    src="https://axwwgrkdco.cloudimg.io/v7/__gmpics__/794a4fda36a64b7fafd20fbcb5971633"
+                    src={about1}
                     alt=""
                     className="w-full rounded-2xl"
                     variants={{
@@ -39,7 +42,7 @@ const About = () => {
                 </div>
                 <div className="py-3 sm:py-4">
                   <motion.img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Restaurant_N%C3%A4sinneula.jpg/640px-Restaurant_N%C3%A4sinneula.jpg"
+                    src={about2}
                     alt=""
                     className="w-full rounded-2xl"
                     variants={{
@@ -63,7 +66,7 @@ const About = () => {
               <div className="w-full px-3 sm:px-4 xl:w-1/2">
                 <div className="relative z-10 my-4">
                   <motion.img
-                    src="https://cdn.sortiraparis.com/images/80/100789/834083-too-restaurant-too-hotel-paris-photos-menu-plats.jpg"
+                    src={about3}
                     alt=""
                     className="w-full rounded-2xl"
                     variants={{
