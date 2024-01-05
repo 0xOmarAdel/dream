@@ -115,6 +115,7 @@ const Menu = () => {
           } lg:col-span-1 transition duration-500`}
         >
           <MenuFilters
+            setShowFilters={setShowFilters}
             searchValue={searchValue}
             setSearchValue={setSearchValue}
             selectedMinPrice={selectedMinPrice}

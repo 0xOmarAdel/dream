@@ -11,6 +11,7 @@ import useUpdateQueryParam from "../../hooks/useUpdateQueryParam";
 import MenuSearch from "./MenuSearch";
 
 const MenuFilters = ({
+  setShowFilters,
   searchValue,
   setSearchValue,
   selectedMinPrice,
@@ -30,6 +31,8 @@ const MenuFilters = ({
   const [, setSearchParams] = useSearchParams();
 
   const resetFilter = () => {
+    setShowFilters(false);
+
     setSearchValue("");
     setSelectedMinPrice(null);
     setSelectedMaxPrice(null);
@@ -42,6 +45,8 @@ const MenuFilters = ({
   };
 
   const applyFilters = () => {
+    setShowFilters(false);
+
     updateQueryParam("search", searchValue);
     updateQueryParam(
       "minPrice",
