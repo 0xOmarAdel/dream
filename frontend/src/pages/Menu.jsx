@@ -32,6 +32,7 @@ const Menu = () => {
 
   useEffect(() => {
     const queryParamsNames = [
+      "search",
       "minPrice",
       "maxPrice",
       "category",
@@ -71,8 +72,12 @@ const Menu = () => {
     queryParamsNames.forEach((paramName) => {
       const paramValue = searchParams.get(paramName);
 
+      const lowercaseParamValue = paramValue.toLowerCase();
+
       updatedQueryStrings += `${
-        paramValue !== null ? `&${paramName}=${paramValue.toLowerCase()}` : ""
+        lowercaseParamValue !== null
+          ? `&${paramName}=${lowercaseParamValue}`
+          : ""
       }`;
     });
 
