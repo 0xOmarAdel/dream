@@ -24,6 +24,8 @@ const MenuFilters = ({
   setSelectedSizes,
   selectedRatings,
   setSelectedRatings,
+  page,
+  setPage,
   setQueryStrings,
 }) => {
   const updateQueryParam = useUpdateQueryParam();
@@ -39,9 +41,10 @@ const MenuFilters = ({
     setSelectedCategories([]);
     setSelectedSizes([]);
     setSelectedRatings([]);
+    setPage(1);
 
-    setSearchParams("");
-    setQueryStrings("");
+    setSearchParams({ page: 1 });
+    setQueryStrings("page=1");
   };
 
   const applyFilters = () => {
@@ -103,7 +106,7 @@ const MenuFilters = ({
       selectedRatings.length !== 5 && selectedRatings.length > 0
         ? "&rating=" + selectedRatings
         : ""
-    }`;
+    }${"&page=" + page}`;
 
     setQueryStrings(
       updatedQueryStrings.startsWith("&")

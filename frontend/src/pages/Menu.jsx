@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import useEffectExceptFirstRender from "../hooks/useEffectExceptFirstRender";
 import Section from "../ui/Section";
 import { CiFilter } from "react-icons/ci";
+import MenuPagination from "../components/MenuFilters/MenuPagination";
 
 const Menu = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -20,6 +21,8 @@ const Menu = () => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedRatings, setSelectedRatings] = useState([]);
 
+  const [page, setPage] = useState(1);
+
   const [queryStrings, setQueryStrings] = useState(null);
 
   const {
@@ -28,7 +31,7 @@ const Menu = () => {
     loading,
   } = useAxios("/meals", "GET", null, queryStrings);
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const queryParamsNames = [
@@ -38,6 +41,7 @@ const Menu = () => {
       "category",
       "size",
       "rating",
+      "page",
     ];
 
     queryParamsNames.forEach((paramName) => {
@@ -62,6 +66,9 @@ const Menu = () => {
         case "rating":
           setSelectedRatings(paramValue ? [parseInt(paramValue)] : []);
           break;
+        case "page":
+          setPage(parseInt(paramValue) || 1);
+          break;
         default:
           break;
       }
@@ -81,6 +88,11 @@ const Menu = () => {
           : ""
       }`;
     });
+
+    if (!searchParams.get("page")) {
+      setSearchParams({ page: 1 });
+      updatedQueryStrings += "&page=1";
+    }
 
     setQueryStrings(
       updatedQueryStrings.startsWith("&")
@@ -128,11 +140,14 @@ const Menu = () => {
             setSelectedSizes={setSelectedSizes}
             selectedRatings={selectedRatings}
             setSelectedRatings={setSelectedRatings}
+            page={page}
+            setPage={setPage}
             setQueryStrings={setQueryStrings}
           />
         </div>
-        <div className="col-span-5 lg:col-span-4">
+        <div className="col-span-5 lg:col-span-4 flex flex-col items-center gap-10">
           <Meals meals={meals} />
+          <MenuPagination />
         </div>
       </Section>
     </div>
