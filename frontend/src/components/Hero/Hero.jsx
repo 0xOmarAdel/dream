@@ -1,12 +1,12 @@
 import ImagesSlider from "./ImagesSlider";
+import hero from "../../assets/hero.jpg";
 
 const Hero = () => {
   return (
     <div
       className="relative min-h-[70vh] px-8 sm:px-10 md:px-16 lg:px-16 xl:px-22 bg-center bg-fixed flex"
       style={{
-        backgroundImage:
-          "url(https://template-html.egprojets.com/food-lover/assets/img/demo/slides/01.jpg)",
+        backgroundImage: `url(${hero})`,
       }}
     >
       <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-5 items-center">

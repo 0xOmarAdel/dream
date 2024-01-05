@@ -8,6 +8,7 @@ import FormikField from "../ui/FormikField";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 import Divider from "../ui/Divider";
+import auth from "../assets/auth.jpg"
 
 const LogIn = () => {
   const dispatch = useDispatch();
@@ -25,8 +26,7 @@ const LogIn = () => {
     <div
       className="min-h-[80vh] flex justify-center items-center w-full bg-white px-5 py-5"
       style={{
-        backgroundImage:
-          "url(https://cdn.myshoptet.com/usr/www.gymclothes.cz/user/documents/upload/blog2/co%20je%20to%20cico%20dieta.jpg)",
+        backgroundImage: `url(${auth}`,
       }}
     >
       <div className="items-center justify-center glass rounded-xl">

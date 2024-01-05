@@ -7,6 +7,7 @@ import { SlLocationPin } from "react-icons/sl";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaMoneyBills } from "react-icons/fa6";
 import Button from "../ui/Button";
+import contact from "../assets/contact.jpg";
 
 const Contact = () => {
   const sendEmail = (values) => {
@@ -41,7 +42,12 @@ const Contact = () => {
         Contact with Dream.
       </h1>
       <section className="mb-32">
-        <div className="relative h-[300px] overflow-hidden bg-cover bg-[50%] bg-no-repeat bg-[url('https://cdn.sortiraparis.com/images/80/100789/834083-too-restaurant-too-hotel-paris-photos-menu-plats.jpg')]"></div>
+        <div
+          className="relative h-[300px] overflow-hidden bg-cover bg-[50%] bg-no-repeat]"
+          style={{
+            backgroundImage: `url(${contact}`,
+          }}
+        ></div>
         <div className="container px-6 md:px-12">
           <div className="block rounded-lg bg-[hsla(0,0%,100%,0.7)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px]">
             <div className="mb-12 grid gap-x-6 md:grid-cols-2 lg:grid-cols-4">
