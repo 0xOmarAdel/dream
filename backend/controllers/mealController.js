@@ -31,29 +31,47 @@ const createMeal = async (req, res) => {
 
 const getAllMeals = async (req, res) => {
   try {
-    const isFeaturedQuery = req.query.featured === "true";
+    const {
+      featured,
+      search,
+      category,
+      rating,
+      size,
+      minPrice,
+      maxPrice,
+      page = 1,
+      limit = 24,
+    } = req.query;
 
-    console.log(req.query);
+    const query = {
+      ...(featured === "true" && { featured: true }),
+      ...(search && {
+        $or: [
+          { title: { $regex: new RegExp(search, "i") } },
+          { description: { $regex: new RegExp(search, "i") } },
+        ],
+      }),
+      ...(category && { categoryName: category }),
+      ...(rating && { rating: { $gte: parseFloat(rating) } }),
+      ...(size && { "options.size": size }),
+      ...(minPrice && { "options.price": { $gte: parseFloat(minPrice) } }),
+      ...(maxPrice && { "options.price": { $lte: parseFloat(maxPrice) } }),
+    };
 
-    const query = isFeaturedQuery ? { featured: true } : {};
+    console.log(query);
 
-    const meals = await Meal.find(query).populate("reviews");
+    const meals = await Meal.find(query)
+      .populate("reviews")
+      .skip((page - 1) * limit)
+      .limit(limit);
 
-    const mealsWithAverageRating = meals.map((meal) => {
-      const totalRatings = meal.reviews.length;
-      const rating = totalRatings
+    const mealsWithAverageRating = meals.map((meal) => ({
+      ...meal.toObject({ virtuals: true }),
+      rating: meal.reviews.length
         ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
-          totalRatings
-        : 0;
-
-      const mealWithoutReviews = meal.toObject({ virtuals: true });
-      delete mealWithoutReviews.reviews;
-
-      return {
-        ...mealWithoutReviews,
-        rating,
-      };
-    });
+          meal.reviews.length
+        : 0,
+    }));
 
     res.status(200).json(mealsWithAverageRating);
   } catch (error) {
