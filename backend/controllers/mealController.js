@@ -43,6 +43,10 @@ const getAllMeals = async (req, res) => {
       limit = 24,
     } = req.query;
 
+    const capitalizeFirstLetter = (str) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     const query = {
       ...(featured === "true" && { featured: true }),
       ...(search && {
@@ -51,9 +55,13 @@ const getAllMeals = async (req, res) => {
           { description: { $regex: new RegExp(search, "i") } },
         ],
       }),
-      ...(category && { categoryName: category.toLowerCase() }),
+      ...(category && {
+        categoryName: capitalizeFirstLetter(category.toLowerCase()),
+      }),
       ...(rating && { rating: { $gte: parseFloat(rating) } }),
-      ...(size && { "options.size": size.toLowerCase() }),
+      ...(size && {
+        "options.size": capitalizeFirstLetter(size.toLowerCase()),
+      }),
       ...(minPrice && { "options.price": { $gte: parseFloat(minPrice) } }),
       ...(maxPrice && { "options.price": { $lte: parseFloat(maxPrice) } }),
     };
