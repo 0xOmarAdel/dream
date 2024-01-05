@@ -49,7 +49,7 @@ const MenuFilters = ({
     updateQueryParam("rating", selectedRatings.join(","));
 
     const updatedQueryStrings = `${
-      selectedMinPrice !== "" ? "&search=" + searchValue : ""
+      searchValue !== "" ? "&search=" + searchValue : ""
     }${
       selectedMinPrice !== null && selectedMinPrice !== filters.minPrice
         ? "&minPrice=" + selectedMinPrice
