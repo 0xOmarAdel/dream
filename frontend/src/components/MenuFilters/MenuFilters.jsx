@@ -1,5 +1,3 @@
-import { useState } from "react";
-import MenuSortOrder from "./MenuSortOrder";
 import MenuApplyFiltersButton from "./MenuApplyFiltersButton";
 import MenuResetFiltersButton from "./MenuResetFiltersButton";
 import MenuPriceFilter from "./MenuPriceFilter";
@@ -117,17 +115,11 @@ const MenuFilters = ({
     );
   };
 
-  const [selectedOption, setSelectedOption] = useState(null);
-
   return (
     <div className="sticky top-8 flex flex-col gap-5">
       <MenuApplyFiltersButton applyFilters={applyFilters} />
       <MenuResetFiltersButton resetFilter={resetFilter} />
       <MenuSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <MenuSortOrder
-        selectedOption={selectedOption}
-        onChange={(selectedOption) => setSelectedOption(selectedOption)}
-      />
       <MenuPriceFilter
         priceRange={[menuFilters.minPrice, menuFilters.maxPrice]}
         selectedMinPrice={selectedMinPrice}
