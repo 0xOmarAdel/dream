@@ -5,7 +5,7 @@ import FeaturedMeal from "./FeaturedMeal";
 const FeaturedMeals = ({ isInView }) => {
   const {
     runAxios: fetchFeaturedMeals,
-    data: featuredMeals,
+    data,
     loading,
   } = useAxios("/meals?featured=true");
 
@@ -17,7 +17,7 @@ const FeaturedMeals = ({ isInView }) => {
 
   return (
     <div className="flex flex-col gap-6">
-      {featuredMeals?.map((featuredMeal, index) => (
+      {data?.meals?.map((featuredMeal, index) => (
         <FeaturedMeal
           key={featuredMeal.id}
           featuredMeal={featuredMeal}
