@@ -9,6 +9,8 @@ import useEffectExceptFirstRender from "../hooks/useEffectExceptFirstRender";
 import Section from "../ui/Section";
 import { CiFilter } from "react-icons/ci";
 import MenuPagination from "../components/MenuFilters/MenuPagination";
+import queryString from "query-string";
+import useUpdateQueryParam from "../hooks/useUpdateQueryParam";
 
 const Menu = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -27,7 +29,7 @@ const Menu = () => {
 
   const {
     runAxios: fetchMeals,
-    data: meals,
+    data,
     loading,
   } = useAxios("/meals", "GET", null, queryStrings);
 
@@ -106,6 +108,20 @@ const Menu = () => {
     fetchMeals();
   }, [fetchMeals, queryStrings]);
 
+  const updateQueryParam = useUpdateQueryParam();
+
+  useEffect(() => {
+    updateQueryParam("page", page);
+
+    setQueryStrings((prevState) => {
+      const queryParams = queryString.parse(prevState) || {};
+      queryParams.page = page;
+      const updatedQueryString = queryString.stringify(queryParams);
+
+      return updatedQueryString;
+    });
+  }, [page, updateQueryParam]);
+
   if (loading) return <Loading />;
 
   return (
@@ -146,8 +162,13 @@ const Menu = () => {
           />
         </div>
         <div className="col-span-5 lg:col-span-4 flex flex-col items-center gap-10">
-          <Meals meals={meals} />
-          <MenuPagination />
+          <Meals meals={data.meals} />
+          <MenuPagination
+            currentPage={page}
+            setCurrentPage={setPage}
+            totalMeals={data.totalMeals}
+            totalPages={data.totalPages}
+          />
         </div>
       </Section>
     </div>
