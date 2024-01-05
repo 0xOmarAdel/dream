@@ -72,7 +72,8 @@ const Menu = () => {
     queryParamsNames.forEach((paramName) => {
       const paramValue = searchParams.get(paramName);
 
-      const lowercaseParamValue = paramValue.toLowerCase();
+      const lowercaseParamValue =
+        typeof paramValue === "string" ? paramValue.toLowerCase() : paramValue;
 
       updatedQueryStrings += `${
         lowercaseParamValue !== null
