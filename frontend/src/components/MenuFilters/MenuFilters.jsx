@@ -9,6 +9,7 @@ import MenuRatingFilter from "./MenuRatingFilter";
 import { useSearchParams } from "react-router-dom";
 import useUpdateQueryParam from "../../hooks/useUpdateQueryParam";
 import MenuSearch from "./MenuSearch";
+import { menuFilters } from "../../data/menuFilters";
 
 const MenuFilters = ({
   setShowFilters,
@@ -54,24 +55,24 @@ const MenuFilters = ({
     updateQueryParam(
       "minPrice",
       selectedMinPrice !== null &&
-        selectedMinPrice !== filters.minPrice &&
+        selectedMinPrice !== menuFilters.minPrice &&
         selectedMinPrice
     );
     updateQueryParam(
       "maxPrice",
       selectedMaxPrice !== null &&
-        selectedMaxPrice !== filters.maxPrice &&
+        selectedMaxPrice !== menuFilters.maxPrice &&
         selectedMaxPrice
     );
     updateQueryParam(
       "category",
-      selectedCategories.length !== filters.categories.length &&
+      selectedCategories.length !== menuFilters.categories.length &&
         selectedCategories.length > 0 &&
         selectedCategories.join(",")
     );
     updateQueryParam(
       "size",
-      selectedSizes.length !== filters.sizes.length &&
+      selectedSizes.length !== menuFilters.sizes.length &&
         selectedSizes.length > 0 &&
         selectedSizes.join(",")
     );
@@ -86,20 +87,21 @@ const MenuFilters = ({
     const loweredCaseSizes = selectedSizes.join(",").toLowerCase();
 
     const updatedQueryStrings = `${searchValue ? "search=" + searchValue : ""}${
-      selectedMinPrice !== null && selectedMinPrice !== filters.minPrice
+      selectedMinPrice !== null && selectedMinPrice !== menuFilters.minPrice
         ? "&minPrice=" + selectedMinPrice
         : ""
     }${
-      selectedMaxPrice !== null && selectedMaxPrice !== filters.maxPrice
+      selectedMaxPrice !== null && selectedMaxPrice !== menuFilters.maxPrice
         ? "&maxPrice=" + selectedMaxPrice
         : ""
     }${
-      selectedCategories.length !== filters.categories.length &&
+      selectedCategories.length !== menuFilters.categories.length &&
       selectedCategories.length > 0
         ? "&category=" + loweredCaseCategories
         : ""
     }${
-      selectedSizes.length !== filters.sizes.length && selectedSizes.length > 0
+      selectedSizes.length !== menuFilters.sizes.length &&
+      selectedSizes.length > 0
         ? "&size=" + loweredCaseSizes
         : ""
     }${
@@ -115,30 +117,6 @@ const MenuFilters = ({
     );
   };
 
-  const filters = {
-    minPrice: 0,
-    maxPrice: 100,
-    categories: [
-      "Beverages",
-      "Grilled Specialties",
-      "Pasta and Noodles",
-      "Pizza",
-      "Salads",
-      "Seafood",
-      "Desserts",
-    ],
-    sizes: [
-      "regular",
-      "small",
-      "medium",
-      "large",
-      "slice",
-      "whole",
-      "can",
-      "bottle",
-    ],
-  };
-
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
@@ -151,19 +129,19 @@ const MenuFilters = ({
         onChange={(selectedOption) => setSelectedOption(selectedOption)}
       />
       <MenuPriceFilter
-        priceRange={[filters.minPrice, filters.maxPrice]}
+        priceRange={[menuFilters.minPrice, menuFilters.maxPrice]}
         selectedMinPrice={selectedMinPrice}
         selectedMaxPrice={selectedMaxPrice}
         setSelectedMinPrice={setSelectedMinPrice}
         setSelectedMaxPrice={setSelectedMaxPrice}
       />
       <MenuCategoryFilter
-        list={filters.categories}
+        list={menuFilters.categories}
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
       />
       <MenuSizeFilter
-        list={filters.sizes}
+        list={menuFilters.sizes}
         selectedSizes={selectedSizes}
         setSelectedSizes={setSelectedSizes}
       />
