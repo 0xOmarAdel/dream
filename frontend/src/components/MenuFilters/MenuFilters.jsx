@@ -116,7 +116,7 @@ const MenuFilters = ({
   };
 
   return (
-    <div className="sticky top-8 flex flex-col gap-5">
+    <div className="lg:sticky top-8 flex flex-col gap-5">
       <MenuApplyFiltersButton applyFilters={applyFilters} />
       <MenuResetFiltersButton resetFilter={resetFilter} />
       <MenuSearch searchValue={searchValue} setSearchValue={setSearchValue} />
