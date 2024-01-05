@@ -54,8 +54,8 @@ const getAllMeals = async (req, res) => {
       ...(category && { categoryName: category }),
       ...(rating && { rating: { $gte: parseFloat(rating) } }),
       ...(size && { "options.size": size }),
-      ...(minPrice && { price: { $gte: parseFloat(minPrice) } }),
-      ...(maxPrice && { price: { $lte: parseFloat(maxPrice) } }),
+      ...(minPrice && { "options.price": { $gte: parseFloat(minPrice) } }),
+      ...(maxPrice && { "options.price": { $lte: parseFloat(maxPrice) } }),
     };
 
     console.log(query);
