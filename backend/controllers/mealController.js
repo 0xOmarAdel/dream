@@ -76,7 +76,7 @@ const getAllMeals = async (req, res) => {
 
     const mealsWithAverageRating = meals.map((meal) => ({
       ...meal.toObject({ virtuals: true }),
-      rating: meal.reviews.length
+      rating: meal.reviews?.length
         ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
           meal.reviews.length
         : 0,
