@@ -39,7 +39,7 @@ const getAllMeals = async (req, res) => {
       size,
       minPrice,
       maxPrice,
-      page = 1,
+      page,
       limit = 24,
     } = req.query;
 
@@ -69,10 +69,16 @@ const getAllMeals = async (req, res) => {
     const totalMeals = await Meal.countDocuments(query);
     const totalPages = Math.ceil(totalMeals / limit);
 
-    const meals = await Meal.find(query)
-      .populate("reviews")
-      .skip((page - 1) * limit)
-      .limit(limit);
+    let meals;
+
+    if (page) {
+      meals = await Meal.find(query)
+        .populate("reviews")
+        .skip((page - 1) * limit)
+        .limit(limit);
+    } else {
+      meals = await Meal.find(query);
+    }
 
     const mealsWithAverageRating = meals.map((meal) => ({
       ...meal.toObject({ virtuals: true }),
