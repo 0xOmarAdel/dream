@@ -49,23 +49,24 @@ const MenuPagination = ({
             <MdKeyboardDoubleArrowLeft />
           </button>
         )}
-        {pageNumbers.map(
-          (pageNumber) =>
-            pageNumber >= 1 &&
-            pageNumber <= totalPages && (
-              <button
-                key={pageNumber}
-                className={`mr-2 px-4 py-2 ${
-                  pageNumber === currentPage
-                    ? "bg-sky-500 text-white rounded-full focus:outline-none hover:bg-sky-600"
-                    : "bg-gray-200 text-gray-700 rounded-full focus:outline-none hover:bg-gray-300"
-                }`}
-                onClick={() => setCurrentPage(pageNumber)}
-              >
-                {pageNumber}
-              </button>
-            )
-        )}
+        {numPagesToShow !== 1 &&
+          pageNumbers.map(
+            (pageNumber) =>
+              pageNumber >= 1 &&
+              pageNumber <= totalPages && (
+                <button
+                  key={pageNumber}
+                  className={`mr-2 px-4 py-2 ${
+                    pageNumber === currentPage
+                      ? "bg-sky-500 text-white rounded-full focus:outline-none hover:bg-sky-600"
+                      : "bg-gray-200 text-gray-700 rounded-full focus:outline-none hover:bg-gray-300"
+                  }`}
+                  onClick={() => setCurrentPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              )
+          )}
         {currentPage < totalPages && (
           <button
             className="px-4 py-2 bg-sky-500 text-white font-bold text-lg rounded-full focus:outline-none hover:bg-sky-600"
@@ -76,7 +77,7 @@ const MenuPagination = ({
         )}
       </div>
 
-      {currentPage <= totalPages && (
+      {numPagesToShow !== 1 && currentPage <= totalPages && (
         <div className="text-gray-600 mt-2">
           Showing {startEntry} to {endEntry} of {totalMeals} entries
         </div>
