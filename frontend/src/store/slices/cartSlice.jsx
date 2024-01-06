@@ -98,7 +98,7 @@ export const removeItemFromCart = createAsyncThunk(
         return {
           cartItems: updatedCartItems,
           subtractedQuantity: mealToRemove.quantity,
-          subtractedPrice: mealToRemove.price,
+          subtractedPrice: mealToRemove.price * mealToRemove.quantity,
         };
       } else {
         toast.error("Product is not in cart.");
