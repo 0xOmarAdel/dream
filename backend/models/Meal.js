@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Review = require("./Review");
 
 const mealSchema = new mongoose.Schema({
   title: String,
@@ -11,7 +12,8 @@ const mealSchema = new mongoose.Schema({
   ],
   image: String,
   categoryName: String,
-  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+  reviews: [Review.schema],
+  rating: [{ type: Number, default: 0 }],
 });
 
 const Meal = mongoose.model("Meal", mealSchema);
