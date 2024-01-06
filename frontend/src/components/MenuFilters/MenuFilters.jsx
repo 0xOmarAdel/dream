@@ -76,9 +76,7 @@ const MenuFilters = ({
     );
     updateQueryParam(
       "rating",
-      selectedRatings.length !== 5 &&
-        selectedRatings.length > 0 &&
-        selectedRatings.join(",")
+      selectedRatings.length > 0 && selectedRatings.join(",")
     );
 
     const loweredCaseCategories = selectedCategories.join(",").toLowerCase();
@@ -102,11 +100,9 @@ const MenuFilters = ({
       selectedSizes.length > 0
         ? "&size=" + loweredCaseSizes
         : ""
-    }${
-      selectedRatings.length !== 5 && selectedRatings.length > 0
-        ? "&rating=" + selectedRatings
-        : ""
-    }${"&page=" + page}`;
+    }${selectedRatings.length > 0 ? "&rating=" + selectedRatings : ""}${
+      "&page=" + page
+    }`;
 
     setQueryStrings(
       updatedQueryStrings.startsWith("&")
