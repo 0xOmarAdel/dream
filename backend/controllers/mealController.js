@@ -58,7 +58,6 @@ const getAllMeals = async (req, res) => {
       ...(category && {
         categoryName: capitalizeFirstLetter(category.toLowerCase()),
       }),
-      ...(rating && { rating: { $gte: parseFloat(rating) } }),
       ...(size && {
         "options.size": capitalizeFirstLetter(size.toLowerCase()),
       }),
@@ -66,26 +65,51 @@ const getAllMeals = async (req, res) => {
       ...(maxPrice && { "options.price": { $lte: parseFloat(maxPrice) } }),
     };
 
-    const totalMeals = await Meal.countDocuments(query);
-    const totalPages = Math.ceil(totalMeals / limit);
-
     let meals;
 
-    if (page) {
+    if (rating) {
       meals = await Meal.find(query)
         .populate("reviews")
-        .skip((page - 1) * limit)
-        .limit(limit);
+        .then((meals) =>
+          meals.filter((meal) => {
+            const averageRating =
+              meal.reviews && meal.reviews.length
+                ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
+                  meal.reviews.length
+                : 0;
+
+            if (parseFloat(rating) % 1 === 0) {
+              return Math.round(averageRating) === parseFloat(rating);
+            } else {
+              return (
+                averageRating >= parseFloat(rating) &&
+                averageRating < parseFloat(rating) + 1
+              );
+            }
+          })
+        );
     } else {
-      meals = await Meal.find(query);
+      meals = await Meal.find(query).populate("reviews");
     }
 
-    const mealsWithAverageRating = meals.map((meal) => ({
+    const totalMeals = meals.length;
+    const totalPages = Math.ceil(totalMeals / limit);
+
+    let paginatedMeals;
+
+    if (page) {
+      paginatedMeals = meals.slice((page - 1) * limit, page * limit);
+    } else {
+      paginatedMeals = meals;
+    }
+
+    const mealsWithAverageRating = paginatedMeals.map((meal) => ({
       ...meal.toObject({ virtuals: true }),
-      rating: meal.reviews?.length
-        ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
-          meal.reviews.length
-        : 0,
+      rating:
+        meal.reviews && meal.reviews.length
+          ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
+            meal.reviews.length
+          : 0,
     }));
 
     res.status(200).json({
