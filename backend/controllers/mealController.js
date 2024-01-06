@@ -68,26 +68,19 @@ const getAllMeals = async (req, res) => {
     let meals;
 
     if (rating) {
-      meals = await Meal.find(query)
-        .populate("reviews")
-        .then((meals) =>
-          meals.filter((meal) => {
-            const averageRating =
-              meal.reviews && meal.reviews.length
-                ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
-                  meal.reviews.length
-                : 0;
+      const filteredMeals = await Meal.find(query).populate("reviews");
 
-            if (parseFloat(rating) % 1 === 0) {
-              return Math.round(averageRating) === parseFloat(rating);
-            } else {
-              return (
-                averageRating >= parseFloat(rating) &&
-                averageRating < parseFloat(rating) + 1
-              );
-            }
-          })
-        );
+      const ratingsArray = rating.split(",").map(parseFloat);
+
+      meals = filteredMeals.filter((meal) => {
+        const averageRating =
+          meal.reviews && meal.reviews.length
+            ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
+              meal.reviews.length
+            : 0;
+
+        return ratingsArray.includes(parseFloat(averageRating.toFixed(1)));
+      });
     } else {
       meals = await Meal.find(query).populate("reviews");
     }
@@ -103,14 +96,18 @@ const getAllMeals = async (req, res) => {
       paginatedMeals = meals;
     }
 
-    const mealsWithAverageRating = paginatedMeals.map((meal) => ({
-      ...meal.toObject({ virtuals: true }),
-      rating:
+    const mealsWithAverageRating = paginatedMeals.map((meal) => {
+      const averageRating =
         meal.reviews && meal.reviews.length
           ? meal.reviews.reduce((sum, review) => sum + review.rating, 0) /
             meal.reviews.length
-          : 0,
-    }));
+          : 0;
+
+      return {
+        ...meal.toObject({ virtuals: true }),
+        rating: averageRating,
+      };
+    });
 
     res.status(200).json({
       meals: mealsWithAverageRating,
