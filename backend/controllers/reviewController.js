@@ -4,20 +4,35 @@ const Meal = require("../models/Meal");
 
 const createReview = async (req, res) => {
   try {
-    const { rating } = req.body;
+    const { rating, mealId } = req.body;
     const userId = req.user._id;
-    const { mealId } = req.params;
 
-    if (!mealId) {
-      return res.status(400).json({ error: "mealId is required in params" });
+    if (!rating || !mealId) {
+      return res
+        .status(400)
+        .json({ error: "Both rating and mealId are required" });
     }
 
-    const newReview = await Review.create({ userId, mealId, rating });
-
+    const user = req.user;
     const meal = await Meal.findById(mealId);
-    if (!meal) {
-      return res.status(404).json({ error: "Meal not found" });
+
+    if (!user || !meal) {
+      return res.status(404).json({ error: "User or Meal not found" });
     }
+
+    const existingReview = await Review.findOne({ user: userId, meal: mealId });
+
+    if (existingReview) {
+      return res
+        .status(400)
+        .json({ error: "User has already reviewed this meal" });
+    }
+
+    const newReview = await Review.create({
+      user: userId,
+      meal: mealId,
+      rating,
+    });
 
     meal.reviews.push(newReview);
     await meal.save();
