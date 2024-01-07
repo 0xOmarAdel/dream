@@ -11,7 +11,7 @@ const PendingReview = ({ meal }) => {
       <MealImage image={meal.image} classes="w-full h-32 object-fill" />
       <div className="flex flex-col gap-2">
         <MealTitle title={meal.title} classes="m-0 text-xl" />
-        <StarInput numberOfStars={5} setRating={setRating} />
+        <StarInput numberOfStars={5} rating={rating} setRating={setRating} />
       </div>
     </div>
   );
