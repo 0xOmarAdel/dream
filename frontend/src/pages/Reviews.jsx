@@ -21,7 +21,11 @@ const Reviews = () => {
 
   if (loading) return <Loading />;
 
-  console.log(orderedMeals);
+  const reviewedMeals = orderedMeals.filter((meal) => meal.rating !== null);
+  const pendingReviews = orderedMeals.filter((meal) => meal.rating === null);
+
+  console.log(reviewedMeals);
+  console.log(pendingReviews);
 
   return (
     <div className="flex flex-col">
@@ -38,10 +42,10 @@ const Reviews = () => {
         <Error message="Your reviews history is empty!" />
       ) : (
         <Section classes="grid grid-cols-3 gap-12">
-          <Card classes="col-span-2">
+          <Card classes="col-span-3 lg:col-span-2">
             <CardTitle title="Reviewed meals" />
           </Card>
-          <Card classes="col-span-1">
+          <Card classes="col-span-3 lg:col-span-1">
             <CardTitle title="Pending reviews" />
           </Card>
         </Section>
