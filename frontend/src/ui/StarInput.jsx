@@ -21,7 +21,7 @@ const StarInput = (props) => {
             <FaStar
               className={
                 currentRating <= (hover || props.rating || 0)
-                  ? "text-xl text-gray-300 cursor-pointer transition duration-700 text-primary"
+                  ? "text-xl text-primary cursor-pointer transition duration-700"
                   : "text-xl text-gray-300 cursor-pointer transition duration-700"
               }
               onMouseEnter={() => setHover(currentRating)}
