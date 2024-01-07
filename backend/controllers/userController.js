@@ -13,26 +13,23 @@ const reviewWithOrders = async (req, res) => {
   try {
     const userId = req.user._id;
 
-    const userReviews = await Review.find({ user: userId }).populate("meal");
-
     const userOrders = await Order.find({
-      user: userId,
+      userId,
       status: "Delivered",
-    }).populate("meal");
+    }).populate("meals.mealId");
 
-    const ordersWithRating = userOrders.map((order) => {
-      const existingReview = userReviews.find((review) =>
-        review.meal._id.equals(order.meal._id)
-      );
-
-      return {
-        order,
-        rating: existingReview ? existingReview.rating : null,
-      };
+    const mealsOfOrders = userOrders.flatMap((order) => {
+      return order.meals.map((meal) => ({
+        ...meal.mealId.toObject(),
+        quantity: meal.quantity,
+        size: meal.size,
+        price: meal.price,
+        rating: meal.mealId.review ? meal.mealId.review.rating : null,
+      }));
     });
 
     res.status(200).json({
-      ordersWithRating,
+      mealsOfOrders,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
