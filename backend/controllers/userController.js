@@ -20,17 +20,13 @@ const reviewWithOrders = async (req, res) => {
 
     const mealsOfOrders = userOrders.flatMap((order) => {
       return order.meals.map((meal) => ({
-        ...meal.mealId.toObject(),
-        quantity: meal.quantity,
-        size: meal.size,
-        price: meal.price,
+        title: meal.mealId.toObject().title,
+        image: meal.mealId.toObject().image,
         rating: meal.mealId.review ? meal.mealId.review.rating : null,
       }));
     });
 
-    res.status(200).json({
-      mealsOfOrders,
-    });
+    res.status(200).json(mealsOfOrders);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
