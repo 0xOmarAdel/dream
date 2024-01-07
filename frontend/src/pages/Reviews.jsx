@@ -41,10 +41,10 @@ const Reviews = () => {
         <Section classes="grid grid-cols-3 gap-12">
           <Card classes="col-span-3 lg:col-span-2">
             <CardTitle title="Reviewed meals" />
-            {pendingReviews.length === 0 ? (
+            {reviewedMeals.length === 0 ? (
               <p className="text-lg text-gray-600">No reviewed meals yet.</p>
             ) : (
-              <ReviewedMeals meals={pendingReviews} />
+              <ReviewedMeals meals={reviewedMeals} />
             )}
           </Card>
           {pendingReviews.length === 0 ? (
