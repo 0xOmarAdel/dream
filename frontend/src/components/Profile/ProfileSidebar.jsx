@@ -42,6 +42,19 @@ const ProfileSidebar = () => {
           </li>
           <li>
             <NavLink
+              to="/reviews"
+              className={({ isActive }) =>
+                isActive
+                  ? " flex items-center p-2 text-white bg-sky-500 rounded-lg hover:bg-sky-600 hover:text-white group"
+                  : " flex items-center p-2 text-gray-900 rounded-lg hover:bg-sky-600 hover:text-white group"
+              }
+            >
+              <MdCalendarToday />
+              <span className="ms-3">Reviews History</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/reservations"
               className={({ isActive }) =>
                 isActive
