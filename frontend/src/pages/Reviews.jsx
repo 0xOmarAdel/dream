@@ -6,6 +6,8 @@ import Error from "../ui/Error";
 import Section from "../ui/Section";
 import Card from "../ui/Card";
 import CardTitle from "../ui/CardTitle";
+import PendingReviews from "../components/Reviews/PendingReviews";
+import ReviewedMeals from "../components/Reviews/ReviewedMeals";
 
 const Reviews = () => {
   const {
@@ -24,9 +26,6 @@ const Reviews = () => {
   const reviewedMeals = orderedMeals.filter((meal) => meal.rating !== null);
   const pendingReviews = orderedMeals.filter((meal) => meal.rating === null);
 
-  console.log(reviewedMeals);
-  console.log(pendingReviews);
-
   return (
     <div className="flex flex-col">
       <Banner
@@ -38,16 +37,26 @@ const Reviews = () => {
       />
       {error ? (
         <Error message="An error occurred while fetching your data!" />
-      ) : orderedMeals.length === 0 ? (
-        <Error message="Your reviews history is empty!" />
       ) : (
         <Section classes="grid grid-cols-3 gap-12">
           <Card classes="col-span-3 lg:col-span-2">
             <CardTitle title="Reviewed meals" />
+            {reviewedMeals.length === 0 ? (
+              <p className="text-lg text-gray-600">No reviewed meals yet.</p>
+            ) : (
+              <ReviewedMeals meals={reviewedMeals} />
+            )}
           </Card>
-          <Card classes="col-span-3 lg:col-span-1">
-            <CardTitle title="Pending reviews" />
-          </Card>
+          {pendingReviews.length === 0 ? (
+            <p className="text-lg text-gray-600">
+              No pending reviews at the moment.
+            </p>
+          ) : (
+            <Card classes="col-span-3 lg:col-span-1">
+              <CardTitle title="Pending reviews" />
+              <PendingReviews meals={pendingReviews} />
+            </Card>
+          )}
         </Section>
       )}
     </div>
