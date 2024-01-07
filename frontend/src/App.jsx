@@ -23,6 +23,7 @@ import Loading from "./ui/Loading";
 import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Reviews from "./pages/Reviews";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -104,6 +105,18 @@ const App = () => {
               <Navigate to="/admin/orders" />
             ) : user ? (
               <Orders />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/reviews"
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/meals" />
+            ) : user ? (
+              <Reviews />
             ) : (
               <Navigate to="/login" />
             )
