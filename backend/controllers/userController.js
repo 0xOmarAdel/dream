@@ -18,15 +18,29 @@ const reviewWithOrders = async (req, res) => {
       status: "Delivered",
     }).populate("meals.mealId");
 
-    const mealsOfOrders = userOrders.flatMap((order) => {
-      return order.meals.map((meal) => ({
-        title: meal.mealId.toObject().title,
-        image: meal.mealId.toObject().image,
-        rating: meal.mealId.review ? meal.mealId.review.rating : null,
-      }));
-    });
+    const uniqueMealIds = new Set();
+    const mealsOfOrders = [];
 
-    res.status(200).json(mealsOfOrders);
+    for (const order of userOrders) {
+      for (const meal of order.meals) {
+        const mealObject = {
+          ...meal.mealId.toObject(),
+          quantity: meal.quantity,
+          size: meal.size,
+          price: meal.price,
+          rating: meal.mealId.review ? meal.mealId.review.rating : null,
+        };
+
+        if (!uniqueMealIds.has(mealObject._id)) {
+          uniqueMealIds.add(mealObject._id);
+          mealsOfOrders.push(mealObject);
+        }
+      }
+    }
+
+    res.status(200).json({
+      mealsOfOrders,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
