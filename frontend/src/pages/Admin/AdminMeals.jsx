@@ -16,6 +16,9 @@ const AdminMeals = () => {
     fetchMeals();
   }, [fetchMeals]);
 
+    if (loading) return <Loading />;
+
+
   return (
     <>
       {loading ? (

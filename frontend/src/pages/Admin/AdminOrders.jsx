@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import Order from "../../components/Order/Order";
+import Loading from "../../ui/Loading";
 
 const AdminOrders = () => {
   const {
@@ -25,9 +26,7 @@ const AdminOrders = () => {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <Loading />;
 
   if (error) {
     return <div>Error fetching orders.</div>;
