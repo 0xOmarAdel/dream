@@ -14,7 +14,7 @@ const PendingReviews = ({ meals }) => {
       } gap-x-10 gap-y-7`}
     >
       {meals.map((meal) => (
-        <PendingReview key={meal._id} meal={meals} />
+        <PendingReview key={meal._id} meal={meal} />
       ))}
     </div>
   );
