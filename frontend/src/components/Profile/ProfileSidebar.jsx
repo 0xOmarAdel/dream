@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { MdCalendarToday, MdFastfood, MdLogout } from "react-icons/md";
+import { IoMdTime } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/userAuthSlice";
@@ -49,7 +50,7 @@ const ProfileSidebar = () => {
                   : " flex items-center p-2 text-gray-900 rounded-lg hover:bg-sky-600 hover:text-white group"
               }
             >
-              <MdCalendarToday />
+              <IoMdTime />
               <span className="ms-3">Reviews History</span>
             </NavLink>
           </li>
