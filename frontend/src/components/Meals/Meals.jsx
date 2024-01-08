@@ -15,7 +15,7 @@ const Meals = ({ meals, searchQuery }) => {
       : []
     : meals;
 
-  const classes = `h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 ${
+  const classes = `w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 ${
     isAdminMeals ? "overflow-y-scroll h-screen" : ""
   } `;
 
