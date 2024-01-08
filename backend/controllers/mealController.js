@@ -79,7 +79,10 @@ const getAllMeals = async (req, res) => {
               meal.reviews.length
             : 0;
 
-        return ratingsArray.includes(parseFloat(averageRating.toFixed(1)));
+        return (
+          ratingsArray.includes(Math.floor(averageRating)) &&
+          averageRating < Math.floor(averageRating) + 1
+        );
       });
     } else {
       meals = await Meal.find(query).populate("reviews");
