@@ -24,8 +24,6 @@ const reviewWithOrders = async (req, res) => {
     for (const order of userOrders) {
       for (const meal of order.meals) {
         const mealIdObject = meal.mealId.toObject();
-
-        console.log(mealIdObject);
         const mealObject = {
           _id: meal.mealId.toObject()._id,
           title: meal.mealId.toObject().title,
