@@ -244,7 +244,7 @@ const editRate = async (req, res) => {
 
 const getMealRatingInfo = async (req, res) => {
   try {
-    const mealId = req.params.mealId;
+    const mealId = req.params.id;
 
     const reviews = await Review.find({ mealId });
 
