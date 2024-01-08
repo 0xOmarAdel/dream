@@ -39,7 +39,14 @@ const createReview = async (req, res) => {
 
     res.status(201).json(newReview);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error in createReview:", error);
+    if (error.response && error.response.status === 404) {
+      return res.status(404).json({ error: "Resource not found" });
+    } else if (error.response && error.response.status === 400) {
+      return res.status(400).json({ error: "Bad request" });
+    } else {
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
 };
 
