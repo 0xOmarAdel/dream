@@ -23,11 +23,17 @@ const reviewWithOrders = async (req, res) => {
 
     for (const order of userOrders) {
       for (const meal of order.meals) {
+        const mealIdObject = meal.mealId.toObject();
+
+        console.log(mealIdObject);
         const mealObject = {
           _id: meal.mealId.toObject()._id,
           title: meal.mealId.toObject().title,
           image: meal.mealId.toObject().image,
-          rating: meal.mealId.review ? meal.mealId.review.rating : null,
+          rating:
+            mealIdObject.reviews.length > 0
+              ? mealIdObject.reviews[0].rating
+              : null,
         };
 
         if (!uniqueMealIds.has(mealObject._id)) {
