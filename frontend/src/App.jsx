@@ -80,7 +80,7 @@ const App = () => {
         />
         <Route
           path="/menu"
-          element={isAdmin ? <Navigate to="/meals" /> : <Menu />}
+          element={isAdmin ? <Navigate to="/admin/meals" /> : <Menu />}
         />
         <Route
           path="/profile"
