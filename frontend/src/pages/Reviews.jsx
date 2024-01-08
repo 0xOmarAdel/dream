@@ -47,16 +47,16 @@ const Reviews = () => {
               <ReviewedMeals meals={reviewedMeals} />
             )}
           </Card>
-          {pendingReviews.length === 0 ? (
-            <p className="text-lg text-gray-600">
-              No pending reviews at the moment.
-            </p>
-          ) : (
-            <Card classes="col-span-3 lg:col-span-1">
-              <CardTitle title="Pending reviews" />
+          <Card classes="col-span-3 lg:col-span-1">
+            <CardTitle title="Pending reviews" />
+            {pendingReviews.length === 0 ? (
+              <p className="text-lg text-gray-600">
+                No pending reviews at the moment.
+              </p>
+            ) : (
               <PendingReviews meals={pendingReviews} />
-            </Card>
-          )}
+            )}
+          </Card>
         </Section>
       )}
     </div>
