@@ -249,7 +249,7 @@ const getMealRatingInfo = async (req, res) => {
   try {
     const mealId = req.params.id;
 
-    const reviews = await Review.find({ mealId });
+    const reviews = await Review.find({ meal: mealId });
 
     const ratings = Array.from({ length: 5 }, (_, index) => ({
       value: 5 - index,
