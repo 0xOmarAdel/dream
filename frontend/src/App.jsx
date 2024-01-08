@@ -40,7 +40,7 @@ const App = () => {
     const fetchToken = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/validateToken",
+          "https://dream-restaurant.onrender.com/api/v1/validateToken",
           {
             token: localToken,
           }

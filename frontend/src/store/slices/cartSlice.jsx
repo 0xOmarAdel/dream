@@ -10,7 +10,9 @@ const initialCartState = {
 
 export const getCartItems = createAsyncThunk("cart/getCartItems", async () => {
   try {
-    const response = await axios.get("http://localhost:5000/api/v1/cart");
+    const response = await axios.get(
+      "https://dream-restaurant.onrender.com/api/v1/cart"
+    );
     const cartItems = response.data;
 
     let totalQuantity = 0;
@@ -42,7 +44,7 @@ export const addItemToCart = createAsyncThunk(
 
       if (!existingCartItem) {
         const response = await axios.post(
-          `http://localhost:5000/api/v1/cart/add/${newMeal.id}`,
+          `https://dream-restaurant.onrender.com/api/v1/cart/add/${newMeal.id}`,
           { option: newMeal.size }
         );
 
@@ -86,7 +88,7 @@ export const removeItemFromCart = createAsyncThunk(
 
       if (existingCartItem) {
         const response = await axios.delete(
-          `http://localhost:5000/api/v1/cart/delete/${mealToRemove.id}`
+          `https://dream-restaurant.onrender.com/api/v1/cart/delete/${mealToRemove.id}`
         );
 
         const updatedCartItems = cartItems.filter(
@@ -122,7 +124,7 @@ export const updateItemQuantity = createAsyncThunk(
 
         if (updatedCartItemQuantity !== 0) {
           const response = await axios.put(
-            `http://localhost:5000/api/v1/cart/edit/${cartItemId}`,
+            `https://dream-restaurant.onrender.com/api/v1/cart/edit/${cartItemId}`,
             { quantity: updatedCartItemQuantity }
           );
 

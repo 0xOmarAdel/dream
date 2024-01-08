@@ -14,7 +14,7 @@ export const register = createAsyncThunk(
   async (registrationData) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/register",
+        "https://dream-restaurant.onrender.com/api/v1/auth/register",
         registrationData
       );
       if (response.data.token) {
@@ -39,7 +39,7 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/auth/login",
+      "https://dream-restaurant.onrender.com/api/v1/auth/login",
       credentials
     );
     if (response.data.token) {

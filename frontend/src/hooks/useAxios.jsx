@@ -21,7 +21,7 @@ const useAxios = (url, method = "GET", body = null, searchParams = null) => {
 
       const response = await axios({
         method: method,
-        url: `http://localhost:5000/api/v1${url}`,
+        url: `https://dream-restaurant.onrender.com/api/v1${url}`,
         data: body,
         params: memoizedSearchParams,
         headers: {
