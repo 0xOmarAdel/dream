@@ -39,24 +39,25 @@ app.get("/", (req, res) => {
   res.status(200).json(responseData);
 });
 
-// cron.schedule("*/5 * * * *", () => {
-//   console.log("SERVER PING IS ALRIGHT!");
-//   const serverUrl = "https://cms-complaints-api.onrender.com";
-//   axios
-//     .get(serverUrl)
-//     .then((response) => {
-//       if (response.status === 200) {
-//         console.log(`Request sent to ${serverUrl}`);
-//       } else {
-//         console.error(
-//           `Failed to send request to ${serverUrl}. Status code: ${response.status}`
-//         );
-//       }
-//     })
-//     .catch((error) => {
-//       console.error(`Error sending request to ${serverUrl}: ${error.message}`);
-//     });
-// });
+cron.schedule("*/5 * * * *", () => {
+  console.log("SERVER PING IS ALRIGHT!");
+  const serverUrl = "https://dream-restaurant.onrender.com";
+  axios
+    .get(serverUrl)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(`Request sent to ${serverUrl}`);
+      } else {
+        console.error(
+          `Failed to send request to ${serverUrl}. Status code: ${response.status}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.error(`Error sending request to ${serverUrl}: ${error.message}`);
+    });
+});
+
 app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
   const userData = req.user;
   if (!userData) {
