@@ -93,7 +93,7 @@ const AdminDashboard = () => {
           </ul>
         </div>
       </div>
-      <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+      <div className="w-full h-fit p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
         <div className="flex flex-col items-center justify-between space-y-12 mb-4">
           <h5 className="text-xl font-bold leading-none text-gray-900">
             Total Money
@@ -103,7 +103,7 @@ const AdminDashboard = () => {
           </p>
         </div>
       </div>
-      <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+      <div className="w-full h-fit p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
         <div className="flex flex-col items-center space-y-12 justify-between mb-4">
           <h5 className="text-xl font-bold leading-none text-gray-900">
             Users

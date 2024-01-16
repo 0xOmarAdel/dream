@@ -12,7 +12,7 @@ const ProfileSidebar = () => {
     dispatch(logout());
   };
   return (
-    <aside className="shadow-md w-64 h-[70vh] hidden lg:block">
+    <aside className="shadow-md w-64 min-h-[70vh] hidden lg:block">
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50">
         <ul className="space-y-2 font-medium">
           <li>
