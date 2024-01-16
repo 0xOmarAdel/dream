@@ -12,6 +12,7 @@ const About = () => {
     <section
       className="overflow-hidden px-4 pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white"
       ref={ref}
+      id="about"
     >
       <div className="container mx-auto">
         <div className="flex flex-wrap items-center justify-between -mx-4">
