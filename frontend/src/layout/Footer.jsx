@@ -27,7 +27,7 @@ const Footer = () => {
       </nav>
       <nav>
         <header className="footer-title opacity-100">Company</header>
-        <a id="#about" className="link link-hover">
+        <a href="#about" className="link link-hover">
           About us
         </a>
         <Link to="/contact" className="link link-hover">
