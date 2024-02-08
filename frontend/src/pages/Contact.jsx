@@ -53,11 +53,11 @@ const Contact = () => {
             <div className="mb-12 grid gap-x-6 md:grid-cols-2 lg:grid-cols-4">
               <div className="mx-auto mb-12 text-center lg:mb-0">
                 <FaGlobeAmericas className="mx-auto mb-6 h-8 w-8 text-primary" />
-                <h6 className="font-medium">Michigan</h6>
+                <h6 className="font-medium">California</h6>
               </div>
               <div className="mx-auto mb-12 text-center lg:mb-0">
                 <SlLocationPin className="mx-auto mb-6 h-8 w-8 text-primary" />
-                <h6 className="font-medium">Michigan, 94126</h6>
+                <h6 className="font-medium">California, 94126</h6>
               </div>
               <div className="mx-auto mb-6 text-center md:mb-0">
                 <FaPhoneAlt className="mx-auto mb-6 h-8 w-8 text-primary" />
